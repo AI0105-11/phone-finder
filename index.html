@@ -1,0 +1,879 @@
+<!doctype html>
+<html lang="zh-Hant" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex, nofollow">
+<title>手機推薦速查</title>
+<style>
+:root{
+  --bg:#ffffff; --surface:#ffffff; --surface2:#f3f3f5; --row:#fafafb; --info:#eef4fa;
+  --ink:#333333; --muted:#6b6b72; --line:#e6e6eb;
+  --accent:#c4090f; --accent-ink:#ffffff; --accent-soft:#fdf0f0;
+  --good:#1e8a4c; --good-soft:#e5f5ec; --blue:#0468b6;
+  --radius:12px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink)}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;font-size:15px;line-height:1.5}
+button,input,select{font:inherit;color:inherit}
+button{border:0;background:none;cursor:pointer;padding:0}
+.wrap{max-width:560px;margin:0 auto;padding:14px 16px calc(90px + env(safe-area-inset-bottom))}
+.hidden{display:none!important}
+.num{font-variant-numeric:tabular-nums}
+header.top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:4px 0 12px}
+.brand{font-weight:800;font-size:22px;border-left:4px solid var(--accent);padding-left:10px;line-height:1.25}
+.brand small{display:block;font-size:12px;font-weight:500;color:var(--muted)}
+.reset{flex:none;height:36px;padding:0 12px;border-radius:10px;background:var(--surface2);font-weight:700;font-size:13px;color:var(--muted)}
+.search{position:relative;margin-bottom:12px}
+.search input{width:100%;height:46px;border:1.5px solid var(--line);border-radius:var(--radius);padding:0 40px 0 14px;font-size:16px;background:var(--surface);outline:none}
+.search input:focus{border-color:var(--accent)}
+.search .clr{position:absolute;right:6px;top:7px;width:32px;height:32px;border-radius:8px;color:var(--muted);font-size:18px}
+.sec{border:1px solid var(--line);border-radius:var(--radius);padding:12px 12px 10px;margin-bottom:10px;background:var(--surface)}
+.sec h2{margin:0 0 8px;font-size:15px;font-weight:800;display:flex;align-items:baseline;gap:8px}
+.sec h2 .no{color:var(--accent);font-weight:900}
+.sec h2 small{font-weight:500;color:var(--muted);font-size:12px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{min-height:36px;padding:6px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);font-weight:700;font-size:14px;white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.chip.soft[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
+.chip small{font-weight:500;opacity:.8;margin-left:2px}
+.range{display:flex;flex-wrap:wrap;align-items:center;gap:6px 6px;margin-top:8px;font-size:13px;color:var(--muted)}
+.range input{width:92px;height:36px;border:1.5px solid var(--line);border-radius:8px;padding:0 8px;font-size:16px;text-align:right;background:var(--surface);color:var(--ink)}
+.range input:focus{outline:none;border-color:var(--accent)}
+.range label{display:flex;align-items:center;gap:6px;margin-left:auto;white-space:nowrap}
+.range input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent)}
+details.more summary{list-style:none;cursor:pointer;font-weight:800;font-size:15px;display:flex;align-items:center;gap:8px}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary::after{content:"▾";margin-left:auto;color:var(--muted)}
+details.more[open] summary::after{content:"▴"}
+details.more .grp{margin-top:10px}
+details.more .grp b{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
+.persona-note{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.5}
+.persona-note:empty{display:none}
+.rhead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:16px 0 8px}
+.rhead b{font-size:16px}
+.rhead b span{color:var(--accent)}
+.rhead select{height:36px;border:1.5px solid var(--line);border-radius:8px;background:var(--surface);padding:0 6px;font-size:16px}
+.card{border:1px solid var(--line);border-radius:var(--radius);margin-bottom:10px;background:var(--surface);overflow:hidden}
+.card.over{border-style:dashed}
+.c-top{display:flex;gap:10px;padding:12px 12px 8px}
+.rank{flex:none;width:26px;height:26px;border-radius:50%;background:var(--surface2);display:grid;place-items:center;font-weight:800;font-size:13px;color:var(--muted)}
+.card:nth-child(-n+3) .rank{background:var(--accent);color:#fff}
+.c-main{flex:1;min-width:0}
+.c-name{font-weight:800;font-size:17px;line-height:1.3}
+.c-sub{font-size:12px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 8px;margin-top:2px}
+.tagx{font-size:11px;font-weight:800;padding:1px 6px;border-radius:5px;background:var(--accent-soft);color:var(--accent)}
+.tagx.b{background:var(--info);color:var(--blue)}
+.tagx.g{background:var(--surface2);color:var(--muted)}
+.c-price{flex:none;text-align:right}
+.c-price b{display:block;color:var(--accent);font-size:19px;font-weight:900;line-height:1.2}
+.c-price s{font-size:12px;color:var(--muted)}
+.c-price .over-t{display:block;font-size:11px;font-weight:700;color:#a35a00}
+.match{display:flex;align-items:center;gap:8px;padding:0 12px 6px;font-size:12px;color:var(--muted)}
+.match i{flex:1;height:6px;border-radius:6px;background:var(--surface2);overflow:hidden}
+.match i em{display:block;height:100%;background:var(--accent);border-radius:6px}
+.match span{font-weight:800;color:var(--ink);min-width:34px;text-align:right}
+.reasons{margin:0;padding:4px 12px 8px 30px;font-size:14px;line-height:1.55}
+.reasons li{margin:2px 0}
+.reasons li b{color:var(--accent)}
+.specs{display:flex;flex-wrap:wrap;gap:4px;padding:0 12px 10px}
+.specs span{font-size:12px;padding:2px 7px;border-radius:6px;background:var(--row);border:1px solid var(--line)}
+.c-act{display:flex;border-top:1px solid var(--line)}
+.c-act button,.c-act a{flex:1;height:42px;display:flex;align-items:center;justify-content:center;gap:6px;font-weight:700;font-size:14px;color:var(--ink);text-decoration:none}
+.c-act > * + *{border-left:1px solid var(--line)}
+.c-act button[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent)}
+.empty{text-align:center;color:var(--muted);padding:30px 10px;border:1px dashed var(--line);border-radius:var(--radius)}
+.more-btn{display:block;width:100%;height:44px;border-radius:var(--radius);border:1.5px solid var(--line);font-weight:700;margin-top:4px}
+.cbar{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:linear-gradient(to top,#fff 75%,rgba(255,255,255,0))}
+.cbar-in{max-width:528px;margin:0 auto;display:flex;gap:8px}
+.cbar .go{flex:1;height:50px;border-radius:var(--radius);background:var(--accent);color:#fff;font-weight:800;font-size:16px}
+.cbar .go:disabled{opacity:.45}
+.cbar .clr2{flex:none;height:50px;padding:0 14px;border-radius:var(--radius);background:var(--surface2);font-weight:700;color:var(--muted)}
+.sheet-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:40;display:flex;align-items:flex-end;justify-content:center}
+.sheet{background:#fff;width:100%;max-width:640px;border-radius:16px 16px 0 0;max-height:92vh;max-height:92dvh;overflow:auto;padding:14px 14px calc(18px + env(safe-area-inset-bottom))}
+.sheet-h{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;position:sticky;top:-14px;background:#fff;padding:6px 0;z-index:2}
+.sheet-h h3{margin:0;font-size:18px;border-left:4px solid var(--accent);padding-left:8px}
+.sheet-h button{width:36px;height:36px;border-radius:10px;background:var(--surface2);font-size:18px;color:var(--muted);flex:none}
+.cmp-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table.cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;table-layout:fixed;min-width:320px}
+table.cmp th,table.cmp td{padding:7px 6px;border-bottom:1px solid var(--line);text-align:center;vertical-align:middle;word-break:break-word}
+table.cmp thead th{background:var(--accent);color:#fff;font-weight:800;font-size:13px}
+table.cmp thead th:first-child{border-radius:10px 0 0 0}
+table.cmp thead th:last-child{border-radius:0 10px 0 0}
+table.cmp th.rl{width:72px;text-align:left;color:var(--muted);font-weight:700;background:var(--row);font-size:12px}
+table.cmp thead th.rl{background:var(--accent);color:#fff}
+table.cmp td.best{background:var(--good-soft);color:var(--good);font-weight:800}
+table.cmp tr.grp td{background:var(--info);color:var(--blue);font-weight:800;text-align:left;font-size:12px}
+.cmp-note{font-size:12px;color:var(--muted);margin-top:8px}
+.dl{display:grid;grid-template-columns:96px 1fr;border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14px}
+.dl dt{background:var(--row);color:var(--muted);font-weight:700;font-size:12px;padding:7px 8px;border-bottom:1px solid var(--line)}
+.dl dd{margin:0;padding:7px 8px;border-bottom:1px solid var(--line)}
+.dl dt:nth-last-child(2),.dl dd:last-child{border-bottom:0}
+.caps{width:100%;border-collapse:collapse;font-size:14px;margin:8px 0 12px}
+.caps th,.caps td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:left}
+.caps th{font-size:12px;color:var(--muted);background:var(--row)}
+.caps td.p{color:var(--accent);font-weight:800}
+.links{display:flex;gap:8px;margin-top:12px}
+.links a{flex:1;height:44px;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-weight:800;text-decoration:none;border:1.5px solid var(--line);color:var(--ink)}
+.links a.pri{background:var(--accent);border-color:var(--accent);color:#fff}
+.scorebars{display:grid;grid-template-columns:repeat(3,1fr);gap:6px 10px;margin:10px 0 12px}
+.sb{font-size:12px;color:var(--muted)}
+.sb i{display:block;height:5px;border-radius:5px;background:var(--surface2);margin-top:3px;overflow:hidden}
+.sb i em{display:block;height:100%;background:var(--blue)}
+.simtabs{display:flex;gap:6px;margin:0 0 10px}
+.simtabs button{flex:1;height:40px;border-radius:10px;border:1.5px solid var(--line);font-weight:800;font-size:14px}
+.simtabs button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.base{display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--row);border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin-bottom:8px;font-size:13px}
+.base b{font-size:15px}
+.base .pr{color:var(--accent);font-weight:900;white-space:nowrap}
+.simnote{font-size:12px;color:var(--muted);margin:0 0 8px;line-height:1.5}
+.sim{border:1px solid var(--line);border-radius:10px;padding:10px;margin-bottom:8px}
+.sim-h{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.sim-h b{font-size:15px;line-height:1.3}
+.sim-h small{display:block;font-size:12px;color:var(--muted);font-weight:500}
+.sim-p{text-align:right;white-space:nowrap}
+.sim-p b{display:block;color:var(--accent);font-weight:900}
+.pd{font-size:12px;font-weight:800}
+.pd.lo{color:var(--good)}.pd.hi{color:#a35a00}.pd.eq{color:var(--muted)}
+.dchips{display:flex;flex-wrap:wrap;gap:4px;margin:6px 0 8px}
+.dchips span{font-size:12px;font-weight:700;padding:2px 7px;border-radius:6px}
+.dchips .up{background:var(--good-soft);color:var(--good)}
+.dchips .dn{background:var(--surface2);color:var(--muted)}
+.dchips .sm{background:var(--info);color:var(--blue)}
+.sim-a{display:flex;gap:6px}
+.sim-a button{flex:1;height:36px;border-radius:8px;border:1.5px solid var(--line);font-weight:700;font-size:13px}
+.sim-a button.pri{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.sheet-h .back{width:auto;padding:0 10px;font-size:14px;font-weight:700;color:var(--ink)}
+.sheet-h .hl{display:flex;align-items:center;gap:8px;min-width:0}
+.lvb{display:inline-block;font-size:11px;font-weight:800;padding:1px 7px;border-radius:6px;white-space:nowrap}
+.lvb.l0{background:var(--surface2);color:var(--muted)}
+.lvb.l1{background:var(--info);color:var(--blue)}
+.lvb.l2{background:var(--good-soft);color:var(--good)}
+.lvb.l3{background:var(--accent-soft);color:var(--accent)}
+.lvb.le{background:var(--info);color:var(--blue)}
+.lvb.lx{background:#fff;color:var(--muted);border:1px dashed var(--line)}
+.qm{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--line);font-size:12px;font-weight:800;color:var(--muted);flex:none;margin-left:6px;line-height:1}
+.trow{padding:8px 0;border-top:1px solid var(--line)}
+.trow:first-of-type{border-top:0}
+.tname{display:flex;align-items:center;font-weight:800;font-size:14px;margin-bottom:6px}
+.guide-link{margin-left:auto;font-size:13px;font-weight:800;color:var(--accent);padding:4px 2px}
+.tiers{border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:4px 0 12px}
+.tr{padding:8px 10px;border-top:1px solid var(--line)}
+.tr:first-child{border-top:0}
+.tr-h{display:flex;align-items:center;gap:6px}
+.tr-h b{font-size:14px;margin-right:auto}
+.tr-v{font-size:13px;margin-top:3px;word-break:break-word}
+.tr-d{font-size:12px;color:var(--muted);margin-top:1px}
+.sub-h{font-size:14px;font-weight:800;margin:12px 0 6px}
+details.full summary{cursor:pointer;font-weight:800;font-size:14px;margin:10px 0 6px;color:var(--blue)}
+.gnav{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.gnav button{font-size:12px;font-weight:700;padding:4px 8px;border-radius:8px;background:var(--surface2)}
+.gd{border-top:1px solid var(--line);padding-top:10px;margin-top:12px}
+.gd h4{margin:0 0 4px;font-size:16px;border-left:4px solid var(--accent);padding-left:8px}
+.gd p{margin:4px 0 8px;font-size:14px}
+.gd ul{margin:6px 0 0;padding-left:20px;font-size:13px;line-height:1.6}
+.gt{width:100%;border-collapse:collapse;font-size:13px}
+.gt th,.gt td{border-bottom:1px solid var(--line);padding:6px 5px;text-align:left;vertical-align:top}
+.gt th{font-size:12px;color:var(--muted);background:var(--row)}
+.cmp .lvb{white-space:normal}
+.subsec{margin-top:6px;border-top:1px dashed var(--line);padding-top:6px;display:grid;gap:4px}
+.ss{display:grid;grid-template-columns:76px auto 1fr;gap:6px;align-items:center;font-size:12px}
+.ss-n{color:var(--muted);font-weight:700}
+.ss-v{color:var(--ink);min-width:0}
+.foot{font-size:12px;color:var(--muted);margin-top:18px;line-height:1.6}
+.toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%);background:#333;color:#fff;padding:8px 14px;border-radius:10px;font-size:13px;z-index:50;pointer-events:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">手機推薦速查<small id="dataNote"></small></div>
+    <button class="reset" id="resetBtn" type="button">全部清除</button>
+  </header>
+
+  <div class="search">
+    <input id="q" type="search" placeholder="搜尋型號，例如 S26、iPhone、Reno" autocomplete="off" enterkeyhint="search">
+    <button class="clr hidden" id="qClr" type="button" aria-label="清除搜尋">×</button>
+  </div>
+
+  <section class="sec">
+    <h2><span class="no">01</span>預算<small>以台灣網通售價（最低容量）計算</small></h2>
+    <div class="chips" id="budgetChips"></div>
+    <div class="range">
+      <input id="pMin" class="num" type="number" inputmode="numeric" placeholder="最低" aria-label="最低預算">～
+      <input id="pMax" class="num" type="number" inputmode="numeric" placeholder="最高" aria-label="最高預算">
+      <label><input id="stretch" type="checkbox">多看超出 10%</label>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2><span class="no">02</span>客人類型<small>選一個</small></h2>
+    <div class="chips" id="personaChips"></div>
+    <div class="persona-note" id="personaNote"></div>
+  </section>
+
+  <section class="sec">
+    <h2><span class="no">03</span>在意的特性<small>可複選</small></h2>
+    <div class="chips" id="featChips"></div>
+  </section>
+
+  <section class="sec">
+    <details class="more" id="moreBox">
+      <summary><span style="color:var(--accent);font-weight:900">04</span>更多條件<small id="moreCount" style="font-weight:600;color:var(--accent)"></small></summary>
+      <div class="grp"><b>必備功能</b><div class="chips" id="needChips"></div></div>
+      <div class="grp"><b>品牌（不選＝全部）</b><div class="chips" id="brandChips"></div></div>
+      <div class="grp"><b>機型種類</b><div class="chips" id="formChips"></div></div>
+    </details>
+  </section>
+
+  <section class="sec">
+    <details class="more" id="tierBox">
+      <summary><span style="color:var(--accent);font-weight:900">05</span>規格需求（分級）<small id="tierCount" style="font-weight:600;color:var(--accent)"></small></summary>
+      <div style="display:flex;align-items:center;margin-top:8px"><small style="color:var(--muted)">選「≥等級」＝至少要達到</small><button type="button" class="guide-link" data-guide="bat">規格怎麼看 ›</button></div>
+      <div id="tierRows"></div>
+    </details>
+  </section>
+
+  <div class="rhead">
+    <b>符合 <span id="cnt">0</span> 支</b>
+    <select id="sortSel" aria-label="排序">
+      <option value="score">推薦度</option>
+      <option value="pa">價格低→高</option>
+      <option value="pd">價格高→低</option>
+      <option value="new">最新上市</option>
+    </select>
+  </div>
+  <div id="list"></div>
+  <button class="more-btn hidden" id="moreBtn" type="button">顯示更多</button>
+
+  <div class="foot" id="foot"></div>
+</div>
+
+<div class="cbar hidden" id="cbar"><div class="cbar-in">
+  <button class="clr2" id="cmpClear" type="button">清空</button>
+  <button class="go" id="cmpGo" type="button">比較</button>
+</div></div>
+
+<div class="sheet-bg hidden" id="sheetBg"><div class="sheet" id="sheet"></div></div>
+
+<script>
+const DATA = [{"id":53096,"name":"vivo V80","brand":"vivo","caps":[{"cap":"8+128G","p":20990,"m":23990},{"cap":"8+256GB","p":22990,"m":25990}],"price":20990,"msrp":23990,"hot":0,"g":"5G","date":"2026/11","sell":"蔡司影像、超防水、大電量","sogi":"vivo-v80/17460","cpu":"Snapdragon 7 Gen 4","mat":"AMOLED","fp":"超聲波","os":"A17","ip":"IP68/IP69","ram":8,"bat":7200,"scr":6.59,"nit":5000,"hz":144,"c1":5000,"c2":800,"c3":5000,"c4":null,"fc":5000,"chg":90,"wt":203,"th":7.69,"ois":1,"wl":0,"esim":1,"sd":0,"fold":0,"ratio":19.6,"res":"2750x1260","gpu":"Adreno 722","memf":"LPDDR4X","romf":"UFS3.1","len":157.52,"wid":74.33,"subscr":null,"pwm":null,"dcd":0,"mnit":1.0,"ar":"","hbm":null,"uos":null,"usec":6,"usrc":"原廠介紹","cmin":30,"cpct":50,"rom":[128,256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[3,"超聲波螢幕指紋"],"ap":[2,"vivo 安全盾（阻擋詐騙來電、App 與網路詐騙）＋Android 防盜"]},{"id":53078,"name":"POCO C95 Pro","brand":"POCO","caps":[{"cap":"8+256GB","p":5699,"m":5699},{"cap":"6+128GB","p":5699,"m":5699}],"price":5699,"msrp":5699,"hot":0,"g":"5G","date":"2026/11","sell":"7千5大電量、3.5mm耳機孔、可插記憶卡","sogi":"poco-c95-pro/17465","cpu":"Helio G91-Ultra","mat":"LCD","fp":"電容","os":"A16","ip":"IP64","ram":8,"bat":7500,"scr":6.9,"nit":825,"hz":120,"c1":5000,"c2":null,"c3":null,"c4":null,"fc":800,"chg":null,"wt":232,"th":8.8,"ois":0,"wl":0,"esim":0,"sd":1,"fold":0,"ratio":20.0,"res":"1600x720","gpu":"Mali-G52 MC2","memf":"","romf":"","len":170.12,"wid":78.42,"subscr":null,"pwm":null,"dcd":1,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[128,256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"電容式指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":53031,"name":"Motorola edge 70 Pro","brand":"Motorola","caps":[{"cap":"256G","p":22990,"m":26989}],"price":22990,"msrp":26989,"hot":0,"g":"5G","date":"2026/08","sell":"eSIM上網、超級快充、超防水","sogi":"motorola-edge-70-pro/17411","cpu":"Dimensity 8500 Extreme","mat":"Extreme AMOLED","fp":"光感","os":"A16","ip":"IP68/IP69","ram":12,"bat":6500,"scr":6.8,"nit":5000,"hz":144,"c1":5000,"c2":5000,"c3":5000,"c4":null,"fc":5000,"chg":90,"wt":190,"th":7.19,"ois":1,"wl":1,"esim":0,"sd":0,"fold":0,"ratio":19.6,"res":"2772x1272","gpu":"Mali-G720","memf":"LPDDR5X","romf":"UFS4.1","len":162.7,"wid":75.6,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":3,"usec":5,"usrc":"品牌政策","cmin":null,"cpct":null,"rom":[256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"光學螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":53022,"name":"Motorola Moto g37 Power","brand":"Motorola","caps":[{"cap":"128GB","p":5990,"m":8990}],"price":5990,"msrp":8990,"hot":0,"g":"5G","date":"2026/08","sell":"7千大電量、可插記憶卡、eSIM上網","sogi":"motorola-g37-power/17412","cpu":"Dimensity 6300","mat":"LCD","fp":"有","os":"A16","ip":"IP64","ram":4,"bat":7000,"scr":6.7,"nit":1050,"hz":120,"c1":5000,"c2":null,"c3":null,"c4":null,"fc":800,"chg":30,"wt":215,"th":8.89,"ois":0,"wl":0,"esim":0,"sd":1,"fold":0,"ratio":20.1,"res":"1604x720","gpu":"Mali-G57 MP2","memf":"LPDDR4X","romf":"UFS2.2","len":166.23,"wid":76.5,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":2,"usec":3,"usrc":"品牌政策","cmin":null,"cpct":null,"rom":[128],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"指紋辨識"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":53016,"name":"vivo Y32","brand":"vivo","caps":[{"cap":"6+128G","p":7990,"m":13990}],"price":7990,"msrp":13990,"hot":0,"g":"5G","date":"2026/11","sell":"防水手機、軍規認證、8千大電量","sogi":"vivo-y32-5g/17467","cpu":"Snapdragon 4 Gen 2","mat":"LCD","fp":"電容","os":"A16","ip":"IP68/IP69","ram":6,"bat":8000,"scr":6.87,"nit":1300,"hz":120,"c1":5000,"c2":200,"c3":null,"c4":null,"fc":800,"chg":44,"wt":230,"th":8.79,"ois":0,"wl":0,"esim":0,"sd":1,"fold":0,"ratio":19.9,"res":"1592x720","gpu":"Adreno 613","memf":"LPDDR4X","romf":"UFS2.2","len":169.55,"wid":79.2,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[128],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"電容式指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":52560,"name":"OPPO Find X10 Pro Max","brand":"OPPO","caps":[{"cap":"16+512GB","p":52990,"m":58990}],"price":52990,"msrp":58990,"hot":0,"g":"5G","date":"2026/11","sell":"3顆兩億畫素相機、8K全焦段錄影、哈蘇相機","sogi":"oppo-find-x10-pro-max/17450","cpu":"Dimensity 9600 Pro","mat":"AMOLED","fp":"超聲波","os":"A17","ip":"IP66/IP68/IP69","ram":16,"bat":8000,"scr":6.78,"nit":2000,"hz":144,"c1":20000,"c2":20000,"c3":20000,"c4":320,"fc":5000,"chg":80,"wt":233,"th":8.4,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":19.6,"res":"2772x1272","gpu":"Mali-G2-Ultra","memf":"LPDDR5X","romf":"UFS4.1","len":161.32,"wid":76.57,"subscr":null,"pwm":3840,"dcd":0,"mnit":1.0,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[512],"uf":[null,"原廠未公布"],"hw":[2,"天璣 9600 系列安全設計（依前代推估）"],"ul":[3,"超聲波螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":52182,"name":"vivo X500 Pro","brand":"vivo","caps":[{"cap":"","p":49990,"m":49990}],"price":49990,"msrp":49990,"hot":0,"g":"5G","date":"2026/10","sell":"專業人像、紅外線遙控、蔡司影像","sogi":"vivo-x500-pro/17454","cpu":"Dimensity 9600 Pro","mat":"AMOLED","fp":"超聲波","os":"A17","ip":"IP68/IP69","ram":12,"bat":6510,"scr":6.36,"nit":6000,"hz":144,"c1":5000,"c2":5000,"c3":6400,"c4":null,"fc":5000,"chg":90,"wt":197,"th":8.12,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":19.7,"res":"2660x1216","gpu":"Mali-G2-Ultra-NX","memf":"LPDDR5X Ultra","romf":"UFS4.1","len":151.78,"wid":71.92,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256],"uf":[null,"原廠未公布"],"hw":[2,"天璣 9600 系列安全設計（依前代推估）"],"ul":[3,"超聲波螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":52174,"name":"vivo X500 Pro Max","brand":"vivo","caps":[{"cap":"12+512GB","p":55990,"m":55990},{"cap":"16+512GB","p":58990,"m":58990},{"cap":"12+1TB","p":74990,"m":74990}],"price":55990,"msrp":55990,"hot":0,"g":"5G","date":"2026/10","sell":"紅外線遙控、專業人像、蔡司2億長焦","sogi":"vivo-x500-pro-max/17453","cpu":"Dimensity 9600 Pro","mat":"AMOLED","fp":"超聲波","os":"A17","ip":"IP68/IP69","ram":16,"bat":7800,"scr":6.85,"nit":5000,"hz":144,"c1":5000,"c2":5000,"c3":20000,"c4":null,"fc":5000,"chg":90,"wt":230.3,"th":8.12,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":19.8,"res":"3168x1440","gpu":"Mali-G2-Ultra-NX","memf":"LPDDR5X Ultra","romf":"UFS4.1","len":163.32,"wid":76.82,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[512,1024],"uf":[null,"原廠未公布"],"hw":[2,"天璣 9600 系列安全設計（依前代推估）"],"ul":[3,"超聲波螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":52164,"name":"vivo X500","brand":"vivo","caps":[{"cap":"12+256GB","p":39990,"m":39990},{"cap":"12+512GB","p":43990,"m":43990}],"price":39990,"msrp":39990,"hot":0,"g":"5G","date":"2026/10","sell":"紅外線遙控、專業人像、蔡司影像","sogi":"vivo-x500/17455","cpu":"Dimensity 9600M","mat":"AMOLED","fp":"超聲波","os":"A17","ip":"IP68/IP69","ram":12,"bat":7500,"scr":6.59,"nit":6000,"hz":144,"c1":5000,"c2":5000,"c3":6400,"c4":null,"fc":5000,"chg":90,"wt":211,"th":8.15,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":19.6,"res":"2750x1260","gpu":"ARM G1-Ultra","memf":"LPDDR5X Ultra","romf":"UFS4.1","len":157.01,"wid":74.49,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256,512],"uf":[null,"原廠未公布"],"hw":[2,"天璣 9600 系列安全設計（依前代推估）"],"ul":[3,"超聲波螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":52004,"name":"OPPO Find X10","brand":"OPPO","caps":[{"cap":"12+256GB","p":36590,"m":42990},{"cap":"12+512GB","p":39590,"m":46990}],"price":36590,"msrp":42990,"hot":1,"g":"5G","date":"2026/10","sell":"8千大電量、雙兩億畫素、哈蘇相機","sogi":"oppo-find-x10/17451","cpu":"Dimensity 9600M","mat":"AMOLED","fp":"超聲波","os":"A17","ip":"IP66/IP68/IP69","ram":12,"bat":8000,"scr":6.59,"nit":2000,"hz":144,"c1":20000,"c2":5000,"c3":20000,"c4":null,"fc":5000,"chg":80,"wt":216,"th":8.35,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":19.6,"res":"2768x1272","gpu":"Mali-Drage MC12","memf":"LPDDR5X","romf":"UFS4.1","len":156.51,"wid":74.29,"subscr":null,"pwm":3840,"dcd":0,"mnit":1.0,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256,512],"uf":[null,"原廠未公布"],"hw":[2,"天璣 9600 系列安全設計（依前代推估）"],"ul":[3,"超聲波螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":48678,"name":"HONOR 600S","brand":"HONOR","caps":[{"cap":"6G/128G","p":7490,"m":10990},{"cap":"8G/256G","p":9990,"m":14990}],"price":7490,"msrp":10990,"hot":0,"g":"5G","date":"2026/09","sell":"超防水、大音量、大電量","sogi":"honor-600s-5g/17424","cpu":"Snapdragon 4 Gen4","mat":"TFT LCD","fp":"有","os":"A16","ip":"IP68/IP69/IP69K","ram":8,"bat":8100,"scr":6.87,"nit":1020,"hz":120,"c1":5000,"c2":null,"c3":null,"c4":null,"fc":500,"chg":45,"wt":216.5,"th":8.3,"ois":0,"wl":0,"esim":0,"sd":0,"fold":0,"ratio":19.9,"res":"1592x720","gpu":"Adreno 613","memf":"","romf":"","len":168.3,"wid":78.54,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[128,256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"指紋辨識"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":51343,"name":"vivo V80 Lite","brand":"vivo","caps":[{"cap":"6+128GB","p":9290,"m":16990},{"cap":"8+128GB","p":10990,"m":18990},{"cap":"8+256G","p":12990,"m":20990}],"price":9290,"msrp":16990,"hot":1,"g":"5G","date":"2026/10","sell":"超防水、大螢幕、1萬大電量","sogi":"vivo-v80-lite/17447","cpu":"Dimensity 7300e","mat":"AMOLED","fp":"光感","os":"A16","ip":"IP68/IP69","ram":8,"bat":10000,"scr":6.83,"nit":2000,"hz":120,"c1":5000,"c2":200,"c3":null,"c4":null,"fc":3200,"chg":44,"wt":224,"th":8.59,"ois":0,"wl":0,"esim":0,"sd":0,"fold":0,"ratio":20.0,"res":"2800x1260","gpu":"Mali-G610 MC2","memf":"LPDDR4X","romf":"UFS3.1","len":163.9,"wid":76.5,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[128,256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"光學螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":51200,"name":"HONOR Magic V6","brand":"HONOR","caps":[{"cap":"16GB + 512GB","p":52990,"m":65990}],"price":52990,"msrp":65990,"hot":0,"g":"5G","date":"2026/10","sell":"紅外線遙控、摺疊螢幕、超防水","sogi":"honor-magic-v6/17375","cpu":"Snapdragon 8 Elite Gen 5","mat":"OLED","fp":"電容","os":"A16","ip":"IP68/IP69","ram":16,"bat":6600,"scr":7.95,"nit":5000,"hz":120,"c1":5000,"c2":5000,"c3":6400,"c4":null,"fc":2000,"chg":80,"wt":224,"th":4.1,"ois":0,"wl":0,"esim":0,"sd":0,"fold":1,"res":"2352x2172","gpu":"Adreno 840","memf":"","romf":"","len":156.7,"wid":145.6,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[512],"uf":[null,"原廠未公布"],"hw":[2,"Snapdragon SPU 安全處理單元"],"ul":[2,"電容式指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":51103,"name":"POCO X8","brand":"POCO","caps":[{"cap":"8G/256G","p":10999,"m":10999},{"cap":"12G/256G","p":11999,"m":11999}],"price":10999,"msrp":10999,"hot":0,"g":"5G","date":"2026/09","sell":"紅外線遙控、超防水、8千大電量","sogi":"poco-x8/17452","cpu":"Snapdragon 6s Gen 4","mat":"AMOLED","fp":"光感","os":"A16","ip":"IP68","ram":12,"bat":8340,"scr":6.83,"nit":3500,"hz":120,"c1":5000,"c2":200,"c3":null,"c4":null,"fc":1600,"chg":67,"wt":223,"th":8.6,"ois":1,"wl":0,"esim":0,"sd":0,"fold":0,"ratio":19.5,"res":"2772x1280","gpu":"Adreno 710","memf":"LPDDR4X","romf":"UFS3.1","len":163.45,"wid":78.27,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"光學螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":51013,"name":"SHARP AQUOS wish6","brand":"SHARP","caps":[{"cap":"8+128GB","p":12390,"m":13990},{"cap":"8+256GB","p":13390,"m":14990}],"price":12390,"msrp":13990,"hot":0,"g":"5G","date":"2026/09","sell":"可插記憶卡、超防水、軍規認證","sogi":"sharp-aquos-wish6/17423","cpu":"Dimensity 6300","mat":"LCD","fp":"有","os":"A16","ip":"IP65/IP68/IP69","ram":8,"bat":5000,"scr":6.6,"nit":1000,"hz":120,"c1":5010,"c2":800,"c3":null,"c4":null,"fc":800,"chg":27,"wt":189,"th":8.3,"ois":0,"wl":0,"esim":1,"sd":1,"fold":0,"ratio":20.1,"res":"1612x720","gpu":"Mali-G57 MC2","memf":"LPDDR4X","romf":"UFS2.1","len":165.0,"wid":76.0,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":2,"usec":3,"usrc":"原廠介紹","cmin":null,"cpct":null,"rom":[128,256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"指紋辨識"],"ap":[2,"SHARP 詐騙來電限制接收＋Android 防盜"]},{"id":50865,"name":"OPPO A7 Pro Max","brand":"OPPO","caps":[{"cap":"8+256GB","p":14490,"m":17990}],"price":14490,"msrp":17990,"hot":1,"g":"5G","date":"2026/10","sell":"大螢幕、超防水、1萬大電量","sogi":"oppo-a7-pro-max/17446","cpu":"Snapdragon 4 Gen 5","mat":"AMOLED","fp":"光感","os":"A16","ip":"IP69K","ram":8,"bat":10000,"scr":6.78,"nit":1800,"hz":120,"c1":5000,"c2":200,"c3":null,"c4":null,"fc":5000,"chg":80,"wt":226,"th":8.57,"ois":1,"wl":0,"esim":1,"sd":0,"fold":0,"ratio":19.6,"res":"2772x1272","gpu":"Adreno 629","memf":"LPDDR4X","romf":"UFS3.1","len":162.98,"wid":77.97,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"光學螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":50855,"name":"OPPO A7 Pro","brand":"OPPO","caps":[{"cap":"8+128GB","p":9490,"m":13990},{"cap":"8+256GB","p":10990,"m":14990}],"price":9490,"msrp":13990,"hot":0,"g":"5G","date":"2026/10","sell":"可插記憶卡、8千大電量、超防水","sogi":"oppo-a7-pro/17440","cpu":"Dimensity 6360 MAX","mat":"AMOLED","fp":"光感","os":"A16","ip":"IP69K","ram":8,"bat":8000,"scr":6.57,"nit":1400,"hz":120,"c1":5000,"c2":200,"c3":null,"c4":null,"fc":5000,"chg":45,"wt":205,"th":8.8,"ois":0,"wl":0,"esim":0,"sd":1,"fold":0,"ratio":19.8,"res":"2372x1080","gpu":"Mali-G57 MC2","memf":"LPDDR4X","romf":"UFS2.2","len":159.08,"wid":75.81,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[128,256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"光學螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":50812,"name":"iPhone Duo","brand":"Apple","caps":[{"cap":"256GB","p":72690,"m":74900},{"cap":"512GB","p":79490,"m":81900},{"cap":"1TB","p":94590,"m":96900},{"cap":"2TB","p":116890,"m":118900}],"price":72690,"msrp":74900,"hot":1,"g":"5G","date":"2026/10","sell":"AI手機、雙螢幕、摺疊螢幕","sogi":"apple-iphone-duo/17436","cpu":"A20 Pro Bionic","mat":"OLED","fp":"電容","os":"i27","ip":"IP68","ram":null,"bat":null,"scr":7.6,"nit":3000,"hz":120,"c1":4800,"c2":4800,"c3":null,"c4":null,"fc":null,"chg":null,"wt":254,"th":5.2,"ois":1,"wl":1,"esim":1,"sd":0,"fold":1,"res":"2670x1878","gpu":"","memf":"","romf":"","len":164.6,"wid":117.8,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"Apple","cmin":20,"cpct":50,"rom":[256,512,1024,2048],"uf":[3,"依需要隨時推送＋背景安全性改進自動安裝"],"hw":[3,"Secure Enclave 獨立安全區"],"ul":[2,"Touch ID 指紋"],"ap":[3,"失竊裝置保護＋iOS 26 篩選來電"]},{"id":50164,"name":"iPhone 18 Pro Max","brand":"Apple","caps":[{"cap":"256GB","p":47290,"m":49900},{"cap":"512GB","p":54590,"m":56900},{"cap":"1TB","p":68790,"m":71900},{"cap":"2TB","p":88890,"m":93900}],"price":47290,"msrp":49900,"hot":1,"g":"5G","date":"2026/09","sell":"動態島、相機控制、可變動光圈","sogi":"apple-iphone-18-pro-max/17435","cpu":"A20 Pro Bionic","mat":"OLED","fp":"","os":"i27","ip":"IP68","ram":null,"bat":null,"scr":6.9,"nit":3000,"hz":120,"c1":4800,"c2":4800,"c3":4800,"c4":null,"fc":1800,"chg":60,"wt":249,"th":8.75,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":19.6,"res":"2868x1320","gpu":"","memf":"","romf":"","len":163.4,"wid":78.0,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"抗反射","hbm":null,"uos":null,"usec":null,"usrc":"Apple","cmin":15,"cpct":50,"rom":[256,512,1024,2048],"uf":[3,"依需要隨時推送＋背景安全性改進自動安裝"],"hw":[3,"Secure Enclave 獨立安全區"],"ul":[3,"Face ID 3D 臉部辨識"],"ap":[3,"失竊裝置保護＋iOS 26 篩選來電"]},{"id":50142,"name":"iPhone 18 Pro","brand":"Apple","caps":[{"cap":"256GB","p":41790,"m":44900},{"cap":"512GB","p":48790,"m":51900},{"cap":"1TB","p":63890,"m":66900},{"cap":"2TB","p":83990,"m":88900}],"price":41790,"msrp":44900,"hot":1,"g":"5G","date":"2026/09","sell":"動態島、相機控制、可變動光圈","sogi":"apple-iphone-18-pro/17434","cpu":"A20 Pro Bionic","mat":"OLED","fp":"","os":"i27","ip":"IP68","ram":null,"bat":null,"scr":6.3,"nit":3000,"hz":120,"c1":4800,"c2":4800,"c3":4800,"c4":null,"fc":1800,"chg":60,"wt":211,"th":8.75,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":19.6,"res":"2622x1206","gpu":"","memf":"","romf":"","len":150.0,"wid":71.9,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"抗反射","hbm":null,"uos":null,"usec":null,"usrc":"Apple","cmin":15,"cpct":50,"rom":[256,512,1024,2048],"uf":[3,"依需要隨時推送＋背景安全性改進自動安裝"],"hw":[3,"Secure Enclave 獨立安全區"],"ul":[3,"Face ID 3D 臉部辨識"],"ap":[3,"失竊裝置保護＋iOS 26 篩選來電"]},{"id":50109,"name":"Sony Xperia 10 VIII","brand":"Sony","caps":[{"cap":"8GB/128GB","p":17490,"m":19990}],"price":17490,"msrp":19990,"hot":0,"g":"5G","date":"2026/09","sell":"可插記憶卡、3.5mm耳機孔、eSIM上網","sogi":"sony-xperia-10-viii/17426","cpu":"Snapdragon 6 Gen 3","mat":"OLED","fp":"電容","os":"A16","ip":"IP65/IP68","ram":8,"bat":5000,"scr":6.1,"nit":null,"hz":120,"c1":4800,"c2":1300,"c3":null,"c4":null,"fc":800,"chg":27,"wt":168,"th":8.3,"ois":1,"wl":0,"esim":1,"sd":1,"fold":0,"ratio":19.5,"res":"2340x1080","gpu":"Adreno 710","memf":"","romf":"","len":153.0,"wid":72.0,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":4,"usec":6,"usrc":"原廠介紹","cmin":null,"cpct":null,"rom":[128],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"電容式指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":48913,"name":"Galaxy S26 FE","brand":"Samsung","caps":[{"cap":"8GB+256GB","p":19390,"m":25900}],"price":19390,"msrp":25900,"hot":0,"g":"5G","date":"2026/09","sell":"三鏡頭、超防水、AI手機","sogi":"samsung-galaxy-s26-fe/17422","cpu":"Exynos 2500","mat":"Dynamic AMOLED 2X","fp":"有","os":"A17","ip":"IP68","ram":8,"bat":4900,"scr":6.7,"nit":null,"hz":120,"c1":5000,"c2":1200,"c3":800,"c4":null,"fc":1200,"chg":45,"wt":193,"th":7.4,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"res":"","gpu":"Xclipse 950","memf":"","romf":"","len":161.6,"wid":76.9,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":7,"usec":7,"usrc":"品牌政策","cmin":null,"cpct":null,"rom":[256],"uf":[2,"每月"],"hw":[3,"Knox Vault 獨立安全晶片"],"ul":[2,"指紋辨識"],"ap":[2,"自動封鎖程式＋盜竊保護"]},{"id":48908,"name":"POCO F9 Ultra","brand":"POCO","caps":[{"cap":"12GB + 256GB","p":24990,"m":26999},{"cap":"16GB + 512GB","p":27990,"m":29999}],"price":24990,"msrp":26999,"hot":0,"g":"5G","date":"2026/09","sell":"超級快充、超亮螢幕、Bose喇叭","sogi":"poco-f9-ultra/17432","cpu":"Snapdragon 8 Elite Gen 5","mat":"AMOLED","fp":"超聲波","os":"A16","ip":"IP68","ram":16,"bat":8050,"scr":6.9,"nit":10000,"hz":185,"c1":20000,"c2":5000,"c3":5000,"c4":null,"fc":3200,"chg":100,"wt":235,"th":8.74,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":19.6,"res":"2608x1200","gpu":"Adreno 840","memf":"LPDDR5X","romf":"UFS4.1","len":163.49,"wid":77.94,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256,512],"uf":[null,"原廠未公布"],"hw":[2,"Snapdragon SPU 安全處理單元"],"ul":[3,"超聲波螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":48898,"name":"POCO F9 Pro","brand":"POCO","caps":[{"cap":"12GB+256GB","p":20990,"m":22999},{"cap":"12GB+512GB","p":22890,"m":24999}],"price":20990,"msrp":22999,"hot":0,"g":"5G","date":"2026/09","sell":"超級快充、超亮螢幕、Bose喇叭","sogi":"poco-f9-pro/17433","cpu":"Snapdragon 8 Elite Gen 5 V Series","mat":"AMOLED","fp":"超聲波","os":"A16","ip":"IP68","ram":12,"bat":6330,"scr":6.59,"nit":10000,"hz":185,"c1":20000,"c2":800,"c3":5000,"c4":null,"fc":3200,"chg":100,"wt":206,"th":8.79,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":19.5,"res":"2510x1156","gpu":"Adreno 840","memf":"LPDDR5X","romf":"UFS4.1","len":157.49,"wid":75.25,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256,512],"uf":[null,"原廠未公布"],"hw":[2,"Snapdragon SPU 安全處理單元"],"ul":[3,"超聲波螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":48848,"name":"Redmi 17 5G","brand":"小米","sub":"Redmi","caps":[{"cap":"4GB/128","p":5790,"m":8999},{"cap":"6GB/256","p":6590,"m":9999}],"price":5790,"msrp":8999,"hot":0,"g":"5G","date":"2026/08","sell":"3.5mm耳機孔、可插記憶卡、大電量","sogi":"xiaomi-redmi-17-5g/17413","cpu":"Snapdragon 4 Gen 5","mat":"LCD","fp":"電容","os":"A17","ip":"IP64","ram":6,"bat":7500,"scr":6.9,"nit":825,"hz":120,"c1":5000,"c2":null,"c3":null,"c4":null,"fc":800,"chg":45,"wt":232,"th":8.8,"ois":0,"wl":0,"esim":0,"sd":1,"fold":0,"ratio":20.0,"res":"1600x720","gpu":"Adreno 629","memf":"LPDDR4X","romf":"UFS2.2","len":170.12,"wid":78.42,"subscr":null,"pwm":null,"dcd":1,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[128,256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"電容式指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":48834,"name":"Redmi 17","brand":"小米","sub":"Redmi","caps":[{"cap":"4GB/128GB","p":5990,"m":6999}],"price":5990,"msrp":6999,"hot":0,"g":"4G","date":"2026/08","sell":"3.5mm耳機孔、可插記憶卡、大電量","sogi":"xiaomi-redmi-17/17431","cpu":"Helio G91-Ultra","mat":"LCD","fp":"電容","os":"A17","ip":"IP64","ram":4,"bat":7500,"scr":6.9,"nit":825,"hz":120,"c1":5000,"c2":null,"c3":null,"c4":null,"fc":800,"chg":45,"wt":232,"th":8.8,"ois":0,"wl":0,"esim":0,"sd":1,"fold":0,"ratio":20.0,"res":"1600x720","gpu":"Mali-G52 MC2","memf":"LPDDR4X","romf":"eMMC 5.1","len":170.12,"wid":78.42,"subscr":null,"pwm":null,"dcd":1,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[128],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"電容式指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":48656,"name":"Redmi Note 17 Pro Max","brand":"小米","sub":"Redmi","caps":[{"cap":"8GB/256GB","p":12390,"m":13999},{"cap":"12GB/256GB","p":13990,"m":14999},{"cap":"8GB/512GB","p":14990,"m":15999}],"price":12390,"msrp":13999,"hot":0,"g":"5G","date":"2026/08","sell":"超防水、大電量、紅外線遙控","sogi":"xiaomi-redmi-note-17-pro-max-5g/17429","cpu":"Snapdragon 6 Gen 5","mat":"AMOLED","fp":"光感","os":"A17","ip":"IP68","ram":12,"bat":9210,"scr":6.83,"nit":3500,"hz":120,"c1":5000,"c2":800,"c3":null,"c4":null,"fc":3200,"chg":100,"wt":225.1,"th":8.65,"ois":0,"wl":0,"esim":1,"sd":0,"fold":0,"ratio":19.5,"res":"2772x1280","gpu":"Adreno 812","memf":"LPDDR5X","romf":"UFS4.1","len":163.44,"wid":78.27,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256,512],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"光學螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":48652,"name":"Redmi Note 17 Pro","brand":"小米","sub":"Redmi","caps":[{"cap":"8GB/256GB","p":10290,"m":12999},{"cap":"12GB/256GB","p":11490,"m":13999},{"cap":"8GB/512GB","p":11690,"m":14999}],"price":10290,"msrp":12999,"hot":0,"g":"5G","date":"2026/08","sell":"超防水、紅外線遙控、大電量","sogi":"xiaomi-redmi-note-17-pro-5g/17428","cpu":"Snapdragon 6s Gen 4","mat":"AMOLED","fp":"光感","os":"A17","ip":"IP68","ram":12,"bat":8340,"scr":6.83,"nit":3500,"hz":120,"c1":5000,"c2":800,"c3":null,"c4":null,"fc":1600,"chg":67,"wt":223,"th":8.6,"ois":0,"wl":0,"esim":1,"sd":0,"fold":0,"ratio":20.0,"res":"2396x1080","gpu":"Adreno 710","memf":"LPDDR4X","romf":"UFS3.1","len":163.45,"wid":78.27,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256,512],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"光學螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":48747,"name":"Redmi Note 17 5G","brand":"小米","sub":"Redmi","caps":[{"cap":"6GB/128GB","p":7290,"m":10999},{"cap":"8G/256GB","p":8290,"m":11999}],"price":7290,"msrp":10999,"hot":0,"g":"5G","date":"2026/08","sell":"大電量、可插記憶卡、紅外線遙控","sogi":"xiaomi-redmi-note-17-5g/17427","cpu":"Snapdragon 4 Gen4","mat":"AMOLED","fp":"光感","os":"A17","ip":"IP65","ram":8,"bat":7700,"scr":6.99,"nit":1800,"hz":120,"c1":5000,"c2":null,"c3":null,"c4":null,"fc":1600,"chg":45,"wt":225,"th":8.45,"ois":0,"wl":0,"esim":0,"sd":1,"fold":0,"ratio":20.0,"res":"2396x1080","gpu":"Adreno 613","memf":"LPDDR4X","romf":"UFS2.2","len":169.7,"wid":79.14,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":1200,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[128,256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"光學螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":48655,"name":"Redmi Note 17","brand":"小米","sub":"Redmi","caps":[{"cap":"6GB/128GB","p":5890,"m":6999},{"cap":"8G/256GB","p":6890,"m":7999}],"price":5890,"msrp":6999,"hot":0,"g":"4G","date":"2026/08","sell":"大電量、可插記憶卡、紅外線遙控","sogi":"xiaomi-redmi-note-17/17430","cpu":"Snapdragon 6S 4G Gen 2","mat":"AMOLED","fp":"光感","os":"A17","ip":"IP65","ram":8,"bat":7700,"scr":6.99,"nit":1800,"hz":120,"c1":5000,"c2":null,"c3":null,"c4":null,"fc":1600,"chg":45,"wt":224,"th":8.45,"ois":0,"wl":0,"esim":0,"sd":1,"fold":0,"ratio":20.0,"res":"2396x1080","gpu":"Adreno 610","memf":"LPDDR4X","romf":"UFS2.2","len":169.7,"wid":79.14,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":1200,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[128,256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"光學螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":48658,"name":"HONOR 600 Lite","brand":"HONOR","caps":[{"cap":"8+256GB","p":11890,"m":16990}],"price":11890,"msrp":16990,"hot":0,"g":"5G","date":"2026/09","sell":"1億畫素、螢幕高亮度、防摔","sogi":"honor-600-lite/17425","cpu":"Dimensity 7100 Elite","mat":"AMOLED","fp":"有","os":"A16","ip":"IP66","ram":8,"bat":6520,"scr":6.6,"nit":6500,"hz":120,"c1":10000,"c2":500,"c3":null,"c4":null,"fc":1600,"chg":45,"wt":180,"th":7.34,"ois":0,"wl":0,"esim":0,"sd":0,"fold":0,"ratio":19.5,"res":"2600x1200","gpu":"Mali-G610 MC2","memf":"","romf":"","len":157.43,"wid":75.35,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"指紋辨識"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":47293,"name":"Google Pixel 11 Pro Fold","brand":"Google","caps":[{"cap":"16GB/256GB","p":51890,"m":60990},{"cap":"16GB/512GB","p":55890,"m":64990},{"cap":"16GB/1TB","p":67890,"m":72990}],"price":51890,"msrp":60990,"hot":0,"g":"5G","date":"2026/08","sell":"eSIM上網、摺疊螢幕、AI手機","sogi":"google-pixel-11-pro-fold/17417","cpu":"Tensor G6","mat":"OLED","fp":"電容","os":"A17","ip":"IP68","ram":16,"bat":4806,"scr":8,"nit":3600,"hz":120,"c1":4800,"c2":1050,"c3":1080,"c4":null,"fc":1000,"chg":30,"wt":239,"th":5,"ois":1,"wl":1,"esim":1,"sd":0,"fold":1,"res":"2152x2076","gpu":"","memf":"","romf":"","len":155.2,"wid":150.4,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":7,"usec":7,"usrc":"原廠介紹","cmin":null,"cpct":null,"rom":[256,512,1024],"uf":[2,"每月"],"hw":[3,"Titan M3 安全晶片"],"ul":[2,"電容式指紋"],"ap":[3,"盜竊偵測鎖定＋通話過濾＋詐騙偵測"]},{"id":47280,"name":"Google Pixel 11 Pro XL","brand":"Google","caps":[{"cap":"12GB/256GB","p":35390,"m":42990},{"cap":"16GB/512GB","p":39490,"m":46990},{"cap":"16GB/1TB","p":49890,"m":54990}],"price":35390,"msrp":42990,"hot":0,"g":"5G","date":"2026/08","sell":"AI手機、eSIM上網、超強夜拍","sogi":"google-pixel-11-pro-xl/17416","cpu":"Tensor G6","mat":"OLED","fp":"超聲波","os":"A17","ip":"IP68","ram":16,"bat":5115,"scr":6.8,"nit":3600,"hz":120,"c1":5000,"c2":4800,"c3":4800,"c4":null,"fc":4200,"chg":45,"wt":226,"th":8.5,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":20.0,"res":"2992x1344","gpu":"","memf":"","romf":"","len":162.7,"wid":76.5,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":7,"usec":7,"usrc":"原廠介紹","cmin":null,"cpct":null,"rom":[256,512,1024],"uf":[2,"每月"],"hw":[3,"Titan M3 安全晶片"],"ul":[3,"超聲波螢幕指紋"],"ap":[3,"盜竊偵測鎖定＋通話過濾＋詐騙偵測"]},{"id":47254,"name":"Google Pixel 11 Pro","brand":"Google","caps":[{"cap":"12GB/256GB","p":29890,"m":36990},{"cap":"16GB/512GB","p":34890,"m":40990},{"cap":"16GB/1TB","p":43890,"m":48990}],"price":29890,"msrp":36990,"hot":0,"g":"5G","date":"2026/08","sell":"eSIM上網、超強夜拍、AI手機","sogi":"google-pixel-11-pro/17415","cpu":"Tensor G6","mat":"OLED","fp":"超聲波","os":"A17","ip":"IP68","ram":16,"bat":4850,"scr":6.3,"nit":3600,"hz":120,"c1":5000,"c2":4800,"c3":4800,"c4":null,"fc":4200,"chg":30,"wt":204,"th":8.4,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":20.1,"res":"2856x1280","gpu":"","memf":"","romf":"","len":152.7,"wid":71.9,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":7,"usec":7,"usrc":"原廠介紹","cmin":null,"cpct":null,"rom":[256,512,1024],"uf":[2,"每月"],"hw":[3,"Titan M3 安全晶片"],"ul":[3,"超聲波螢幕指紋"],"ap":[3,"盜竊偵測鎖定＋通話過濾＋詐騙偵測"]},{"id":47223,"name":"Google Pixel 11","brand":"Google","caps":[{"cap":"12GB/256GB","p":22990,"m":29990},{"cap":"12GB/512GB","p":26990,"m":33990}],"price":22990,"msrp":29990,"hot":1,"g":"5G","date":"2026/08","sell":"eSIM上網、超防水、AI手機","sogi":"google-pixel-11/17414","cpu":"Tensor G6","mat":"OLED","fp":"超聲波","os":"A17","ip":"IP68","ram":12,"bat":4985,"scr":6.3,"nit":3000,"hz":120,"c1":4800,"c2":1300,"c3":1080,"c4":null,"fc":1050,"chg":30,"wt":197,"th":8.6,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":20.2,"res":"2424x1080","gpu":"","memf":"","romf":"","len":152.8,"wid":72.0,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":7,"usec":7,"usrc":"原廠介紹","cmin":null,"cpct":null,"rom":[256,512],"uf":[2,"每月"],"hw":[3,"Titan M3 安全晶片"],"ul":[3,"超聲波螢幕指紋"],"ap":[3,"盜竊偵測鎖定＋通話過濾＋詐騙偵測"]},{"id":47006,"name":"Galaxy Z Fold8 Ultra","brand":"Samsung","caps":[{"cap":"12GB/256GB","p":52590,"m":65900},{"cap":"12GB/512GB","p":53990,"m":71900},{"cap":"16GB/1TB","p":83900,"m":83900}],"price":52590,"msrp":65900,"hot":1,"g":"5G","date":"2026/08","sell":"AI手機、摺疊螢幕、雙螢幕","sogi":"samsung-galaxy-z-fold8-ultra/17407","cpu":"Snapdragon 8 Elite Gen 5 for Galaxy","mat":"Dynamic AMOLED 2X","fp":"電容","os":"A17","ip":"IP48","ram":16,"bat":5000,"scr":8,"nit":null,"hz":120,"c1":20000,"c2":5000,"c3":1000,"c4":null,"fc":1000,"chg":45,"wt":215,"th":4.1,"ois":1,"wl":1,"esim":1,"sd":0,"fold":1,"res":"2504x2256","gpu":"Adreno 840","memf":"","romf":"","len":158.4,"wid":143.2,"subscr":6.5,"pwm":null,"dcd":0,"mnit":null,"ar":"抗反光","hbm":null,"uos":7,"usec":7,"usrc":"品牌政策","cmin":null,"cpct":null,"rom":[256,512,1024],"uf":[2,"每月"],"hw":[3,"Knox Vault 獨立安全晶片"],"ul":[2,"電容式指紋"],"ap":[2,"自動封鎖程式＋盜竊保護"]},{"id":47003,"name":"Galaxy Z Fold8","brand":"Samsung","caps":[{"cap":"12GB/256GB","p":48290,"m":59900},{"cap":"12GB/512GB","p":51590,"m":65900}],"price":48290,"msrp":59900,"hot":0,"g":"5G","date":"2026/08","sell":"AI手機、摺疊螢幕、雙螢幕","sogi":"samsung-galaxy-z-fold8/17406","cpu":"Snapdragon 8 Elite Gen 5 for Galaxy","mat":"Dynamic AMOLED 2X","fp":"電容","os":"A17","ip":"IP48","ram":12,"bat":4800,"scr":7.6,"nit":null,"hz":120,"c1":5000,"c2":5000,"c3":null,"c4":null,"fc":1000,"chg":45,"wt":201,"th":4.5,"ois":1,"wl":1,"esim":1,"sd":0,"fold":1,"res":"2448x1848","gpu":"Adreno 840","memf":"","romf":"","len":161.4,"wid":123.9,"subscr":5.5,"pwm":null,"dcd":0,"mnit":null,"ar":"抗反光","hbm":null,"uos":7,"usec":7,"usrc":"品牌政策","cmin":null,"cpct":null,"rom":[256,512],"uf":[2,"每月"],"hw":[3,"Knox Vault 獨立安全晶片"],"ul":[2,"電容式指紋"],"ap":[2,"自動封鎖程式＋盜竊保護"]},{"id":47002,"name":"Galaxy Z Flip8","brand":"Samsung","caps":[{"cap":"12GB/256GB","p":29890,"m":38900},{"cap":"12GB/512GB","p":32290,"m":44900}],"price":29890,"msrp":38900,"hot":0,"g":"5G","date":"2026/08","sell":"AI手機、摺疊螢幕、雙螢幕","sogi":"samsung-galaxy-z-flip8/17405","cpu":"Snapdragon 8 Elite Gen 5 for Galaxy","mat":"Dynamic AMOLED 2X","fp":"電容","os":"A17","ip":"IP48","ram":12,"bat":4300,"scr":6.9,"nit":null,"hz":120,"c1":5000,"c2":1200,"c3":null,"c4":null,"fc":1000,"chg":25,"wt":180,"th":6.1,"ois":1,"wl":1,"esim":1,"sd":0,"fold":1,"res":"2520x1080","gpu":"Xclipse 960","memf":"","romf":"","len":166.9,"wid":75.4,"subscr":4.1,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":7,"usec":7,"usrc":"品牌政策","cmin":null,"cpct":null,"rom":[256,512],"uf":[2,"每月"],"hw":[3,"Knox Vault 獨立安全晶片"],"ul":[2,"電容式指紋"],"ap":[2,"自動封鎖程式＋盜竊保護"]},{"id":45772,"name":"iQOO Z11","brand":"iQOO","caps":[{"cap":"12GB/256GB","p":15990,"m":16999}],"price":15990,"msrp":16999,"hot":0,"g":"5G","date":"2026/06","sell":"超級快充、超防水、9千超大電量","sogi":"iqoo-z11/17387","cpu":"Snapdragon 7s Gen 4","mat":"AMOLED","fp":"光感","os":"A16","ip":"IP68/IP69","ram":12,"bat":9020,"scr":6.83,"nit":5000,"hz":144,"c1":5000,"c2":200,"c3":null,"c4":null,"fc":3200,"chg":90,"wt":213,"th":8.25,"ois":1,"wl":0,"esim":0,"sd":0,"fold":0,"ratio":20.0,"res":"2800x1260","gpu":"Adreno 810","memf":"LPDDR4X","romf":"UFS3.1","len":163.73,"wid":76.18,"subscr":null,"pwm":2160,"dcd":1,"mnit":null,"ar":"","hbm":2000,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"光學螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":45764,"name":"POCO M8s","brand":"POCO","caps":[{"cap":"6GB/128GB","p":6690,"m":6999},{"cap":"8GB/256GB","p":7690,"m":7999}],"price":6690,"msrp":6999,"hot":0,"g":"5G","date":"2026/05","sell":"7千大電量、可插記憶卡、大螢幕","sogi":"poco-m8s-5g/17386","cpu":"Snapdragon 6s Gen 3","mat":"","fp":"電容","os":"","ip":"IP64","ram":8,"bat":7000,"scr":6.9,"nit":850,"hz":144,"c1":5000,"c2":null,"c3":null,"c4":null,"fc":800,"chg":33,"wt":215,"th":8.4,"ois":0,"wl":0,"esim":0,"sd":1,"fold":0,"ratio":19.5,"res":"2340x1080","gpu":"Adreno 619","memf":"LPDDR4X","romf":"UFS2.2","len":169.48,"wid":80.45,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[128,256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"電容式指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":45708,"name":"SHARP AQUOS R11","brand":"SHARP","caps":[{"cap":"12GB/256GB","p":22890,"m":26990},{"cap":"12GB/512GB","p":25890,"m":29990}],"price":22890,"msrp":26990,"hot":0,"g":"5G","date":"2026/07","sell":"eSIM上網、超防水、徠卡影像","sogi":"sharp-aquos-r11/17401","cpu":"Snapdragon 8s Gen 4","mat":"Pro IGZO OLED","fp":"有","os":"A16","ip":"IP65/IP68/IP69","ram":12,"bat":5100,"scr":6.5,"nit":3600,"hz":240,"c1":5030,"c2":5030,"c3":3850,"c4":null,"fc":5030,"chg":36,"wt":195,"th":8.9,"ois":1,"wl":0,"esim":1,"sd":0,"fold":0,"ratio":19.5,"res":"2340x1080","gpu":"Adreno 825","memf":"LPDDR5X","romf":"UFS4.1","len":156.0,"wid":74.0,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256,512],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"指紋辨識"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":45078,"name":"Galaxy A27","brand":"Samsung","caps":[{"cap":"8GB/128GB","p":9990,"m":13490},{"cap":"8GB/256GB","p":10890,"m":14990}],"price":9990,"msrp":13490,"hot":0,"g":"5G","date":"2026/07","sell":"生活防水、可插記憶卡、120Hz","sogi":"samsung-galaxy-a27-5g/17399","cpu":"Snapdragon 6 Gen 3","mat":"Super AMOLED","fp":"電容","os":"A16","ip":"IP64","ram":8,"bat":5000,"scr":6.7,"nit":null,"hz":120,"c1":5000,"c2":500,"c3":200,"c4":null,"fc":1200,"chg":25,"wt":200,"th":7.8,"ois":1,"wl":0,"esim":0,"sd":1,"fold":0,"ratio":19.5,"res":"2340x1080","gpu":"Adreno 710","memf":"","romf":"","len":162.4,"wid":78.2,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":6,"usec":6,"usrc":"原廠介紹","cmin":30,"cpct":45,"rom":[128,256],"uf":[1,"每季"],"hw":[1,"Knox 防護（未確認 Knox Vault）"],"ul":[2,"電容式指紋"],"ap":[2,"自動封鎖程式＋盜竊保護"]},{"id":44981,"name":"HONOR 600 Pro","brand":"HONOR","caps":[{"cap":"12GB/512GB","p":23590,"m":32990}],"price":23590,"msrp":32990,"hot":0,"g":"5G","date":"2026/07","sell":"2億畫素、螢幕高亮度、7千大電量","sogi":"honor-600-pro/17396","cpu":"Snapdragon 8 Elite","mat":"AMOLED","fp":"有","os":"A16","ip":"IP68/IP69/IP69K","ram":12,"bat":7000,"scr":6.57,"nit":8000,"hz":120,"c1":20000,"c2":1200,"c3":5000,"c4":null,"fc":5000,"chg":80,"wt":200,"th":7.8,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":19.4,"res":"2728x1264","gpu":"Adreno 830","memf":"","romf":"","len":156.0,"wid":74.7,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[512],"uf":[null,"原廠未公布"],"hw":[2,"Snapdragon SPU 安全處理單元"],"ul":[2,"指紋辨識"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":44978,"name":"HONOR 600","brand":"HONOR","caps":[{"cap":"12GB/256GB","p":13490,"m":19990},{"cap":"12GB/512GB","p":16490,"m":23990}],"price":13490,"msrp":19990,"hot":0,"g":"5G","date":"2026/07","sell":"螢幕高亮度、7千大電量、超防水","sogi":"honor-600/17395","cpu":"Snapdragon 7 Gen 4","mat":"AMOLED","fp":"有","os":"A16","ip":"IP68/IP69/IP69K","ram":12,"bat":7000,"scr":6.57,"nit":8000,"hz":120,"c1":20000,"c2":1200,"c3":null,"c4":null,"fc":5000,"chg":80,"wt":190,"th":7.8,"ois":1,"wl":0,"esim":1,"sd":0,"fold":0,"ratio":19.4,"res":"2728x1264","gpu":"Adreno 722","memf":"","romf":"","len":156.0,"wid":74.7,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256,512],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"指紋辨識"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":44951,"name":"OPPO Reno16 F","brand":"OPPO","caps":[{"cap":"8G/128GB","p":9990,"m":18990},{"cap":"8G/256GB","p":11990,"m":19990}],"price":9990,"msrp":18990,"hot":0,"g":"5G","date":"2026/07","sell":"7千大電量、超防水、可插記憶卡","sogi":"oppo-reno16-f/17398","cpu":"Dimensity 7300","mat":"Crystal Guard AMOLED","fp":"有","os":"A16","ip":"IP66/IP68/IP69/IP69K","ram":8,"bat":7000,"scr":6.57,"nit":1400,"hz":120,"c1":5000,"c2":800,"c3":5000,"c4":null,"fc":5000,"chg":80,"wt":197,"th":8.58,"ois":1,"wl":0,"esim":0,"sd":1,"fold":0,"ratio":19.8,"res":"2372x1080","gpu":"Mali-G615","memf":"","romf":"UFS3.1","len":158.16,"wid":74.93,"subscr":null,"pwm":3840,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[128,256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"指紋辨識"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":44948,"name":"OPPO Reno16","brand":"OPPO","caps":[{"cap":"8G/256GB","p":16990,"m":24990},{"cap":"12G/256GGB","p":17790,"m":26990}],"price":16990,"msrp":24990,"hot":0,"g":"5G","date":"2026/07","sell":"水中攝影、超防水、eSIM上網","sogi":"oppo-reno16/17397","cpu":"Snapdragon 7 Gen 4","mat":"Crystal Guard AMOLED","fp":"光感","os":"A16","ip":"IP69","ram":12,"bat":6700,"scr":6.32,"nit":1800,"hz":120,"c1":5000,"c2":5000,"c3":5000,"c4":null,"fc":5000,"chg":80,"wt":193,"th":8.36,"ois":1,"wl":0,"esim":1,"sd":0,"fold":0,"ratio":19.5,"res":"2640x1216","gpu":"Adreno 722","memf":"LPDDR5X","romf":"UFS3.1","len":151.21,"wid":72.42,"subscr":null,"pwm":3840,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"光學螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":44304,"name":"Motorola razr fold","brand":"Motorola","caps":[{"cap":"12GB+256GB","p":40890,"m":49988}],"price":40890,"msrp":49988,"hot":0,"g":"5G","date":"2026/06","sell":"AI手機、摺疊螢幕、雙螢幕","sogi":"motorola-razr-fold/17385","cpu":"Snapdragon 8 Gen 5","mat":"","fp":"電容","os":"A16","ip":"IP48/IP49","ram":12,"bat":6000,"scr":8.09,"nit":null,"hz":120,"c1":5000,"c2":5000,"c3":5000,"c4":null,"fc":2000,"chg":80,"wt":243,"th":4.55,"ois":1,"wl":1,"esim":1,"sd":0,"fold":1,"res":"2484x2232","gpu":"","memf":"","romf":"","len":160.05,"wid":144.47,"subscr":6.56,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":7,"usec":7,"usrc":"品牌政策","cmin":null,"cpct":null,"rom":[256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"電容式指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":43584,"name":"HONOR X6d 5G","brand":"HONOR","caps":[{"cap":"256GB","p":6290,"m":9490}],"price":6290,"msrp":9490,"hot":1,"g":"5G","date":"2026/05","sell":"靈動膠囊、3.5mm耳機孔、可插記憶卡","sogi":"honor-x6d-5g/17384","cpu":"Dimensity 6300","mat":"LCD","fp":"電容","os":"A16","ip":"","ram":8,"bat":5260,"scr":6.75,"nit":450,"hz":90,"c1":5000,"c2":8,"c3":null,"c4":null,"fc":500,"chg":15,"wt":186,"th":7.89,"ois":0,"wl":0,"esim":0,"sd":1,"fold":0,"ratio":20.0,"res":"1600x720","gpu":"Mali-G57 MC2","memf":"","romf":"","len":167.0,"wid":77.0,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"電容式指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":43173,"name":"Xiaomi 17T Pro","brand":"小米","caps":[{"cap":"256GB","p":19490,"m":22999},{"cap":"512GB","p":21490,"m":24999},{"cap":"1TB","p":24690,"m":27999}],"price":19490,"msrp":22999,"hot":0,"g":"5G","date":"2026/05","sell":"7千大電量、eSIM上網、徠卡影像","sogi":"xiaomi-xiaomi-17t-pro/17389","cpu":"Dimensity 9500","mat":"AMOLED","fp":"光感","os":"A16","ip":"IP68","ram":12,"bat":7000,"scr":6.83,"nit":3500,"hz":144,"c1":5000,"c2":1200,"c3":5000,"c4":null,"fc":3200,"chg":100,"wt":219,"th":8.25,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":19.5,"res":"2772x1280","gpu":"Mali-G1 Ultra","memf":"LPDDR5X","romf":"UFS4.1","len":162.2,"wid":77.5,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256,512,1024],"uf":[null,"原廠未公布"],"hw":[2,"天璣 9500 系列安全認證（AVA_VAN.5）"],"ul":[2,"光學螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":43162,"name":"Xiaomi 17T","brand":"小米","caps":[{"cap":"256GB","p":13990,"m":17999},{"cap":"512GB","p":17590,"m":19999}],"price":13990,"msrp":17999,"hot":0,"g":"5G","date":"2026/05","sell":"超防水、eSIM上網、徠卡影像","sogi":"xiaomi-xiaomi-17t/17388","cpu":"Dimensity 8500-Ultra","mat":"AMOLED","fp":"光感","os":"A16","ip":"IP68","ram":12,"bat":6500,"scr":6.59,"nit":3500,"hz":120,"c1":5000,"c2":1200,"c3":5000,"c4":null,"fc":3200,"chg":67,"wt":200,"th":8.17,"ois":1,"wl":0,"esim":1,"sd":0,"fold":0,"ratio":19.6,"res":"2756x1268","gpu":"Mali-G720 MC8","memf":"LPDDR5X","romf":"UFS4.1","len":157.6,"wid":75.2,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256,512],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"光學螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":41948,"name":"Sony Xperia 1 VIII","brand":"Sony","caps":[{"cap":"12GB/256GB","p":39590,"m":44880},{"cap":"12GB/512GB","p":45290,"m":50880}],"price":39590,"msrp":44880,"hot":0,"g":"5G","date":"2026/05","sell":"專業攝影、可插記憶卡、3.5mm耳機孔","sogi":"sony-xperia-1-viii/17383","cpu":"Snapdragon 8 Elite Gen 5","mat":"HDR OLED","fp":"電容","os":"A16","ip":"IP65/IP68","ram":16,"bat":5000,"scr":6.5,"nit":null,"hz":120,"c1":4800,"c2":4800,"c3":4800,"c4":null,"fc":1200,"chg":null,"wt":200,"th":8.3,"ois":1,"wl":1,"esim":1,"sd":1,"fold":0,"ratio":19.5,"res":"2340x1080","gpu":"Adreno 840","memf":"","romf":"","len":162.0,"wid":74.0,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"抗反射","hbm":null,"uos":4,"usec":6,"usrc":"原廠介紹","cmin":null,"cpct":null,"rom":[256,512],"uf":[null,"原廠未公布"],"hw":[2,"Snapdragon SPU 安全處理單元"],"ul":[2,"電容式指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":41419,"name":"Nothing Phone (4a)","brand":"Nothing","caps":[{"cap":"256GB","p":13290,"m":14990}],"price":13290,"msrp":14990,"hot":0,"g":"5G","date":"2026/04","sell":"","sogi":"nothing-phone-4a/17370","cpu":"Snapdragon 7s Gen 4","mat":"","fp":"","os":"","ip":"","ram":12,"bat":5080,"scr":6.78,"nit":null,"hz":120,"c1":null,"c2":null,"c3":null,"c4":null,"fc":null,"chg":null,"wt":null,"th":null,"ois":0,"wl":0,"esim":0,"sd":0,"fold":0,"res":"","gpu":"","memf":"","romf":"","len":null,"wid":null,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[null,"未標示"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":41398,"name":"Nothing Phone (4a) Pro","brand":"Nothing","caps":[{"cap":"256GB","p":16590,"m":17990}],"price":16590,"msrp":17990,"hot":0,"g":"5G","date":"2026/04","sell":"","sogi":"nothing-phone-4a-pro/17371","cpu":"Snapdragon 7 Gen 4","mat":"","fp":"","os":"","ip":"","ram":12,"bat":5080,"scr":6.83,"nit":null,"hz":120,"c1":null,"c2":null,"c3":null,"c4":null,"fc":null,"chg":null,"wt":null,"th":null,"ois":0,"wl":0,"esim":0,"sd":0,"fold":0,"res":"","gpu":"","memf":"","romf":"","len":null,"wid":null,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[null,"未標示"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":41100,"name":"OPPO Find X9s","brand":"OPPO","caps":[{"cap":"12GB/256GB","p":18490,"m":32990}],"price":18490,"msrp":32990,"hot":1,"g":"5G","date":"2026/05","sell":"超防水、7千大電量、哈蘇相機","sogi":"oppo-find-x9s/17378","cpu":"Dimensity 9500s","mat":"AMOLED","fp":"超聲波","os":"A16","ip":"IP66/IP68/IP69","ram":12,"bat":7025,"scr":6.59,"nit":1800,"hz":120,"c1":5000,"c2":5000,"c3":5000,"c4":null,"fc":3200,"chg":80,"wt":202,"th":7.99,"ois":1,"wl":0,"esim":1,"sd":0,"fold":0,"ratio":19.8,"res":"2760x1256","gpu":"Immortalis-G925","memf":"","romf":"UFS4.1","len":156.98,"wid":73.93,"subscr":null,"pwm":3840,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256],"uf":[null,"原廠未公布"],"hw":[2,"天璣 9500 系列安全認證（AVA_VAN.5）"],"ul":[3,"超聲波螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":41094,"name":"OPPO Find X9 Ultra","brand":"OPPO","caps":[{"cap":"12GB/512GB","p":42990,"m":54990},{"cap":"16GB/1TB","p":54890,"m":61990}],"price":42990,"msrp":54990,"hot":0,"g":"5G","date":"2026/05","sell":"雙2億畫素、10倍光學長焦、哈蘇相機","sogi":"oppo-find-x9-ultra/17377","cpu":"Snapdragon 8 Elite Gen 5","mat":"AMOLED","fp":"超聲波","os":"A16","ip":"IP66/IP68/IP69","ram":16,"bat":7050,"scr":6.82,"nit":1800,"hz":144,"c1":20000,"c2":5000,"c3":20000,"c4":5000,"fc":5000,"chg":100,"wt":235,"th":8.65,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":19.8,"res":"3168x1440","gpu":"Adreno 840","memf":"LPDDR5X","romf":"UFS4.1","len":163.16,"wid":76.97,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[512,1024],"uf":[null,"原廠未公布"],"hw":[2,"Snapdragon SPU 安全處理單元"],"ul":[3,"超聲波螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":40917,"name":"realme C100","brand":"realme","caps":[{"cap":"4GB/128GB","p":5490,"m":7990}],"price":5490,"msrp":7990,"hot":1,"g":"5G","date":"2026/04","sell":"軍規認證、144Hz、7千大電量","sogi":"realme-c100-5g/17379","cpu":"Dimensity 6300","mat":"LCD","fp":"電容","os":"A16","ip":"","ram":4,"bat":7000,"scr":6.8,"nit":900,"hz":144,"c1":5000,"c2":null,"c3":null,"c4":null,"fc":500,"chg":45,"wt":224,"th":8.45,"ois":0,"wl":0,"esim":0,"sd":0,"fold":0,"ratio":19.6,"res":"1570x720","gpu":"Mali-G57 MC2","memf":"LPDDR4X","romf":"eMMC 5.1","len":166.38,"wid":78.13,"subscr":null,"pwm":null,"dcd":1,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[128],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"電容式指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":40908,"name":"realme Note 80","brand":"realme","caps":[{"cap":"4GB/128GB","p":3790,"m":4990}],"price":3790,"msrp":4990,"hot":0,"g":"4G","date":"2026/05","sell":"護眼螢幕、90Hz、長續航","sogi":"realme-note-80/17380","cpu":"T7250","mat":"LCD","fp":"","os":"A15","ip":"IP54","ram":4,"bat":6300,"scr":6.74,"nit":null,"hz":90,"c1":800,"c2":null,"c3":null,"c4":null,"fc":500,"chg":15,"wt":197,"th":7.94,"ois":0,"wl":0,"esim":0,"sd":0,"fold":0,"ratio":20.0,"res":"1600x720","gpu":"Mali-G57 MP1","memf":"","romf":"","len":167.2,"wid":76.6,"subscr":null,"pwm":null,"dcd":1,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[128],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[null,"未標示"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":40438,"name":"Motorola edge 70 Fusion","brand":"Motorola","caps":[{"cap":"8GB/256GB","p":9190,"m":14990}],"price":9190,"msrp":14990,"hot":0,"g":"5G","date":"2026/04","sell":"AI手機、超防水、7千大電量","sogi":"motorola-edge-70-fusion/17362","cpu":"Snapdragon 7s Gen 3","mat":"Extreme AMOLED","fp":"光感","os":"A16","ip":"IP68/IP69","ram":8,"bat":7000,"scr":6.8,"nit":5200,"hz":144,"c1":5000,"c2":1300,"c3":null,"c4":null,"fc":3200,"chg":68,"wt":193,"th":7.99,"ois":1,"wl":0,"esim":1,"sd":0,"fold":0,"ratio":19.6,"res":"2772x1272","gpu":"Adreno 810","memf":"","romf":"","len":162.76,"wid":75.6,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":3,"usec":5,"usrc":"品牌政策","cmin":null,"cpct":null,"rom":[256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"光學螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":40186,"name":"HONOR Magic8 Pro","brand":"HONOR","caps":[{"cap":"12GB/512GB","p":29990,"m":37990}],"price":29990,"msrp":37990,"hot":0,"g":"5G","date":"2026/04","sell":"超大電池、2億長焦、超防水","sogi":"honor-magic8-pro/17349","cpu":"Snapdragon 8 Elite Gen 5","mat":"OLED","fp":"超聲波","os":"A16","ip":"IP68/IP69/IP69K","ram":12,"bat":7100,"scr":6.71,"nit":6000,"hz":120,"c1":5000,"c2":5000,"c3":20000,"c4":null,"fc":5000,"chg":100,"wt":219,"th":8.32,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":20.1,"res":"2808x1256","gpu":"Adreno 840","memf":"","romf":"","len":161.15,"wid":75.0,"subscr":null,"pwm":null,"dcd":0,"mnit":1.0,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[512],"uf":[null,"原廠未公布"],"hw":[2,"Snapdragon SPU 安全處理單元"],"ul":[3,"超聲波螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":40074,"name":"Galaxy A37","brand":"Samsung","caps":[{"cap":"8G/128G","p":11490,"m":16990},{"cap":"8G/256G","p":12990,"m":18490}],"price":11490,"msrp":16990,"hot":0,"g":"5G","date":"2026/04","sell":"eSIM上網、AI手機、超防水","sogi":"samsung-galaxy-a37-5g/17365","cpu":"Exynos 1480","mat":"Super AMOLED","fp":"光感","os":"A16","ip":"IP68","ram":8,"bat":5000,"scr":6.7,"nit":null,"hz":120,"c1":5000,"c2":800,"c3":500,"c4":null,"fc":1200,"chg":45,"wt":196,"th":7.4,"ois":1,"wl":0,"esim":1,"sd":0,"fold":0,"ratio":19.5,"res":"2340x1080","gpu":"Xclipse 530","memf":"","romf":"","len":162.9,"wid":78.2,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":6,"usec":6,"usrc":"品牌政策","cmin":null,"cpct":null,"rom":[128,256],"uf":[1,"每季"],"hw":[3,"Knox Vault 獨立安全晶片"],"ul":[2,"光學螢幕指紋"],"ap":[2,"自動封鎖程式＋盜竊保護"]},{"id":39992,"name":"vivo X300 Ultra","brand":"vivo","caps":[{"cap":"16G/512G","p":42490,"m":49990},{"cap":"16G/1T","p":52990,"m":58990}],"price":42490,"msrp":49990,"hot":0,"g":"5G","date":"2026/04","sell":"一卡通、超級快充、蔡司2億長焦","sogi":"vivo-x300-ultra/17372","cpu":"Snapdragon 8 Elite Gen 5","mat":"AMOLED","fp":"超聲波","os":"A16","ip":"IP68/IP69","ram":16,"bat":6600,"scr":6.82,"nit":4500,"hz":144,"c1":20000,"c2":5000,"c3":20000,"c4":null,"fc":5000,"chg":100,"wt":237,"th":8.19,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":19.8,"res":"3168x1440","gpu":"Adreno 840","memf":"LPDDR5X Ultra Pro","romf":"UFS4.1","len":162.98,"wid":76.81,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[512,1024],"uf":[null,"原廠未公布"],"hw":[2,"Snapdragon SPU 安全處理單元"],"ul":[3,"超聲波螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":39981,"name":"iQOO 15R","brand":"iQOO","caps":[{"cap":"12GB/256GB","p":16990,"m":19999}],"price":16990,"msrp":19999,"hot":0,"g":"5G","date":"2026/04","sell":"超級快充、遊戲手機、超大電池","sogi":"iqoo-15r/17369","cpu":"Snapdragon 8 Gen 5","mat":"AMOLED","fp":"超聲波","os":"A16","ip":"IP68/IP69","ram":12,"bat":7600,"scr":6.59,"nit":5000,"hz":144,"c1":5000,"c2":800,"c3":null,"c4":null,"fc":3200,"chg":100,"wt":206,"th":8.1,"ois":1,"wl":0,"esim":0,"sd":0,"fold":0,"ratio":19.6,"res":"2750x1260","gpu":"Adreno 840","memf":"LPDDR5X Ultra","romf":"UFS4.1","len":157.61,"wid":74.42,"subscr":null,"pwm":4320,"dcd":0,"mnit":1.0,"ar":"","hbm":1800,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[3,"超聲波螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":39970,"name":"realme 16","brand":"realme","caps":[{"cap":"12GB/256GB","p":10490,"m":14990}],"price":10490,"msrp":14990,"hot":0,"g":"5G","date":"2026/04","sell":"自拍鏡、超防水、7千大電量","sogi":"realme-16-5g/17345","cpu":"Dimensity 6400 Turbo","mat":"AMOLED","fp":"有","os":"A16","ip":"IP66/IP68/IP69/IP69K","ram":12,"bat":7000,"scr":6.57,"nit":4200,"hz":120,"c1":5000,"c2":200,"c3":null,"c4":null,"fc":5000,"chg":60,"wt":183,"th":8.1,"ois":0,"wl":0,"esim":0,"sd":1,"fold":0,"ratio":19.8,"res":"2372x1080","gpu":"Mali-G57 MC2","memf":"","romf":"","len":158.3,"wid":75.13,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"指紋辨識"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":39163,"name":"OPPO Find N6","brand":"OPPO","caps":[{"cap":"16GB/512GB","p":56890,"m":68990}],"price":56890,"msrp":68990,"hot":0,"g":"5G","date":"2026/04","sell":"超級快充、哈蘇相機、摺疊螢幕","sogi":"oppo-find-n6/17364","cpu":"Snapdragon 8 Elite Gen 5","mat":"AMOLED","fp":"電容","os":"A16","ip":"IP56/IP58/IP69","ram":16,"bat":6000,"scr":8.12,"nit":2500,"hz":120,"c1":20000,"c2":5000,"c3":5000,"c4":200,"fc":2000,"chg":80,"wt":225,"th":8.93,"ois":1,"wl":1,"esim":1,"sd":0,"fold":1,"res":"2480x2248","gpu":"Adreno 840","memf":"LPDDR5X","romf":"UFS4.0","len":159.87,"wid":74.12,"subscr":6.62,"pwm":2160,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[512],"uf":[null,"原廠未公布"],"hw":[2,"Snapdragon SPU 安全處理單元"],"ul":[2,"電容式指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":39094,"name":"vivo Y21","brand":"vivo","caps":[{"cap":"4G/128GB","p":4790,"m":4990},{"cap":"6GB/128GB","p":5490,"m":6990}],"price":4790,"msrp":4990,"hot":0,"g":"5G","date":"2026/03","sell":"3.5mm耳機孔、可插記憶卡、超大電池","sogi":"vivo-y21-5g/17373","cpu":"Dimensity 6300","mat":"LCD","fp":"電容","os":"A16","ip":"IP65","ram":6,"bat":6500,"scr":6.74,"nit":1200,"hz":120,"c1":5000,"c2":8,"c3":null,"c4":null,"fc":500,"chg":44,"wt":209,"th":8.39,"ois":0,"wl":0,"esim":0,"sd":1,"fold":0,"ratio":20.0,"res":"1600x720","gpu":"Mali-G57 MC2","memf":"LPDDR4X","romf":"UFS2.2","len":167.4,"wid":77.1,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[128],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"電容式指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":39084,"name":"vivo Y31","brand":"vivo","caps":[{"cap":"8GB/256GB","p":7490,"m":11990}],"price":7490,"msrp":11990,"hot":0,"g":"5G","date":"2026/04","sell":"雙喇叭、超大電池、超防水","sogi":"vivo-y31-5g/17374","cpu":"Snapdragon 4 Gen 2","mat":"LCD","fp":"電容","os":"A16","ip":"IP68/IP69","ram":8,"bat":6500,"scr":6.68,"nit":1000,"hz":120,"c1":5000,"c2":8,"c3":null,"c4":null,"fc":800,"chg":44,"wt":209,"th":8.39,"ois":0,"wl":0,"esim":0,"sd":0,"fold":0,"ratio":20.1,"res":"1608x720","gpu":"Adreno 613","memf":"LPDDR4X","romf":"UFS3.1","len":166.14,"wid":77.01,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"電容式指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":39064,"name":"POCO X8 Pro","brand":"POCO","caps":[{"cap":"8GB/256GB","p":11490,"m":12999},{"cap":"8GB/512GB","p":12590,"m":13999},{"cap":"12GB/512GB","p":13490,"m":14999}],"price":11490,"msrp":12999,"hot":0,"g":"5G","date":"2026/04","sell":"護眼螢幕、超大電池、RGB燈效","sogi":"poco-x8-pro/17367","cpu":"Dimensity 8500-Ultra","mat":"AMOLED","fp":"光感","os":"A16","ip":"IP68","ram":12,"bat":6500,"scr":6.59,"nit":3500,"hz":120,"c1":5000,"c2":800,"c3":null,"c4":null,"fc":2000,"chg":100,"wt":201.47,"th":8.38,"ois":1,"wl":0,"esim":0,"sd":0,"fold":0,"ratio":19.6,"res":"2756x1268","gpu":"Mali-G720 MC8","memf":"LPDDR5X","romf":"UFS4.1","len":157.53,"wid":75.19,"subscr":null,"pwm":3840,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256,512],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"光學螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":39052,"name":"POCO X8 Pro Max","brand":"POCO","caps":[{"cap":"12GB/256GB","p":15390,"m":16999},{"cap":"12GB/512GB","p":16390,"m":17999}],"price":15390,"msrp":16999,"hot":0,"g":"5G","date":"2026/04","sell":"紅外線遙控、RGB燈效、超大電池","sogi":"poco-x8-pro-max/17368","cpu":"Dimensity 9500s","mat":"AMOLED","fp":"超聲波","os":"A16","ip":"IP68","ram":12,"bat":8500,"scr":6.83,"nit":3500,"hz":120,"c1":5000,"c2":800,"c3":null,"c4":null,"fc":2000,"chg":100,"wt":218,"th":8.2,"ois":1,"wl":0,"esim":1,"sd":0,"fold":0,"ratio":19.5,"res":"2772x1280","gpu":"Immortalis-G925 MC11","memf":"LPDDR5X","romf":"UFS4.1","len":162.9,"wid":77.9,"subscr":null,"pwm":3840,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256,512],"uf":[null,"原廠未公布"],"hw":[2,"天璣 9500 系列安全認證（AVA_VAN.5）"],"ul":[3,"超聲波螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":38734,"name":"Galaxy A57","brand":"Samsung","caps":[{"cap":"8GB/256GB","p":13690,"m":19990},{"cap":"12GB/256GB","p":14990,"m":22490},{"cap":"12GB/512GB","p":18790,"m":26990}],"price":13690,"msrp":19990,"hot":1,"g":"5G","date":"2026/04","sell":"超防水、120Hz、eSIM上網","sogi":"samsung-galaxy-a57-5g/17366","cpu":"Exynos 1680","mat":"Super AMOLED Plus","fp":"光感","os":"A16","ip":"IP68","ram":12,"bat":5000,"scr":6.7,"nit":null,"hz":120,"c1":5000,"c2":1200,"c3":500,"c4":null,"fc":1200,"chg":45,"wt":179,"th":6.9,"ois":1,"wl":0,"esim":1,"sd":0,"fold":0,"ratio":19.5,"res":"2340x1080","gpu":"Xclipse 550","memf":"","romf":"","len":161.5,"wid":76.8,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":6,"usec":6,"usrc":"品牌政策","cmin":null,"cpct":null,"rom":[256,512],"uf":[2,"每月"],"hw":[3,"Knox Vault 獨立安全晶片"],"ul":[2,"光學螢幕指紋"],"ap":[2,"自動封鎖程式＋盜竊保護"]},{"id":38598,"name":"realme 16 Pro","brand":"realme","caps":[{"cap":"12GB/256GB","p":13990,"m":16990}],"price":13990,"msrp":16990,"hot":0,"g":"5G","date":"2026/03","sell":"2億畫素、超防水、7千大電量","sogi":"realme-16-pro/17346","cpu":"Dimensity 7300 Max","mat":"AMOLED","fp":"光感","os":"A16","ip":"IP66/IP68/IP69/IP69K","ram":12,"bat":7000,"scr":6.78,"nit":6500,"hz":144,"c1":20000,"c2":800,"c3":null,"c4":null,"fc":5000,"chg":80,"wt":192,"th":7.75,"ois":1,"wl":0,"esim":0,"sd":0,"fold":0,"ratio":19.6,"res":"2772x1272","gpu":"Mali-G615 MC2","memf":"LPDDR4X","romf":"UFS3.1","len":162.26,"wid":77.6,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":6500,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"光學螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":38431,"name":"vivo Y05","brand":"vivo","caps":[{"cap":"4GB/128GB","p":4390,"m":4990}],"price":4390,"msrp":4990,"hot":0,"g":"4G","date":"2026/03","sell":"防潑水、大螢幕、長續航","sogi":"vivo-y05/17363","cpu":"T7225","mat":"LCD","fp":"電容","os":"A16","ip":"IP65","ram":4,"bat":6500,"scr":6.74,"nit":1200,"hz":120,"c1":800,"c2":null,"c3":null,"c4":null,"fc":500,"chg":null,"wt":209,"th":8.39,"ois":0,"wl":0,"esim":0,"sd":0,"fold":0,"ratio":20.0,"res":"1600x720","gpu":"Mali-G57","memf":"LPDDR4X","romf":"eMMC 5.1","len":167.4,"wid":77.1,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[128],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"電容式指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":37090,"name":"vivo V70 FE","brand":"vivo","caps":[{"cap":"8GB/128GB","p":10490,"m":14990},{"cap":"8GB/256GB","p":11890,"m":17990},{"cap":"12GB/256GB","p":13490,"m":19990}],"price":10490,"msrp":14990,"hot":0,"g":"5G","date":"2026/03","sell":"柔光環、超防水、7千大電量","sogi":"vivo-v70-fe/17360","cpu":"Dimensity 7360-Turbo","mat":"AMOLED","fp":"光感","os":"A16","ip":"IP68/IP69","ram":12,"bat":7000,"scr":6.83,"nit":1900,"hz":120,"c1":20000,"c2":800,"c3":null,"c4":null,"fc":3200,"chg":90,"wt":200,"th":7.69,"ois":1,"wl":0,"esim":0,"sd":0,"fold":0,"ratio":20.0,"res":"2800x1260","gpu":"Mali-G615 MC2","memf":"LPDDR5X","romf":"UFS3.1","len":163.7,"wid":76.2,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":6,"usrc":"原廠介紹","cmin":null,"cpct":null,"rom":[128,256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"光學螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":37079,"name":"vivo V70","brand":"vivo","caps":[{"cap":"12GB/256GB","p":15290,"m":21990},{"cap":"12GB/512GB","p":17490,"m":23990}],"price":15290,"msrp":21990,"hot":0,"g":"5G","date":"2026/03","sell":"大電量、超防水、蔡司影像","sogi":"vivo-v70/17348","cpu":"Snapdragon 7 Gen 4","mat":"AMOLED","fp":"超聲波","os":"A16","ip":"IP68/IP69","ram":12,"bat":6500,"scr":6.59,"nit":5000,"hz":120,"c1":5000,"c2":800,"c3":5000,"c4":null,"fc":5000,"chg":90,"wt":194,"th":7.59,"ois":1,"wl":0,"esim":0,"sd":0,"fold":0,"ratio":19.6,"res":"2750x1260","gpu":"Adreno 722","memf":"LPDDR5X","romf":"UFS4.1","len":157.52,"wid":74.33,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":4,"usec":6,"usrc":"原廠介紹","cmin":null,"cpct":null,"rom":[256,512],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[3,"超聲波螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":36826,"name":"Xiaomi 徠卡 Leitzphone","brand":"小米","caps":[{"cap":"16GB/1TB","p":45390,"m":49999}],"price":45390,"msrp":49999,"hot":0,"g":"5G","date":"2026/03","sell":"2億長焦、徠卡相機環、徠卡影像","sogi":"xiaomi-leica-leitzphone/17353","cpu":"Snapdragon 8 Elite Gen 5","mat":"AMOLED","fp":"超聲波","os":"A16","ip":"IP68","ram":16,"bat":6000,"scr":6.9,"nit":3500,"hz":120,"c1":5000,"c2":5000,"c3":20000,"c4":null,"fc":5000,"chg":90,"wt":223.4,"th":8.32,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":19.6,"res":"2608x1200","gpu":"Adreno 840","memf":"LPDDR5X","romf":"UFS4.1","len":162.9,"wid":77.6,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[1024],"uf":[null,"原廠未公布"],"hw":[2,"Snapdragon SPU 安全處理單元"],"ul":[3,"超聲波螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":36783,"name":"Xiaomi 17 Ultra","brand":"小米","caps":[{"cap":"16GB/512GB","p":30490,"m":37999},{"cap":"16GB/1TB","p":34990,"m":41999}],"price":30490,"msrp":37999,"hot":0,"g":"5G","date":"2026/03","sell":"連續光學變焦、2億長焦、徠卡影像","sogi":"xiaomi-xiaomi-17-ultra/17331","cpu":"Snapdragon 8 Elite Gen 5","mat":"AMOLED","fp":"超聲波","os":"A16","ip":"IP68","ram":16,"bat":6000,"scr":6.9,"nit":3500,"hz":120,"c1":5000,"c2":5000,"c3":20000,"c4":null,"fc":5000,"chg":90,"wt":218.4,"th":8.29,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":19.6,"res":"2608x1200","gpu":"Adreno 840","memf":"LPDDR5X","romf":"UFS4.1","len":162.9,"wid":77.6,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[512,1024],"uf":[null,"原廠未公布"],"hw":[2,"Snapdragon SPU 安全處理單元"],"ul":[3,"超聲波螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":36763,"name":"Google Pixel 10a","brand":"Google","caps":[{"cap":"8GB/128GB","p":11590,"m":16490},{"cap":"8GB/256GB","p":14790,"m":19990}],"price":11590,"msrp":16490,"hot":0,"g":"5G","date":"2026/03","sell":"超防水、無線充電、AI手機","sogi":"google-pixel-10a/17347","cpu":"Tensor G4","mat":"POLED","fp":"光感","os":"A16","ip":"IP68","ram":8,"bat":5100,"scr":6.3,"nit":3000,"hz":120,"c1":4800,"c2":1300,"c3":null,"c4":null,"fc":1300,"chg":null,"wt":183,"th":9,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":20.2,"res":"2424x1080","gpu":"Mali-G715","memf":"","romf":"","len":153.9,"wid":73.0,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":7,"usec":7,"usrc":"原廠介紹","cmin":30,"cpct":50,"rom":[128,256],"uf":[2,"每月"],"hw":[3,"Titan M2 安全晶片"],"ul":[2,"光學螢幕指紋"],"ap":[3,"盜竊偵測鎖定＋通話過濾＋詐騙偵測"]},{"id":36745,"name":"Galaxy S26 Ultra","brand":"Samsung","caps":[{"cap":"12GB/256GB","p":37990,"m":44900},{"cap":"12GB/512GB","p":41990,"m":50900},{"cap":"1TB","p":49490,"m":59900}],"price":37990,"msrp":44900,"hot":1,"g":"5G","date":"2026/03","sell":"eSIM上網、智慧防窺、SPen","sogi":"samsung-galaxy-s26-ultra/17344","cpu":"Snapdragon 8 Elite Gen 5 for Galaxy","mat":"Dynamic AMOLED 2X","fp":"超聲波","os":"A16","ip":"IP68","ram":16,"bat":5000,"scr":6.9,"nit":2600,"hz":120,"c1":20000,"c2":5000,"c3":1000,"c4":5000,"fc":1200,"chg":60,"wt":214,"th":7.9,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":19.5,"res":"3120x1440","gpu":"Adreno 840","memf":"LPDDR5X","romf":"UFS4.0","len":163.6,"wid":78.1,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"Gorilla Armor","hbm":null,"uos":7,"usec":7,"usrc":"品牌政策","cmin":30,"cpct":75,"rom":[256,512,1024],"uf":[2,"每月"],"hw":[3,"Knox Vault 獨立安全晶片"],"ul":[3,"超聲波螢幕指紋"],"ap":[3,"AI 來電篩選＋自動封鎖程式＋盜竊保護"]},{"id":36733,"name":"Galaxy S26+","brand":"Samsung","caps":[{"cap":"12GB/256GB","p":32990,"m":37900},{"cap":"12GB/512GB","p":37990,"m":43900}],"price":32990,"msrp":37900,"hot":0,"g":"5G","date":"2026/03","sell":"AI來電篩選、水平錄影、eSIM上網","sogi":"samsung-galaxy-s26plus/17343","cpu":"Snapdragon 8 Elite Gen 5 for Galaxy","mat":"Dynamic AMOLED 2X","fp":"超聲波","os":"A16","ip":"IP68","ram":12,"bat":4900,"scr":6.7,"nit":2600,"hz":120,"c1":5000,"c2":1200,"c3":1000,"c4":null,"fc":1200,"chg":45,"wt":190,"th":7.3,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":19.5,"res":"3120x1440","gpu":"Adreno 840","memf":"LPDDR5X","romf":"UFS4.0","len":158.4,"wid":75.8,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":7,"usec":7,"usrc":"品牌政策","cmin":null,"cpct":null,"rom":[256,512],"uf":[2,"每月"],"hw":[3,"Knox Vault 獨立安全晶片"],"ul":[3,"超聲波螢幕指紋"],"ap":[3,"AI 來電篩選＋自動封鎖程式＋盜竊保護"]},{"id":36722,"name":"Galaxy S26","brand":"Samsung","caps":[{"cap":"12GB/256GB","p":25990,"m":30900},{"cap":"12GB/512GB","p":29990,"m":36900}],"price":25990,"msrp":30900,"hot":0,"g":"5G","date":"2026/03","sell":"AI來電篩選、水平錄影、eSIM上網","sogi":"samsung-galaxy-s26/17342","cpu":"Snapdragon 8 Elite Gen 5 for Galaxy","mat":"Dynamic AMOLED 2X","fp":"超聲波","os":"A16","ip":"IP68","ram":12,"bat":4300,"scr":6.3,"nit":2600,"hz":120,"c1":5000,"c2":1200,"c3":1000,"c4":null,"fc":1200,"chg":25,"wt":167,"th":7.2,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":19.5,"res":"2340x1080","gpu":"Adreno 840","memf":"LPDDR5X","romf":"UFS4.0","len":149.6,"wid":71.7,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":7,"usec":7,"usrc":"品牌政策","cmin":null,"cpct":null,"rom":[256,512],"uf":[2,"每月"],"hw":[3,"Knox Vault 獨立安全晶片"],"ul":[3,"超聲波螢幕指紋"],"ap":[3,"AI 來電篩選＋自動封鎖程式＋盜竊保護"]},{"id":36671,"name":"iPhone 17e","brand":"Apple","caps":[{"cap":"256GB","p":23790,"m":25900},{"cap":"512GB","p":29990,"m":32900}],"price":23790,"msrp":25900,"hot":0,"g":"5G","date":"2026/03","sell":"USB-C、動作按鈕、Magsafe","sogi":"apple-iphone-17e/17352","cpu":"A19 Bionic","mat":"OLED","fp":"","os":"i26","ip":"IP68","ram":null,"bat":null,"scr":6.1,"nit":1200,"hz":60,"c1":4800,"c2":null,"c3":null,"c4":null,"fc":1200,"chg":null,"wt":170,"th":7.8,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":19.5,"res":"2532x1170","gpu":"","memf":"","romf":"","len":146.7,"wid":71.5,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"抗反射","hbm":null,"uos":null,"usec":null,"usrc":"Apple","cmin":null,"cpct":null,"rom":[256,512],"uf":[3,"依需要隨時推送＋背景安全性改進自動安裝"],"hw":[3,"Secure Enclave 獨立安全區"],"ul":[3,"Face ID 3D 臉部辨識"],"ap":[3,"失竊裝置保護＋iOS 26 篩選來電"]},{"id":36489,"name":"SHARP AQUOS wish5s","brand":"SHARP","caps":[{"cap":"8GB/256GB","p":7390,"m":10490}],"price":7390,"msrp":10490,"hot":0,"g":"5G","date":"2026/02","sell":"3.5mm耳機孔、可插記憶卡、超防水","sogi":"sharp-aquos-wish5s/17341","cpu":"Dimensity 6300","mat":"LCD","fp":"電容","os":"A15","ip":"IP65/IP68/IP69","ram":8,"bat":5000,"scr":6.6,"nit":null,"hz":120,"c1":5010,"c2":190,"c3":null,"c4":null,"fc":800,"chg":27,"wt":187,"th":8.8,"ois":0,"wl":0,"esim":1,"sd":1,"fold":0,"ratio":20.1,"res":"1612x720","gpu":"Mali-G57 MC2","memf":"LPDDR4X","romf":"UFS2.1","len":166.0,"wid":76.0,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":2,"usec":3,"usrc":"原廠介紹","cmin":null,"cpct":null,"rom":[256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"電容式指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":35363,"name":"OPPO A6x 5G","brand":"OPPO","caps":[{"cap":"4GB/128GB","p":4390,"m":7990},{"cap":"6GB/128GB","p":5190,"m":8990}],"price":4390,"msrp":7990,"hot":0,"g":"5G","date":"2026/01","sell":"防潑水、可插記憶卡、超大電池","sogi":"oppo-a6x-5g/17336","cpu":"Dimensity 6300","mat":"LCD","fp":"電容","os":"A15","ip":"IP64","ram":6,"bat":6500,"scr":6.75,"nit":null,"hz":120,"c1":5000,"c2":200,"c3":null,"c4":null,"fc":500,"chg":15,"wt":212,"th":8.61,"ois":0,"wl":0,"esim":0,"sd":1,"fold":0,"ratio":19.6,"res":"1570x720","gpu":"Mali-G57 MC2","memf":"LPDDR4X","romf":"UFS2.2","len":166.61,"wid":78.51,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"霧面玻璃","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[128],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"電容式指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":35349,"name":"Galaxy A07","brand":"Samsung","caps":[{"cap":"","p":5990,"m":17990}],"price":5990,"msrp":17990,"hot":0,"g":"5G","date":"2026/02","sell":"大螢幕、防潑水、6千大電量","sogi":"samsung-galaxy-a07-5g/17335","cpu":"Dimensity 6300","mat":"LCD","fp":"電容","os":"A16","ip":"IP54","ram":4,"bat":6000,"scr":6.7,"nit":null,"hz":120,"c1":5000,"c2":200,"c3":null,"c4":null,"fc":800,"chg":25,"wt":199,"th":8.2,"ois":0,"wl":0,"esim":0,"sd":1,"fold":0,"ratio":20.0,"res":"1600x720","gpu":"Mali-G57 MC2","memf":"","romf":"","len":167.4,"wid":77.4,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":6,"usec":6,"usrc":"原廠介紹","cmin":null,"cpct":null,"rom":[128],"uf":[1,"每季"],"hw":[1,"Knox 防護（未確認 Knox Vault）"],"ul":[2,"電容式指紋"],"ap":[2,"自動封鎖程式＋盜竊保護"]},{"id":34230,"name":"Motorola Moto g86 Power","brand":"Motorola","caps":[{"cap":"12G / 256G","p":10490,"m":10490}],"price":10490,"msrp":10490,"hot":0,"g":"5G","date":"2026/01","sell":"可插記憶卡、大電量、長續航","sogi":"motorola-g86-power-5g/17323","cpu":"Dimensity 7300","mat":"POLED","fp":"光感","os":"A15","ip":"IP68/IP69","ram":12,"bat":6720,"scr":6.7,"nit":4500,"hz":120,"c1":5000,"c2":800,"c3":null,"c4":null,"fc":3200,"chg":30,"wt":198,"th":8.65,"ois":1,"wl":0,"esim":1,"sd":1,"fold":0,"ratio":20.0,"res":"2712x1220","gpu":"Mali-G615 MP2","memf":"","romf":"","len":161.21,"wid":74.74,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":1,"usec":3,"usrc":"品牌政策","cmin":null,"cpct":null,"rom":[256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"光學螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":34792,"name":"Redmi Note 15 Pro","brand":"小米","sub":"Redmi","caps":[{"cap":"12G/256G","p":8790,"m":10999},{"cap":"12G/512G","p":9790,"m":11999}],"price":8790,"msrp":10999,"hot":1,"g":"5G","date":"2026/01","sell":"紅外線遙控、抗摔、2億畫素","sogi":"xiaomi-redmi-note-15-pro-5g/17263","cpu":"Dimensity 7400-Ultra","mat":"AMOLED","fp":"光感","os":"A15","ip":"IP68","ram":12,"bat":6580,"scr":6.83,"nit":3200,"hz":120,"c1":20000,"c2":800,"c3":null,"c4":null,"fc":2000,"chg":45,"wt":210,"th":7.96,"ois":1,"wl":0,"esim":1,"sd":0,"fold":0,"ratio":19.5,"res":"2772x1280","gpu":"Mali-G615","memf":"LPDDR4X","romf":"UFS2.2","len":163.61,"wid":78.09,"subscr":null,"pwm":3840,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256,512],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"光學螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":34754,"name":"Redmi Note 15","brand":"小米","sub":"Redmi","caps":[{"cap":"6G/128G","p":4990,"m":5999},{"cap":"8G/256G","p":5990,"m":6999}],"price":4990,"msrp":5999,"hot":0,"g":"5G","date":"2026/01","sell":"6千大電量、1億畫素、抗摔","sogi":"xiaomi-redmi-note-15/17338","cpu":"Helio G100-Ultra","mat":"AMOLED","fp":"光感","os":"A15","ip":"IP64","ram":8,"bat":6000,"scr":6.77,"nit":3200,"hz":120,"c1":10000,"c2":200,"c3":null,"c4":null,"fc":2000,"chg":33,"wt":183.7,"th":7.94,"ois":1,"wl":0,"esim":0,"sd":1,"fold":0,"ratio":19.9,"res":"2392x1080","gpu":"Mali-G57 MC2","memf":"LPDDR4X","romf":"UFS2.2","len":164.03,"wid":75.42,"subscr":null,"pwm":3840,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[128,256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"光學螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":34746,"name":"Redmi Note 15 5G","brand":"小米","sub":"Redmi","caps":[{"cap":"6G/128G","p":5690,"m":8999},{"cap":"8G/256G","p":6590,"m":9999}],"price":5690,"msrp":8999,"hot":0,"g":"5G","date":"2026/01","sell":"抗摔、1億畫素、防潑水","sogi":"xiaomi-redmi-note-15-5g/17261","cpu":"Snapdragon 6 Gen 3","mat":"AMOLED","fp":"光感","os":"A15","ip":"IP66","ram":8,"bat":5520,"scr":6.77,"nit":3200,"hz":120,"c1":10000,"c2":800,"c3":null,"c4":null,"fc":2000,"chg":45,"wt":178,"th":7.35,"ois":1,"wl":0,"esim":0,"sd":1,"fold":0,"ratio":19.9,"res":"2392x1080","gpu":"Adreno 710","memf":"LPDDR4X","romf":"UFS2.2","len":164.0,"wid":75.42,"subscr":null,"pwm":3840,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[128,256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"光學螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":34681,"name":"Motorola Moto g57","brand":"Motorola","caps":[{"cap":"4G/128GB","p":4790,"m":5990}],"price":4790,"msrp":5990,"hot":0,"g":"5G","date":"2026/01","sell":"3.5mm耳機孔、長續航、大螢幕","sogi":"moto-g57/17334","cpu":"Snapdragon 6s Gen 4","mat":"LCD","fp":"有","os":"A16","ip":"IP64","ram":4,"bat":5200,"scr":6.72,"nit":null,"hz":120,"c1":5000,"c2":800,"c3":null,"c4":null,"fc":800,"chg":30,"wt":192.4,"th":7.99,"ois":0,"wl":0,"esim":0,"sd":0,"fold":0,"ratio":20.0,"res":"2400x1080","gpu":"Adreno 710","memf":"","romf":"","len":166.23,"wid":76.5,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":2,"usec":3,"usrc":"品牌政策","cmin":null,"cpct":null,"rom":[128],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"指紋辨識"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":34241,"name":"Motorola edge 70","brand":"Motorola","caps":[{"cap":"","p":9990,"m":16990}],"price":9990,"msrp":16990,"hot":0,"g":"5G","date":"2026/01","sell":"雙鏡頭、AI手機、超輕薄","sogi":"motorola-edge-70/17324","cpu":"Snapdragon 7 Gen 4","mat":"AMOLED","fp":"光感","os":"A16","ip":"IP68/IP69","ram":12,"bat":4800,"scr":6.67,"nit":4500,"hz":120,"c1":5000,"c2":5000,"c3":null,"c4":null,"fc":5000,"chg":68,"wt":159,"th":5.99,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":20.0,"res":"2712x1220","gpu":"Adreno 722","memf":"LPDDR5X","romf":"uMCP","len":159.0,"wid":74.0,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":3,"usec":5,"usrc":"品牌政策","cmin":null,"cpct":null,"rom":[256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"光學螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":33691,"name":"OPPO Reno15 Pro Max","brand":"OPPO","caps":[{"cap":"12GB / 512GB","p":20990,"m":26990}],"price":20990,"msrp":26990,"hot":0,"g":"5G","date":"2025/12","sell":"水中攝影、超防水、2億畫素","sogi":"oppo-reno15-pro-max/17332","cpu":"Dimensity 8450","mat":"AMOLED","fp":"光感","os":"A16","ip":"IP69","ram":12,"bat":6500,"scr":6.78,"nit":1800,"hz":120,"c1":20000,"c2":5000,"c3":5000,"c4":null,"fc":5000,"chg":80,"wt":205,"th":7.65,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":19.6,"res":"2772x1272","gpu":"Mali-G720 MC7","memf":"LPDDR5X","romf":"UFS3.1","len":161.26,"wid":76.46,"subscr":null,"pwm":2160,"dcd":0,"mnit":null,"ar":"","hbm":1800,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[512],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"光學螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":33678,"name":"OPPO Reno15 F","brand":"OPPO","caps":[{"cap":"8GB / 256GB","p":8790,"m":15990},{"cap":"12GB / 256GB","p":9790,"m":16990}],"price":8790,"msrp":15990,"hot":1,"g":"5G","date":"2026/01","sell":"水中攝影、大電量、超防水","sogi":"oppo-reno15-f/17333","cpu":"Snapdragon 6 Gen 1","mat":"AMOLED","fp":"光感","os":"A16","ip":"IP69","ram":12,"bat":6500,"scr":6.57,"nit":1400,"hz":120,"c1":5000,"c2":800,"c3":200,"c4":null,"fc":5000,"chg":80,"wt":189,"th":8.14,"ois":1,"wl":0,"esim":0,"sd":0,"fold":0,"ratio":19.8,"res":"2372x1080","gpu":"Adreno 710","memf":"LPDDR4X","romf":"UFS3.1","len":158.18,"wid":74.93,"subscr":null,"pwm":3840,"dcd":0,"mnit":null,"ar":"","hbm":1400,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"光學螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":33589,"name":"OPPO Reno15","brand":"OPPO","caps":[{"cap":"12G/256G","p":13990,"m":19990},{"cap":"12G/512G","p":14790,"m":21990}],"price":13990,"msrp":19990,"hot":0,"g":"5G","date":"2025/12","sell":"超防水、大電量、AI手機","sogi":"oppo-reno15/17315","cpu":"Snapdragon 7 Gen 4","mat":"AMOLED","fp":"光感","os":"A16","ip":"IP69","ram":12,"bat":6500,"scr":6.59,"nit":1200,"hz":120,"c1":5000,"c2":800,"c3":5000,"c4":null,"fc":5000,"chg":80,"wt":197,"th":7.77,"ois":1,"wl":0,"esim":1,"sd":0,"fold":0,"ratio":19.8,"res":"2760x1256","gpu":"Adreno 722","memf":"LPDDR5X","romf":"UFS3.1","len":158.0,"wid":74.83,"subscr":null,"pwm":3840,"dcd":0,"mnit":null,"ar":"","hbm":1200,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256,512],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"光學螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":33608,"name":"OPPO Reno15 Pro","brand":"OPPO","caps":[{"cap":"12GB / 256GB","p":16590,"m":22990}],"price":16590,"msrp":22990,"hot":1,"g":"5G","date":"2025/12","sell":"超防水、AI手機、2億畫素","sogi":"oppo-reno15-pro/17316","cpu":"Dimensity 8450","mat":"AMOLED","fp":"光感","os":"A16","ip":"IP69","ram":12,"bat":6200,"scr":6.32,"nit":1800,"hz":120,"c1":20000,"c2":5000,"c3":5000,"c4":null,"fc":5000,"chg":80,"wt":187,"th":7.99,"ois":1,"wl":0,"esim":1,"sd":0,"fold":0,"ratio":19.5,"res":"2640x1216","gpu":"Mali-G720 MC7","memf":"LPDDR5X","romf":"UFS3.1","len":151.21,"wid":72.42,"subscr":null,"pwm":2160,"dcd":0,"mnit":null,"ar":"","hbm":1800,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"光學螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":33476,"name":"iQOO 15","brand":"iQOO","caps":[{"cap":"16G/512G","p":26490,"m":29999}],"price":26490,"msrp":29999,"hot":0,"g":"5G","date":"2025/12","sell":"超級快充、遊戲手機、7千大電量","sogi":"iqoo-15/17304","cpu":"Snapdragon 8 Elite Gen 5","mat":"AMOLED","fp":"超聲波","os":"A16","ip":"IP68/IP69","ram":16,"bat":7000,"scr":6.85,"nit":6000,"hz":144,"c1":5000,"c2":5000,"c3":5000,"c4":null,"fc":3200,"chg":100,"wt":221,"th":8.28,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":19.8,"res":"3168x1440","gpu":"Adreno 840","memf":"LPDDR5X Ultra","romf":"UFS4.1","len":163.65,"wid":76.8,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[512],"uf":[null,"原廠未公布"],"hw":[2,"Snapdragon SPU 安全處理單元"],"ul":[3,"超聲波螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":33397,"name":"Galaxy Z TriFold","brand":"Samsung","caps":[{"cap":"16GB+512GB","p":86900,"m":89900}],"price":86900,"msrp":89900,"hot":0,"g":"5G","date":"2025/12","sell":"生產力、AI手機、三摺疊螢幕","sogi":"samsung-galaxy-z-trifold/17321","cpu":"Snapdragon 8 Elite for Galaxy","mat":"Dynamic AMOLED 2X","fp":"電容","os":"A16","ip":"IP48","ram":16,"bat":5600,"scr":10,"nit":1600,"hz":120,"c1":20000,"c2":1200,"c3":1000,"c4":null,"fc":1000,"chg":45,"wt":309,"th":3.9,"ois":1,"wl":1,"esim":0,"sd":0,"fold":1,"res":"2160x1584","gpu":"Adreno 830","memf":"","romf":"","len":214.1,"wid":159.2,"subscr":6.5,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":7,"usec":7,"usrc":"品牌政策","cmin":null,"cpct":null,"rom":[512],"uf":[2,"每月"],"hw":[3,"Knox Vault 獨立安全晶片"],"ul":[2,"電容式指紋"],"ap":[2,"自動封鎖程式＋盜竊保護"]},{"id":32969,"name":"Redmi 15 5G","brand":"小米","sub":"Redmi","caps":[{"cap":"4G/128G","p":4290,"m":6499},{"cap":"8G/256G","p":5390,"m":7999}],"price":4290,"msrp":6499,"hot":0,"g":"5G","date":"2025/11","sell":"紅外線遙控、可插記憶卡、7千大電量","sogi":"xiaomi-redmi-15-5g/17318","cpu":"Snapdragon 6s Gen 3","mat":"","fp":"電容","os":"A15","ip":"IP64","ram":8,"bat":7000,"scr":6.9,"nit":850,"hz":144,"c1":5000,"c2":null,"c3":null,"c4":null,"fc":800,"chg":33,"wt":217,"th":8.4,"ois":0,"wl":0,"esim":0,"sd":1,"fold":0,"ratio":19.5,"res":"2340x1080","gpu":"Adreno 619","memf":"LPDDR4X","romf":"UFS2.2","len":169.48,"wid":80.45,"subscr":null,"pwm":null,"dcd":1,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[128,256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"電容式指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":32931,"name":"POCO F8 Ultra","brand":"POCO","caps":[{"cap":"12G/256G","p":20190,"m":21999},{"cap":"16G/512G","p":22190,"m":23999}],"price":20190,"msrp":21999,"hot":0,"g":"5G","date":"2025/11","sell":"超級快充、大電量、Bose喇叭","sogi":"poco-f8-ultra/17320","cpu":"Snapdragon 8 Elite Gen 5","mat":"AMOLED","fp":"超聲波","os":"A16","ip":"IP68","ram":16,"bat":6500,"scr":6.9,"nit":3500,"hz":120,"c1":5000,"c2":5000,"c3":5000,"c4":null,"fc":3200,"chg":100,"wt":220,"th":8.3,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":19.6,"res":"2608x1200","gpu":"Adreno 840","memf":"LPDDR5X","romf":"UFS4.1","len":163.33,"wid":77.82,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256,512],"uf":[null,"原廠未公布"],"hw":[2,"Snapdragon SPU 安全處理單元"],"ul":[3,"超聲波螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":32218,"name":"Redmi 15C","brand":"小米","sub":"Redmi","caps":[{"cap":"4G/128G","p":3690,"m":4499},{"cap":"8G/256G","p":3990,"m":5499}],"price":3690,"msrp":4499,"hot":0,"g":"5G","date":"2025/10","sell":"長續航、大電量、大螢幕","sogi":"xiaomi-redmi-15c/17311","cpu":"Helio G81-Ultra","mat":"LCD","fp":"電容","os":"A15","ip":"IP64","ram":8,"bat":6000,"scr":6.9,"nit":810,"hz":120,"c1":5000,"c2":null,"c3":null,"c4":null,"fc":800,"chg":33,"wt":205,"th":7.99,"ois":0,"wl":0,"esim":0,"sd":1,"fold":0,"ratio":20.0,"res":"1600x720","gpu":"Mali-G52 MC2","memf":"LPDDR4X","romf":"eMMC 5.1","len":171.56,"wid":79.47,"subscr":null,"pwm":null,"dcd":1,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[128,256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"電容式指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":31293,"name":"POCO C85","brand":"POCO","caps":[{"cap":"6G/128G","p":3690,"m":3699},{"cap":"8G/256G","p":4690,"m":4699}],"price":3690,"msrp":3699,"hot":0,"g":"5G","date":"2025/10","sell":"長續航、大電量、大螢幕","sogi":"poco-c85/17308","cpu":"Helio G81-Ultra","mat":"LCD","fp":"電容","os":"A15","ip":"IP64","ram":8,"bat":6000,"scr":6.9,"nit":810,"hz":120,"c1":5000,"c2":null,"c3":null,"c4":null,"fc":800,"chg":33,"wt":205,"th":7.99,"ois":0,"wl":0,"esim":0,"sd":1,"fold":0,"ratio":20.0,"res":"1600x720","gpu":"Mali-G52 MC2","memf":"LPDDR4X","romf":"eMMC 5.1","len":171.56,"wid":79.47,"subscr":null,"pwm":null,"dcd":1,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[128,256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"電容式指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":31220,"name":"realme 15 Pro","brand":"realme","caps":[{"cap":"12G/256G","p":10290,"m":13990}],"price":10290,"msrp":13990,"hot":1,"g":"5G","date":"2025/10","sell":"超防水、7千大電量、雙閃光燈","sogi":"realme-15-pro-5g/17248","cpu":"Snapdragon 7 Gen 4","mat":"AMOLED","fp":"光感","os":"A15","ip":"IP66/IP68/IP69","ram":12,"bat":7000,"scr":6.8,"nit":6500,"hz":144,"c1":5000,"c2":5000,"c3":null,"c4":null,"fc":5000,"chg":80,"wt":187,"th":7.79,"ois":1,"wl":0,"esim":0,"sd":0,"fold":0,"ratio":19.7,"res":"2800x1280","gpu":"Adreno 722","memf":"LPDDR4X","romf":"UFS3.1","len":162.26,"wid":76.15,"subscr":null,"pwm":4608,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"光學螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":31013,"name":"OPPO Find X9","brand":"OPPO","caps":[{"cap":"12G/256G","p":18990,"m":28990}],"price":18990,"msrp":28990,"hot":0,"g":"5G","date":"2025/10","sell":"7千大電量、潛望式長焦、哈蘇相機","sogi":"oppo-find-x9/17302","cpu":"Dimensity 9500","mat":"AMOLED","fp":"超聲波","os":"A16","ip":"IP66/IP68/IP69","ram":12,"bat":7025,"scr":6.59,"nit":3600,"hz":120,"c1":5000,"c2":5000,"c3":5000,"c4":200,"fc":3200,"chg":80,"wt":203,"th":7.99,"ois":1,"wl":1,"esim":0,"sd":0,"fold":0,"ratio":19.8,"res":"2760x1256","gpu":"Mali-G1 Ultra MC12","memf":"LPDDR5X","romf":"UFS4.1","len":156.98,"wid":73.93,"subscr":null,"pwm":3840,"dcd":0,"mnit":1.0,"ar":"","hbm":1800,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256],"uf":[null,"原廠未公布"],"hw":[2,"天璣 9500 系列安全認證（AVA_VAN.5）"],"ul":[3,"超聲波螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":27213,"name":"iPhone 17 Pro","brand":"Apple","caps":[{"cap":"256GB","p":35990,"m":39900},{"cap":"512GB","p":45890,"m":46900},{"cap":"1TB","p":50990,"m":58900}],"price":35990,"msrp":39900,"hot":1,"g":"5G","date":"2025/09","sell":"40倍變焦、三鏡頭、鋁金屬","sogi":"apple-iphone-17-pro/17273","cpu":"A19 Pro Bionic","mat":"OLED","fp":"","os":"i26","ip":"IP68","ram":null,"bat":null,"scr":6.3,"nit":3000,"hz":120,"c1":4800,"c2":4800,"c3":4800,"c4":null,"fc":1800,"chg":40,"wt":204,"th":8.75,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":19.6,"res":"2622x1206","gpu":"","memf":"","romf":"","len":150.0,"wid":71.9,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"抗反射","hbm":null,"uos":null,"usec":null,"usrc":"Apple","cmin":null,"cpct":null,"rom":[256,512,1024],"uf":[3,"依需要隨時推送＋背景安全性改進自動安裝"],"hw":[3,"Secure Enclave 獨立安全區"],"ul":[3,"Face ID 3D 臉部辨識"],"ap":[3,"失竊裝置保護＋iOS 26 篩選來電"]},{"id":27196,"name":"iPhone Air","brand":"Apple","caps":[{"cap":"256GB","p":35990,"m":39900},{"cap":"512GB","p":41990,"m":46900},{"cap":"1TB","p":54990,"m":61900}],"price":35990,"msrp":39900,"hot":0,"g":"5G","date":"2025/09","sell":"高畫素、鈦金屬、超輕薄","sogi":"apple-iphone-air/17272","cpu":"A19 Pro Bionic","mat":"OLED","fp":"","os":"i26","ip":"IP68","ram":null,"bat":null,"scr":6.5,"nit":3000,"hz":120,"c1":4800,"c2":null,"c3":null,"c4":null,"fc":1800,"chg":null,"wt":165,"th":5.64,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":19.5,"res":"2736x1260","gpu":"","memf":"","romf":"","len":156.2,"wid":74.7,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"抗反射","hbm":null,"uos":null,"usec":null,"usrc":"Apple","cmin":null,"cpct":null,"rom":[256,512,1024],"uf":[3,"依需要隨時推送＋背景安全性改進自動安裝"],"hw":[3,"Secure Enclave 獨立安全區"],"ul":[3,"Face ID 3D 臉部辨識"],"ap":[3,"失竊裝置保護＋iOS 26 篩選來電"]},{"id":27179,"name":"iPhone 17","brand":"Apple","caps":[{"cap":"256GB","p":29890,"m":32900},{"cap":"512GB","p":37290,"m":39900}],"price":29890,"msrp":32900,"hot":1,"g":"5G","date":"2025/09","sell":"高畫素、雙鏡頭、120Hz","sogi":"apple-iphone-17/17271","cpu":"A19 Bionic","mat":"OLED","fp":"","os":"i26","ip":"IP68","ram":null,"bat":null,"scr":6.3,"nit":3000,"hz":120,"c1":4800,"c2":4800,"c3":null,"c4":null,"fc":1800,"chg":null,"wt":177,"th":7.95,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":19.6,"res":"2622x1206","gpu":"","memf":"","romf":"","len":149.6,"wid":71.5,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"抗反射","hbm":null,"uos":null,"usec":null,"usrc":"Apple","cmin":null,"cpct":null,"rom":[256,512],"uf":[3,"依需要隨時推送＋背景安全性改進自動安裝"],"hw":[3,"Secure Enclave 獨立安全區"],"ul":[3,"Face ID 3D 臉部辨識"],"ap":[3,"失竊裝置保護＋iOS 26 篩選來電"]},{"id":27223,"name":"iPhone 17 Pro Max","brand":"Apple","caps":[{"cap":"256GB","p":40490,"m":44900},{"cap":"512GB","p":47890,"m":51900},{"cap":"1TB","p":54990,"m":58900},{"cap":"2TB","p":67990,"m":72900}],"price":40490,"msrp":44900,"hot":1,"g":"5G","date":"2025/09","sell":"40倍變焦、三鏡頭、鋁金屬","sogi":"apple-iphone-17-pro-max/17274","cpu":"A19 Pro Bionic","mat":"OLED","fp":"","os":"i26","ip":"IP68","ram":null,"bat":null,"scr":6.9,"nit":3000,"hz":120,"c1":4800,"c2":4800,"c3":4800,"c4":null,"fc":1800,"chg":40,"wt":231,"th":8.75,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":19.6,"res":"2868x1320","gpu":"","memf":"","romf":"","len":163.4,"wid":78.0,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"抗反射","hbm":null,"uos":null,"usec":null,"usrc":"Apple","cmin":null,"cpct":null,"rom":[256,512,1024,2048],"uf":[3,"依需要隨時推送＋背景安全性改進自動安裝"],"hw":[3,"Secure Enclave 獨立安全區"],"ul":[3,"Face ID 3D 臉部辨識"],"ap":[3,"失竊裝置保護＋iOS 26 篩選來電"]},{"id":26214,"name":"Google Pixel 10 Pro Fold","brand":"Google","caps":[{"cap":"16G/256G","p":43490,"m":68990}],"price":43490,"msrp":68990,"hot":0,"g":"5G","date":"2025/10","sell":"","sogi":"google-pixel-10-pro-fold/17256","cpu":"Tensor G5","mat":"OLED","fp":"電容","os":"A16","ip":"IP68","ram":16,"bat":5015,"scr":8,"nit":3000,"hz":120,"c1":4800,"c2":1050,"c3":1080,"c4":null,"fc":1000,"chg":null,"wt":258,"th":5.2,"ois":1,"wl":1,"esim":1,"sd":0,"fold":1,"res":"2152x2076","gpu":"PowerVR IMG DXT-48-1536","memf":"","romf":"","len":155.2,"wid":150.4,"subscr":6.4,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":7,"usec":7,"usrc":"原廠介紹","cmin":null,"cpct":null,"rom":[256],"uf":[2,"每月"],"hw":[3,"Titan M2 安全晶片"],"ul":[2,"電容式指紋"],"ap":[3,"盜竊偵測鎖定＋通話過濾＋詐騙偵測"]},{"id":26161,"name":"Google Pixel 10","brand":"Google","caps":[{"cap":"12G/128G","p":16990,"m":26490},{"cap":"12G/256G","p":21990,"m":29990}],"price":16990,"msrp":26490,"hot":0,"g":"5G","date":"2025/08","sell":"超防水、專業攝影、AI手機","sogi":"google-pixel-10/17253","cpu":"Tensor G5","mat":"OLED","fp":"有","os":"A16","ip":"IP68","ram":12,"bat":4970,"scr":6.3,"nit":3000,"hz":120,"c1":4800,"c2":1300,"c3":1080,"c4":null,"fc":1050,"chg":null,"wt":204,"th":8.6,"ois":1,"wl":1,"esim":1,"sd":0,"fold":0,"ratio":20.2,"res":"2424x1080","gpu":"PowerVR IMG DXT-48-1536","memf":"","romf":"","len":152.8,"wid":72.0,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":7,"usec":7,"usrc":"原廠介紹","cmin":null,"cpct":null,"rom":[128,256],"uf":[2,"每月"],"hw":[3,"Titan M2 安全晶片"],"ul":[2,"指紋辨識"],"ap":[3,"盜竊偵測鎖定＋通話過濾＋詐騙偵測"]},{"id":25769,"name":"Galaxy A17","brand":"Samsung","caps":[{"cap":"6G/128G","p":7390,"m":7490},{"cap":"8G/128G","p":8190,"m":8490}],"price":7390,"msrp":7490,"hot":1,"g":"5G","date":"2025/08","sell":"光學防手震、90Hz、可插記憶卡","sogi":"samsung-galaxy-a17-5g/17247","cpu":"Exynos 1330","mat":"Super AMOLED","fp":"電容","os":"A15","ip":"IP54","ram":8,"bat":5000,"scr":6.7,"nit":null,"hz":90,"c1":5000,"c2":500,"c3":200,"c4":null,"fc":1300,"chg":25,"wt":192,"th":7.5,"ois":1,"wl":0,"esim":0,"sd":1,"fold":0,"ratio":19.5,"res":"2340x1080","gpu":"Mali-G68 MP2","memf":"","romf":"","len":164.4,"wid":77.9,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":6,"usec":6,"usrc":"原廠介紹","cmin":null,"cpct":null,"rom":[128],"uf":[1,"每季"],"hw":[1,"Knox 防護（未確認 Knox Vault）"],"ul":[2,"電容式指紋"],"ap":[2,"自動封鎖程式＋盜竊保護"]},{"id":24522,"name":"Galaxy Z Fold7","brand":"Samsung","caps":[{"cap":"12G/256G","p":42990,"m":62900},{"cap":"12G/512G","p":44990,"m":66900},{"cap":"16G/1TB","p":59390,"m":77900}],"price":42990,"msrp":62900,"hot":0,"g":"5G","date":"2025/07","sell":"雙螢幕、摺疊螢幕、AI手機","sogi":"samsung-galaxy-z-fold7/17243","cpu":"Snapdragon 8 Elite for Galaxy","mat":"Dynamic AMOLED 2X","fp":"電容","os":"A16","ip":"IP48","ram":16,"bat":4400,"scr":8,"nit":2600,"hz":120,"c1":20000,"c2":1200,"c3":1000,"c4":null,"fc":1000,"chg":25,"wt":215,"th":4.2,"ois":1,"wl":1,"esim":0,"sd":0,"fold":1,"res":"2184x1968","gpu":"Adreno 830","memf":"","romf":"","len":158.4,"wid":143.2,"subscr":6.5,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":7,"usec":7,"usrc":"品牌政策","cmin":null,"cpct":null,"rom":[256,512,1024],"uf":[2,"每月"],"hw":[3,"Knox Vault 獨立安全晶片"],"ul":[2,"電容式指紋"],"ap":[2,"自動封鎖程式＋盜竊保護"]},{"id":21295,"name":"Sony Xperia 1 VII","brand":"Sony","caps":[{"cap":"12G/256G","p":33990,"m":40990},{"cap":"12G/512G","p":37990,"m":44990}],"price":33990,"msrp":40990,"hot":0,"g":"5G","date":"2025/05","sell":"3.5mm耳機孔、可插記憶卡、專業攝影","sogi":"sony-xperia-1-vii/17220","cpu":"Snapdragon 8 Elite","mat":"HDR OLED","fp":"電容","os":"A15","ip":"IP65/IP68","ram":12,"bat":5000,"scr":6.5,"nit":null,"hz":120,"c1":4800,"c2":4800,"c3":1200,"c4":null,"fc":1200,"chg":30,"wt":197,"th":8.2,"ois":1,"wl":1,"esim":0,"sd":1,"fold":0,"ratio":19.5,"res":"2340x1080","gpu":"Adreno 830","memf":"LPDDR5X","romf":"UFS4.0","len":162.0,"wid":74.0,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"抗反射","hbm":null,"uos":4,"usec":6,"usrc":"原廠介紹","cmin":null,"cpct":null,"rom":[256,512],"uf":[null,"原廠未公布"],"hw":[2,"Snapdragon SPU 安全處理單元"],"ul":[2,"電容式指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":19299,"name":"Motorola Razr 60 Ultra","brand":"Motorola","caps":[{"cap":"16G/512G","p":22390,"m":39990}],"price":22390,"msrp":39990,"hot":0,"g":"5G","date":"2025/04","sell":"摺疊螢幕、165Hz、AI手機","sogi":"motorola-razr-60-ultra/17214","cpu":"Snapdragon 8 Elite","mat":"AMOLED","fp":"","os":"A15","ip":"IP48","ram":16,"bat":4700,"scr":7,"nit":4500,"hz":165,"c1":5000,"c2":5000,"c3":null,"c4":null,"fc":5000,"chg":68,"wt":199,"th":7.29,"ois":1,"wl":1,"esim":0,"sd":0,"fold":1,"res":"2992x1224","gpu":"","memf":"LPDDR5X","romf":"UFS4.0","len":171.48,"wid":73.99,"subscr":4.0,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":3,"usec":4,"usrc":"品牌政策","cmin":null,"cpct":null,"rom":[512],"uf":[null,"原廠未公布"],"hw":[2,"Snapdragon SPU 安全處理單元"],"ul":[null,"未標示"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]},{"id":15626,"name":"Galaxy A56","brand":"Samsung","caps":[{"cap":"8GB/256GB","p":10880,"m":16990},{"cap":"12GB/256GB","p":11880,"m":17990}],"price":10880,"msrp":16990,"hot":0,"g":"5G","date":"2025/03","sell":"超防水、AI手機、120Hz","sogi":"samsung-galaxy-a56-5g/17189","cpu":"Exynos 1580","mat":"Super AMOLED","fp":"光感","os":"A15","ip":"IP67","ram":12,"bat":5000,"scr":6.7,"nit":1200,"hz":120,"c1":5000,"c2":1200,"c3":500,"c4":null,"fc":1200,"chg":45,"wt":198,"th":7.4,"ois":1,"wl":0,"esim":0,"sd":0,"fold":0,"ratio":19.5,"res":"2340x1080","gpu":"Xclipse 540","memf":"","romf":"","len":162.2,"wid":77.5,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":6,"usec":6,"usrc":"品牌政策","cmin":null,"cpct":null,"rom":[256],"uf":[2,"每月"],"hw":[3,"Knox Vault 獨立安全晶片"],"ul":[2,"光學螢幕指紋"],"ap":[2,"自動封鎖程式＋盜竊保護"]},{"id":11850,"name":"Galaxy S25 Ultra","brand":"Samsung","caps":[{"cap":"12G/256G","p":27990,"m":43900},{"cap":"16G/1T","p":40990,"m":56900}],"price":27990,"msrp":43900,"hot":1,"g":"5G","date":"2025/02","sell":"百倍變焦、SPen、AI手機","sogi":"samsung-galaxy-s25-ultra/17173","cpu":"Snapdragon 8 Elite for Galaxy","mat":"Dynamic AMOLED 2X","fp":"超聲波","os":"A15","ip":"IP68","ram":16,"bat":5000,"scr":6.9,"nit":2600,"hz":120,"c1":20000,"c2":5000,"c3":1000,"c4":5000,"fc":1200,"chg":45,"wt":218,"th":8.2,"ois":1,"wl":1,"esim":0,"sd":0,"fold":0,"ratio":19.5,"res":"3120x1440","gpu":"Adreno 830","memf":"LPDDR5X","romf":"UFS4.0","len":162.8,"wid":77.6,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"抗反射","hbm":null,"uos":7,"usec":7,"usrc":"品牌政策","cmin":null,"cpct":null,"rom":[256,1024],"uf":[2,"每月"],"hw":[3,"Knox Vault 獨立安全晶片"],"ul":[3,"超聲波螢幕指紋"],"ap":[2,"自動封鎖程式＋盜竊保護"]},{"id":11815,"name":"Galaxy S25","brand":"Samsung","caps":[{"cap":"256G","p":17990,"m":27900}],"price":17990,"msrp":27900,"hot":0,"g":"5G","date":"2025/02","sell":"超防水、專業攝影、AI手機","sogi":"samsung-galaxy-s25/17171","cpu":"Snapdragon 8 Elite for Galaxy","mat":"Dynamic AMOLED 2X","fp":"超聲波","os":"A15","ip":"IP68","ram":12,"bat":4000,"scr":6.2,"nit":null,"hz":120,"c1":5000,"c2":1200,"c3":1000,"c4":null,"fc":1200,"chg":25,"wt":162,"th":7.2,"ois":1,"wl":1,"esim":0,"sd":0,"fold":0,"ratio":19.5,"res":"2340x1080","gpu":"Adreno 830","memf":"","romf":"","len":146.9,"wid":70.5,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":7,"usec":7,"usrc":"品牌政策","cmin":null,"cpct":null,"rom":[256],"uf":[2,"每月"],"hw":[3,"Knox Vault 獨立安全晶片"],"ul":[3,"超聲波螢幕指紋"],"ap":[2,"自動封鎖程式＋盜竊保護"]},{"id":11832,"name":"Galaxy S25+","brand":"Samsung","caps":[{"cap":"256G","p":22490,"m":34900}],"price":22490,"msrp":34900,"hot":0,"g":"5G","date":"2025/02","sell":"超防水、專業攝影、AI手機","sogi":"samsung-galaxy-s25plus/17172","cpu":"Snapdragon 8 Elite for Galaxy","mat":"Dynamic AMOLED 2X","fp":"超聲波","os":"A15","ip":"IP68","ram":12,"bat":4900,"scr":6.7,"nit":null,"hz":120,"c1":5000,"c2":1200,"c3":1000,"c4":null,"fc":1200,"chg":45,"wt":190,"th":7.3,"ois":1,"wl":1,"esim":0,"sd":0,"fold":0,"ratio":19.5,"res":"3120x1440","gpu":"Adreno 830","memf":"","romf":"","len":158.4,"wid":75.8,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":7,"usec":7,"usrc":"品牌政策","cmin":null,"cpct":null,"rom":[256],"uf":[2,"每月"],"hw":[3,"Knox Vault 獨立安全晶片"],"ul":[3,"超聲波螢幕指紋"],"ap":[2,"自動封鎖程式＋盜竊保護"]},{"id":5197,"name":"HTC U24 Pro","brand":"HTC","caps":[{"cap":"12G/256G","p":9790,"m":18990}],"price":9790,"msrp":18990,"hot":0,"g":"5G","date":"2024/06","sell":"超級快充、可插記憶卡、超防水","sogi":"htc_u24_pro/17010","cpu":"Snapdragon 7 Gen 3","mat":"OLED","fp":"光感","os":"A14","ip":"IP67","ram":12,"bat":4600,"scr":6.8,"nit":null,"hz":120,"c1":5000,"c2":5000,"c3":800,"c4":null,"fc":5000,"chg":60,"wt":198.7,"th":8.98,"ois":1,"wl":1,"esim":0,"sd":1,"fold":0,"ratio":20.3,"res":"2436x1080","gpu":"Adreno 720","memf":"LPDDR5","romf":"UFS3.1","len":167.1,"wid":74.9,"subscr":null,"pwm":null,"dcd":0,"mnit":null,"ar":"","hbm":null,"uos":null,"usec":null,"usrc":"","cmin":null,"cpct":null,"rom":[256],"uf":[null,"原廠未公布"],"hw":[1,"處理器內建安全區（TEE）"],"ul":[2,"光學螢幕指紋"],"ap":[1,"Android 內建防盜（盜竊偵測、離線鎖定、遠端鎖定）"]}];
+const META = {"priceDate": "2026/11/13"};
+
+/* ---------- 規格分數（0～100） ---------- */
+const clamp = (v, a = 0, b = 100) => Math.max(a, Math.min(b, v));
+function perfOf(cpu) {
+  const T = [
+    [/A20 Pro/, 98], [/A19 Pro/, 95], [/A19/, 90],
+    [/8 Elite Gen 5 V/, 92], [/8 Elite Gen 5/, 97], [/8 Elite/, 92], [/8 Gen 5/, 90], [/8s Gen 4/, 82],
+    [/9600 Pro/, 97], [/9600M/, 92], [/9500s/, 88], [/9500/, 94],
+    [/Tensor G6/, 85], [/Tensor G5/, 80], [/Tensor G4/, 70], [/Exynos 2500/, 85],
+    [/8500/, 80], [/8450/, 76],
+    [/7 Gen 4/, 68], [/7 Gen 3/, 60], [/7s Gen 4/, 62], [/7s Gen 3/, 58],
+    [/6 Gen 5/, 58], [/6 Gen 3/, 50], [/6s Gen 4/, 50], [/6 Gen 1/, 48], [/6s Gen 3/, 45], [/6S 4G Gen 2/, 40],
+    [/4 Gen ?5/, 38], [/4 Gen ?4/, 38], [/4 Gen ?2/, 35],
+    [/7400/, 60], [/7360/, 55], [/7300 Max/, 55], [/7300e/, 50], [/7300/, 54], [/7100/, 52], [/6400/, 45], [/6360/, 40], [/6300/, 36],
+    [/Exynos 1680/, 62], [/Exynos 1580/, 58], [/Exynos 1480/, 52], [/Exynos 1330/, 38],
+    [/G100/, 34], [/G91/, 28], [/G81/, 25], [/P35/, 15], [/T72/, 18]
+  ];
+  for (const [re, v] of T) if (re.test(cpu || "")) return v;
+  return 40;
+}
+const APPLE_BAT = [[/Pro Max/, 7000], [/Duo/, 5800], [/Pro/, 6000], [/Air/, 5000], [/17e/, 5500], [/./, 5800]];
+function ipScore(ip) {
+  if (!ip) return 0;
+  if (/IP69/.test(ip)) return 100;
+  if (/IP68/.test(ip)) return 85;
+  if (/IP67/.test(ip)) return 70;
+  if (/IP6[56]/.test(ip)) return 55;
+  if (/IP48|IP49/.test(ip)) return 40;
+  if (/IP64/.test(ip)) return 35;
+  return 25;
+}
+function prep(p) {
+  p.perf = perfOf(p.cpu);
+  p.batEst = 0;
+  if (!p.bat && p.brand === "Apple") { p.batEq = APPLE_BAT.find(([re]) => re.test(p.name))[1]; p.batEst = 1; }
+  else p.batEq = p.bat || 5000;
+  p.missing = !p.c1 && !p.wt;
+  const s = {};
+  s.perf = p.perf;
+  let cam = 15;
+  cam += p.c1 >= 20000 ? 20 : p.c1 >= 10000 ? 15 : p.c1 >= 4800 ? 12 : 4;
+  if (p.ois) cam += 12;
+  if ((p.c3 || 0) >= 1000 || (p.c4 || 0) >= 1000) cam += 18; else if ((p.c2 || 0) >= 1000) cam += 8;
+  if ((p.c2 || 0) >= 20000 || (p.c3 || 0) >= 20000) cam += 8;
+  if (/蔡司|哈蘇|徠卡/.test(p.sell) || /Leitz|Ultra/.test(p.name) && /小米|vivo|OPPO/.test(p.brand)) cam += 12;
+  else if (/Pixel/.test(p.name) || /iPhone (1[78] Pro|Duo)/.test(p.name)) cam += 12;
+  else if (/S2[56] Ultra|Xperia 1/.test(p.name)) cam += 10;
+  else if (/iPhone/.test(p.name)) cam += 6;
+  cam += p.perf * 0.1;
+  s.cam = p.missing ? 40 : clamp(Math.round(cam));
+  s.bat = clamp(Math.round((p.batEq - 3800) / 55));
+  s.chg = clamp(Math.round((p.chg || 20) + (p.wl ? 10 : 0)));
+  s.light = p.wt ? clamp(Math.round((235 - p.wt) / 75 * 100)) : 50;
+  s.big = p.fold && p.scr >= 7.5 ? 100 : clamp(Math.round((p.scr - 6.0) / 0.9 * 100));
+  s.water = ipScore(p.ip);
+  let d = p.hz >= 165 ? 80 : p.hz >= 144 ? 70 : p.hz >= 120 ? 50 : p.hz >= 90 ? 20 : 0;
+  if (/OLED/i.test(p.mat || "")) d += 15;
+  if ((p.nit || 0) >= 3000) d += 10;
+  s.disp = clamp(d);
+  p.s = s;
+}
+DATA.forEach(prep);
+(function valueScore() {
+  const arr = DATA.map(p => ({ p, v: (p.s.perf * .4 + p.s.cam * .3 + p.s.bat * .3) / Math.sqrt(p.price) }));
+  arr.sort((a, b) => a.v - b.v);
+  arr.forEach((x, i) => x.p.s.value = Math.round(i / (arr.length - 1) * 100));
+})();
+
+/* ---------- 選項 ---------- */
+const FEATS = [
+  ["cam", "拍照"], ["bat", "續航"], ["chg", "快充"], ["perf", "效能"], ["light", "輕巧"],
+  ["big", "大螢幕"], ["water", "防水"], ["disp", "螢幕好"], ["sec", "資安"], ["value", "性價比"]
+];
+const FNAME = Object.fromEntries(FEATS);
+const PERSONAS = [
+  { k: "elder", n: "長輩", w: { big: .35, bat: .3, water: .1, value: .25 }, note: "大螢幕、電池大、價格實在；可再勾「記憶卡」方便存照片" },
+  { k: "student", n: "學生", w: { value: .35, bat: .25, perf: .25, cam: .15 }, note: "預算有限、要撐一整天、玩遊戲不卡，性價比優先" },
+  { k: "work", n: "上班族", w: { perf: .3, bat: .25, chg: .2, cam: .15, light: .1 }, note: "順暢、續航、快充；需要雙號可勾「eSIM」" },
+  { k: "photo", n: "拍照控", w: { cam: .75, perf: .15, disp: .1 }, note: "主鏡頭畫素、光學防手震、長焦鏡頭與影像品牌加分" },
+  { k: "game", n: "手遊玩家", w: { perf: .55, disp: .15, bat: .15, chg: .15 }, note: "處理器等級最重要，再看高更新率螢幕與快充" },
+  { k: "video", n: "追劇族", w: { big: .4, disp: .3, bat: .3 }, note: "螢幕大、OLED、高亮度，電池要大" },
+  { k: "battery", n: "重度續航", w: { bat: .7, chg: .3 }, note: "電池容量優先，快充次之" },
+  { k: "light", n: "輕巧派", w: { light: .7, perf: .15, cam: .15 }, note: "重量越輕越高分（200g 以下算輕）" },
+  { k: "fold", n: "摺疊機", w: { perf: .3, cam: .3, big: .4 }, only: p => p.fold, note: "只列摺疊、翻蓋機型" },
+  { k: "iphone", n: "iPhone", w: { perf: .3, cam: .4, bat: .3 }, only: p => p.brand === "Apple", note: "只列 iPhone；電池容量原廠未公布，續航為估計" }
+];
+const BUDGETS = [["5千以下", 0, 5000], ["5千～1萬", 5000, 10000], ["1～2萬", 10000, 20000], ["2～3萬", 20000, 30000], ["3萬以上", 30000, null]];
+const NEEDS = [["esim", "eSIM"], ["sd", "記憶卡"], ["wl", "無線充電"], ["g5", "5G"], ["ip68", "IP68 以上防水"], ["oled", "OLED 螢幕"]];
+const NEEDF = {
+  esim: p => p.esim, sd: p => p.sd, wl: p => p.wl, g5: p => p.g === "5G",
+  ip68: p => /IP6[89]/.test(p.ip || ""), oled: p => /OLED/i.test(p.mat || "")
+};
+const BRANDS = ["Apple", "Samsung", "Google", "小米", "POCO", "OPPO", "vivo", "iQOO", "HONOR", "Sony", "SHARP", "Motorola", "realme", "Nothing", "HTC"];
+const BRAND_CN = { HONOR: "榮耀 HONOR", "小米": "小米／Redmi" };
+const FORMS = [["bar", "一般直立機"], ["foldable", "摺疊機"]];
+
+/* ---------- 狀態 ---------- */
+const KEY = "pf_state";
+const def = () => ({ q: "", b: -1, min: "", max: "", stretch: false, persona: "", feats: [], needs: [], brands: [], form: "", sort: "score", cmp: [], tier: {} });
+let st = def();
+try { const s = JSON.parse(localStorage.getItem(KEY) || "null"); if (s) st = Object.assign(def(), s); } catch (e) {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} };
+let shown = 20;
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const money = n => "$" + Number(n).toLocaleString("en-US");
+const norm = s => String(s).toLowerCase().replace(/[\s\-_]/g, "").replace("galaxy", "").replace("三星", "samsung");
+
+function chip(label, pressed, attrs, cls = "chip") {
+  return `<button type="button" class="${cls}" aria-pressed="${pressed}" ${attrs}>${label}</button>`;
+}
+function renderControls() {
+  $("#budgetChips").innerHTML = BUDGETS.map((b, i) => chip(b[0], st.b === i, `data-b="${i}"`)).join("");
+  $("#pMin").value = st.min; $("#pMax").value = st.max; $("#stretch").checked = st.stretch;
+  $("#personaChips").innerHTML = PERSONAS.map(p => chip(p.n, st.persona === p.k, `data-p="${p.k}"`)).join("");
+  const pn = PERSONAS.find(p => p.k === st.persona);
+  $("#personaNote").textContent = pn ? pn.note : "";
+  $("#featChips").innerHTML = FEATS.map(([k, n]) => chip(n, st.feats.includes(k), `data-f="${k}"`, "chip soft")).join("");
+  $("#needChips").innerHTML = NEEDS.map(([k, n]) => chip(n, st.needs.includes(k), `data-n="${k}"`, "chip soft")).join("");
+  $("#brandChips").innerHTML = BRANDS.map(b => chip(BRAND_CN[b] || b, st.brands.includes(b), `data-br="${esc(b)}"`, "chip soft")).join("");
+  $("#formChips").innerHTML = FORMS.map(([k, n]) => chip(n, st.form === k, `data-fm="${k}"`, "chip soft")).join("");
+  const mc = st.needs.length + st.brands.length + (st.form ? 1 : 0);
+  $("#moreCount").textContent = mc ? `（已選 ${mc}）` : "";
+  renderTierFilters();
+  $("#q").value = st.q; $("#qClr").classList.toggle("hidden", !st.q);
+  $("#sortSel").value = st.sort;
+}
+
+/* ---------- 規格分級（11 項考量） ---------- */
+const isLCD = p => /LCD|IPS/i.test(p.mat || "");
+const pwmHi = p => (p.pwm && p.pwm >= 1920) || p.dcd || isLCD(p);
+const nightEye = p => !!(p.mnit && p.mnit <= 2) || pwmHi(p);
+const secYears = p => p.brand === "Apple" ? 6 : (p.usec || null);
+const updLv = p => { const y = secYears(p); return !y ? null : y <= 3 ? 0 : y <= 5 ? 1 : y === 6 ? 2 : 3; };
+const SECSUB = [
+  { k: "upd", n: "更新年限", what: "停止更新後漏洞不再修補", lv: updLv,
+    val: p => p.brand === "Apple" ? "至少 5 年安全更新（歷來約 6～7 年）" : p.usec ? `${p.uos ? p.uos + " 次系統升級・" : ""}${p.usec} 年安全更新` : "原廠未公布",
+    L: ["3 年以下", "4～5 年", "6 年", "7 年"] },
+  { k: "uf", n: "更新頻率", what: "漏洞被發現後多快補上", lv: p => p.uf[0], val: p => p.uf[1], L: ["", "每季", "每月", "即時修補"], LL: ["", "每季", "每月", "隨時推送＋自動修補"] },
+  { k: "hw", n: "硬體安全晶片", what: "密碼、指紋、支付金鑰存在哪裡", lv: p => p.hw[0], val: p => p.hw[1], L: ["", "內建安全區", "安全單元", "獨立晶片"], LL: ["", "處理器安全區（TEE）", "處理器安全單元", "獨立安全晶片"] },
+  { k: "ul", n: "解鎖安全", what: "別人能不能假冒你解鎖", lv: p => p.ul[0], val: p => p.ul[1], L: ["", "", "指紋", "3D／超聲波"], LL: ["", "", "光學／電容指紋", "3D 臉部／超聲波指紋"] },
+  { k: "ap", n: "防盜防詐", what: "手機被偷、接到詐騙電話時的保護", lv: p => p.ap[0], val: p => p.ap[1], L: ["", "基本防盜", "品牌防詐", "來電過濾"], LL: ["", "Android 內建防盜", "＋品牌防詐功能", "＋系統詐騙來電過濾"] }
+];
+function secStrength(p) { let s = 0; SECSUB.forEach(t => { const l = t.lv(p); s += l == null ? 1 : l; }); return Math.round(s / (3 * SECSUB.length) * 100); }
+DATA.forEach(p => { p.secS = secStrength(p); p.s.sec = p.secS; });
+function subBadge(t, p) { const l = t.lv(p); return l == null ? `<span class="lvb lx">未公布</span>` : `<span class="lvb l${l}">${t.L[l] || "—"}</span>`; }
+const romTxt = v => v >= 1024 ? (v / 1024) + " TB" : v + " GB";
+const TIERS = [
+  { k: "bat", n: "續航（電量）", mode: "min",
+    lv: p => { const b = p.batEq; return b < 5000 ? 0 : b < 6500 ? 1 : b < 8000 ? 2 : 3; },
+    val: p => p.bat ? `${p.bat.toLocaleString()} mAh` : "原廠未公布（估）",
+    L: [["基本", "5000 以下", "重度使用傍晚前要補電"], ["一天", "5000～6499", "一般使用撐一天"], ["一天半", "6500～7999", "重度用一天、輕度一天半"], ["兩天", "8000 以上", "輕度使用約兩天，出遊可不帶行動電源"]],
+    g: { i: "電池容量（mAh）越大越耐用；同樣容量下，旗艦處理器、較小螢幕通常更省電。Apple 不公布容量，這裡用同系列估計。", t: ["矽碳負極電池讓 7000 mAh 以上的機身也能做薄", "要看「實際續航」可再參考評測的螢幕使用時間"] } },
+  { k: "chg", n: "充電時間（充多久用多久）", mode: "min",
+    lv: p => !p.chg ? null : p.chg < 30 ? 0 : p.chg < 60 ? 1 : p.chg < 90 ? 2 : 3,
+    val: p => (p.chg ? `${p.chg}W 有線` : "有線瓦數未標示") + (p.wl ? "＋無線充電" : ""),
+    desc: p => chgUse(p),
+    L: [["一般", "27W 以下", "充 10 分鐘約可用 1 小時左右，充 30 分鐘約 3～4 小時"], ["快充", "30～45W", "充 10 分鐘約可用 1.5 小時，充 30 分鐘約 4～5 小時"], ["超級快充", "60～80W", "充 10 分鐘約可用 2 小時，充 30 分鐘約 6～7 小時"], ["極速", "90W 以上", "充 10 分鐘約可用 2.5 小時以上，充 30 分鐘約 7 小時以上"]],
+    g: { i: "換算成「充多久可以用多久」：以一般使用（滑社群、看影片、螢幕亮著）每小時約耗 600 mAh 估算；同瓦數下，充 10 分鐘能用的時間差不多，電池大的手機則是充滿要更久、但總共能用更久。", t: ["充 30 分鐘大約是 10 分鐘的 2.5～3 倍（電量越高充越慢，最後 20% 最慢）", "有原廠數據（例如「30 分鐘充到 50%」）時，直接用原廠數字換算；沒有時依瓦數推估（高瓦數機種實際平均功率多低於標示值，已打折計算）", "需用原廠或支援該瓦數的充電器與線材，否則達不到", "無線充電方便但較慢、較熱；玩遊戲、開導航、戶外高亮度時耗電會快 1.5～2 倍"] } },
+  { k: "bright", n: "亮度影響", mode: "min",
+    lv: p => !p.nit ? (isLCD(p) ? 0 : null) : p.nit < 1500 ? 0 : p.nit < 3000 ? 1 : p.nit < 5000 ? 2 : 3,
+    val: p => (p.nit ? `峰值 ${p.nit.toLocaleString()} nits` : "峰值未標示") + (p.hbm ? `・全螢幕 ${p.hbm.toLocaleString()}` : "") + (p.ar ? `・${p.ar}` : "") + (nightEye(p) ? "・夜間護眼" : ""),
+    L: [["室內夠用", "1500 以下", "室內 200～400 nits 就很舒適；正午戶外看不清細節"], ["戶外可看", "1500～2999", "正午陽光下看得到，細節普通"], ["戶外清楚", "3000～4999", "戶外清楚；3000 以上肉眼差異已有限"], ["高亮旗艦", "5000 以上", "發光材料更省電、HDR 高光還原、全螢幕亮度更高更穩"]],
+    g: { i: "規格表寫的多是「峰值亮度」（HDR 影片局部、短時間），不是整個螢幕一直能亮到的數字。", t: ["中午陽光下：全螢幕亮度要 1500 nits 以上才看得清細節，但通常 3～5 分鐘後會強制變暗，保護電池與面板", "「抗反光塗層」（例如 S26 Ultra、iPhone 17 Pro Max）往往比單純拉高 nits 更有感", "室內 200～400 nits 就非常舒適", "夜間關燈：支援 1 nit 極低亮度、高頻 PWM（約 1920Hz 以上）或類 DC 調光的機種，全黑環境不刺眼，也能減緩低亮度頻閃造成的眼睛痠澀", "3000～6000 nits 的肉眼感受其實很有限；5000 以上的好處是發光材料更省電、特定 HDR 內容高光還原、全螢幕亮度更穩更高", "LCD 螢幕多為背光直流調光，較少頻閃，但黑色表現與省電不如 OLED"] } },
+  { k: "perf", n: "處理器・圖形・記憶體", mode: "min",
+    lv: p => p.perf < 40 ? 0 : p.perf < 65 ? 1 : p.perf < 85 ? 2 : 3,
+    val: p => [p.cpu, p.gpu, p.ram ? p.ram + "GB RAM" : "", [p.memf, p.romf].filter(Boolean).join("／")].filter(Boolean).join("・"),
+    L: [["入門", "", "LINE、FB、YouTube 夠用，大型遊戲吃力"], ["中階", "", "日常順暢，熱門手遊中低畫質"], ["高效能", "", "手遊中高畫質、多工切換順"], ["旗艦", "", "大型 3D 遊戲高畫質、AI 功能，用 4～5 年仍順"]],
+    g: { i: "處理器（CPU）管整體速度，圖形處理器（GPU）管遊戲畫面，記憶體（RAM）管同時開多少 App。", t: ["RAM：4GB 基本、6～8GB 日常多工、12GB 遊戲與多開、16GB 重度與 AI", "記憶體格式 LPDDR5X、儲存格式 UFS 4.x 較快；eMMC 開 App、安裝更新明顯較慢", "旗艦處理器同時代表較長的流暢使用年限"] } },
+  { k: "cam", n: "相機", mode: "min",
+    lv: p => p.missing ? null : p.s.cam < 45 ? 0 : p.s.cam < 60 ? 1 : p.s.cam < 80 ? 2 : 3,
+    val: p => camLine(p) + (p.ois ? "・OIS" : "") + (((p.sell || "").match(/蔡司|哈蘇|徠卡/) || [""])[0] ? "・" + (p.sell.match(/蔡司|哈蘇|徠卡/)[0]) + "影像" : ""),
+    L: [["基本", "", "白天拍照可以，暗處與變焦較弱"], ["日常好拍", "", "主鏡頭畫素高，日常記錄夠用"], ["進階", "", "有光學防手震或多顆鏡頭，夜拍、人像較穩"], ["影像旗艦", "", "長焦＋影像品牌調校，演唱會、旅遊遠拍"]],
+    g: { i: "畫素不是全部：光學防手震（OIS）影響夜拍與錄影穩定，長焦鏡頭影響遠拍，影像品牌（蔡司、哈蘇、徠卡）代表色彩調校。", t: ["2 億畫素多用在裁切放大，日常輸出仍是 1200 萬左右", "200 萬、8 萬畫素的鏡頭多是景深或微距輔助，實用性低"] } },
+  { k: "rom", n: "容量", mode: "min",
+    lv: p => { const m = Math.max(...(p.rom.length ? p.rom : [0])); return !m ? null : m <= 128 ? 0 : m <= 256 ? 1 : m <= 512 ? 2 : 3; },
+    val: p => (p.rom.length ? "可選 " + p.rom.map(romTxt).join("／") : "—") + (p.sd ? "・可插記憶卡" : ""),
+    L: [["128 GB", "", "通訊、社群為主，照片常備份雲端"], ["256 GB", "", "拍照錄影較多，手遊 5～10 款"], ["512 GB", "", "常錄 4K、遊戲 15 款以上"], ["1 TB 以上", "", "專業攝影、大量影片"]],
+    g: { i: "這裡看的是「最高可選到多少」，價格以最低容量計。系統本身會先佔掉一部分空間。", t: ["一張照片約 3 MB、4K 影片一分鐘約 370 MB（以 iPhone 為例）", "LINE 快取常佔數 GB，要定期清理", "可插記憶卡的機型可用小容量＋記憶卡省錢"] } },
+  { k: "size", n: "螢幕尺寸・比例", mode: "eq",
+    lv: p => p.fold ? 4 : p.scr < 6.35 ? 0 : p.scr < 6.7 ? 1 : p.scr < 6.9 ? 2 : 3,
+    val: p => `${p.scr} 吋` + (p.fold && p.subscr ? `（外螢幕 ${p.subscr} 吋）` : "") + (p.wid && !p.fold ? `・寬 ${p.wid} mm` : "") + (p.ratio ? `・約 ${p.ratio}:9` : ""),
+    L: [["小巧單手", "6.3 吋以下", "單手好握、好放口袋"], ["標準", "6.4～6.6 吋", "大小適中"], ["大螢幕", "6.7～6.8 吋", "看影片、打字舒適，需雙手"], ["超大", "6.9 吋以上", "追劇、長輩看字最清楚"], ["摺疊", "", "展開近平板，收起好攜帶"]],
+    g: { i: "尺寸是對角線，好不好握要看機身寬度：約 72 mm 以下單手好握、76 mm 以上偏寬。", t: ["比例越長（例如 20:9）越窄好握，但看 16:9 影片兩側黑邊較多", "長輩、追劇可選 6.7 吋以上；手小、女性常選 6.3 吋以下"] } },
+  { k: "hz", n: "螢幕更新率", mode: "min",
+    lv: p => !p.hz ? null : p.hz < 90 ? 0 : p.hz < 120 ? 1 : p.hz < 144 ? 2 : 3,
+    val: p => p.hz ? `${p.hz}Hz` : "—",
+    L: [["60Hz 基本", "", "滑動看得出殘影"], ["90Hz 流暢", "", "比 60Hz 明顯順"], ["120Hz 順暢", "", "主流，滑社群、網頁很順"], ["144Hz 以上", "", "電競級，支援的遊戲才有差"]],
+    g: { i: "每秒畫面更新次數，越高滑動越順；多數手機會依內容自動降頻省電。", t: ["一般人 120Hz 就很夠", "144Hz 以上要遊戲支援才看得出差別"] } },
+  { k: "ip", n: "防水防塵", mode: "min",
+    lv: p => !p.ip ? 0 : /IP69/.test(p.ip) ? 3 : /IP68/.test(p.ip) ? 2 : /IP6[5-7]/.test(p.ip) ? 1 : 0,
+    val: p => p.ip ? p.ip.replace(/\//g, "／") : "未標示",
+    L: [["防潑水", "IP54／IP64 或未標", "小雨、潑濺"], ["防水", "IP65～IP67", "防噴水；IP67 約可泡 1 公尺 30 分鐘"], ["生活防水", "IP68", "可短暫浸水（多為 1.5 公尺 30 分鐘，依原廠）"], ["高規防水", "IP69／IP69K", "再加上耐高溫高壓水柱，耐用度最高"]],
+    g: { i: "IP 後第一碼是防塵（6 為完全防塵），第二碼是防水（8 可浸水、9 耐高溫高壓水柱）。", t: ["只防清水：海水、溫泉、含氯泳池、飲料、清潔劑都不在範圍", "防水膠條會老化，摔過或用久要當作不防水", "進水多半不在保固範圍"] } },
+  { k: "sec", n: "資安強度", mode: "min",
+    lv: p => p.secS < 45 ? 0 : p.secS < 65 ? 1 : p.secS < 85 ? 2 : 3,
+    val: p => `綜合 ${p.secS} 分（更新年限、更新頻率、安全晶片、解鎖、防盜防詐五項平均）`,
+    L: [["基本", "未滿 45 分", "一般使用沒問題，存放重要資料、行動支付要多注意"], ["一般", "45～64 分", "有基本防護，部分項目原廠未公布"], ["強", "65～84 分", "多數項目有明確防護，適合行動支付、上班族"], ["最強", "85 分以上", "長期更新＋獨立安全晶片＋防詐功能，適合重視隱私、企業用"]],
+    g: { i: "資安強度看五件事：更新年限、更新頻率、硬體安全晶片、解鎖方式、防盜防詐功能。每項 0～3 級，原廠未公布的項目以 1 級（基本）計，再平均成 100 分。", t: ["更新年限：Samsung S、Z 系列與 Google Pixel 7 年，Samsung A 系列 6 年，Apple 至少 5 年（歷來約 6～7 年）", "更新頻率：Pixel、Samsung S／Z／A5x 每月；Samsung A07／A17／A27／A37 每季；Apple 依需要推送，iOS 26.1 起有「背景安全性改進」自動安裝修補", "硬體安全晶片：Apple Secure Enclave、Pixel Titan M2／M3、Samsung Knox Vault 為獨立安全晶片；Snapdragon 8 Elite 系列內建 SPU 安全處理單元；所有 Android 都有處理器安全區（TEE）", "解鎖：Face ID 3D 臉部與超聲波指紋較難假冒；一般 2D 臉部解鎖多數不能用於支付", "防盜防詐：Android 10 以上都有盜竊偵測鎖定、離線鎖定、遠端鎖定（需到設定開啟）；Samsung 另有「自動封鎖程式」擋未授權 App 與惡意 USB；iPhone 有失竊裝置保護與 iOS 26 篩選來電；Pixel 有通話過濾與詐騙偵測", "OPPO、小米、榮耀、realme 等品牌多有自家安全功能，但沒有在公開規格寫明的標「未公布」，不代表沒有"],
+      extra: () => `<table class="gt" style="margin-top:8px"><thead><tr><th>項目</th><th>比什麼</th><th>等級（低→高）</th></tr></thead><tbody>${SECSUB.map(t => `<tr><td><b>${t.n}</b></td><td>${t.what}</td><td>${(t.LL || t.L).filter(Boolean).join(" → ")}</td></tr>`).join("")}</tbody></table>` } },
+  { k: "risk", n: "中毒風險", mode: "min",
+    lv: p => p.brand === "Apple" ? 3 : (p.usec >= 6 ? 2 : p.usec && p.usec <= 3 ? 0 : 1),
+    val: p => p.brand === "Apple" ? "iOS 封閉生態，只能從 App Store 安裝" : p.usec >= 6 ? "Android，長期安全更新" : p.usec && p.usec <= 3 ? "Android，更新年限較短" : "Android，更新年限未公布",
+    L: [["需留意", "", "更新年限短，用久漏洞較多"], ["中", "", "Android，更新年限一般或未公布"], ["中低", "", "Android＋6 年以上安全更新"], ["較低", "", "iOS 封閉生態"]],
+    g: { i: "手機中毒大多來自「自己裝了來路不明的 App 或點了詐騙連結」，系統更新年限與商店審核是第二道防線。", t: ["只從 App Store／Google Play 安裝，關閉「安裝不明來源應用程式」", "不點簡訊、LINE 裡的不明連結，特別是投資、包裹、中獎通知", "系統與 App 保持更新；Android 內建 Google Play 安全防護（Play Protect）要保持開啟", "不要隨意授予「協助工具」「讀取簡訊」權限，常被詐騙 App 利用"] } }
+];
+const TK = Object.fromEntries(TIERS.map(t => [t.k, t]));
+const DRAW = 600; // 一般使用每小時約耗 600 mAh
+function chgCalc(p, min) {
+  const cap = p.batEq, wh = cap * 3.85 / 1000, lim = min <= 10 ? 55 : 85;
+  if (p.cmin) { // 依原廠「幾分鐘充到幾 %」換算，前段充得較快
+    const pct = Math.min(p.cpct * (min / p.cmin) * (min < p.cmin ? 1.15 : 1), lim);
+    return { pct: Math.round(pct), h: pct / 100 * cap / DRAW, off: 1 };
+  }
+  if (!p.chg) return null;
+  const eff = Math.min(p.chg * 0.75, 3.5 * Math.sqrt(p.chg)); // 實際平均功率：高瓦數機種實測多達不到標示值
+  const pct = Math.min(eff * (min / 60) / wh * 100, lim);
+  return { pct: Math.round(pct), h: pct / 100 * cap / DRAW };
+}
+function fmtH(h) { if (h < 1) return `${Math.max(10, Math.round(h * 60 / 10) * 10)} 分鐘`; const r = Math.round(h * 2) / 2; return `${r % 1 ? r.toFixed(1) : r} 小時`; }
+function chgUse(p, short) {
+  const full = p.batEq / DRAW;
+  const a = chgCalc(p, 10), b = chgCalc(p, 30);
+  if (!a) return "瓦數未標示，無法換算";
+  if (short) return `充 10 分鐘約可用 ${fmtH(a.h)}`;
+  return `充 10 分鐘約可用 ${fmtH(a.h)}；充 30 分鐘（約 ${b.pct}%）約可用 ${fmtH(b.h)}；充滿約可用 ${fmtH(full)}` + (a.off ? `（依原廠「${p.cmin} 分鐘充到 ${p.cpct}%」換算）` : "");
+}
+DATA.forEach(p => { p.lv = {}; TIERS.forEach(t => p.lv[t.k] = t.lv(p)); });
+function badge(t, p) {
+  const l = p.lv[t.k];
+  if (l == null) return `<span class="lvb lx">未標示</span>`;
+  const c = t.mode === "eq" ? "le" : "l" + l;
+  return `<span class="lvb ${c}">${t.L[l][0]}</span>`;
+}
+function tierRows(p) {
+  return TIERS.map((t, i) => {
+    const l = p.lv[t.k];
+    return `<div class="tr"><div class="tr-h"><b>${i + 1}. ${t.n}</b>${badge(t, p)}<button type="button" class="qm" data-guide="${t.k}" aria-label="${t.n}說明">?</button></div>
+      <div class="tr-v">${esc(t.val(p))}</div>${t.desc ? `<div class="tr-d">${t.desc(p)}</div>` : l != null ? `<div class="tr-d">${t.L[l][2]}</div>` : ""}${t.k === "sec" ? `<div class="subsec">${SECSUB.map(u => `<div class="ss"><span class="ss-n">${u.n}</span>${subBadge(u, p)}<span class="ss-v">${esc(u.val(p))}</span></div>`).join("")}</div>` : ""}</div>`;
+  }).join("");
+}
+function renderTierFilters() {
+  $("#tierRows").innerHTML = TIERS.map(t => {
+    const cur = st.tier[t.k];
+    const opts = t.mode === "eq" ? t.L.map((L, i) => [i, L[0]]) : t.L.slice(1).map((L, j) => [j + 1, (j + 1 === t.L.length - 1 ? "" : "≥") + L[0]]);
+    const ch = opts.map(([i, lab]) => {
+      const on = t.mode === "eq" ? (cur || []).includes(i) : cur === i;
+      return `<button type="button" class="chip soft" data-tk="${t.k}" data-tl="${i}" aria-pressed="${on}">${lab}</button>`;
+    }).join("");
+    return `<div class="trow"><div class="tname">${t.n}<button type="button" class="qm" data-guide="${t.k}" aria-label="${t.n}說明">?</button></div><div class="chips">${ch}</div></div>`;
+  }).join("");
+  const n = Object.values(st.tier).filter(v => Array.isArray(v) ? v.length : v != null).length;
+  $("#tierCount").textContent = n ? `（已選 ${n}）` : "";
+}
+function tierPass(p) {
+  for (const k in st.tier) {
+    const v = st.tier[k], l = p.lv[k];
+    if (Array.isArray(v)) { if (v.length && !v.includes(l)) return false; }
+    else if (v != null && (l == null || l < v)) return false;
+  }
+  return true;
+}
+function guide(focus) {
+  const sec = TIERS.map((t, i) => `<section class="gd" id="gd-${t.k}">
+    <h4>${i + 1}. ${t.n}</h4><p>${t.g.i}</p>
+    <table class="gt"><thead><tr><th>等級</th>${t.L.some(L => L[1]) ? "<th>範圍</th>" : ""}<th>實際感受</th></tr></thead><tbody>
+    ${t.L.map((L, j) => `<tr><td><span class="lvb ${t.mode === "eq" ? "le" : "l" + j}">${L[0]}</span></td>${t.L.some(L => L[1]) ? `<td>${L[1]}</td>` : ""}<td>${L[2]}</td></tr>`).join("")}</tbody></table>
+    ${t.g.extra ? t.g.extra() : ""}<ul>${t.g.t.map(x => `<li>${x}</li>`).join("")}</ul></section>`).join("");
+  openSheet(`${head("規格怎麼看")}
+    <p class="simnote">11 項購機考量的分級與實際感受。篩選時選「≥某等級」代表至少要達到該等級；資料缺漏的機型會被排除。</p>
+    <div class="gnav">${TIERS.map((t, i) => `<button type="button" data-goto="${t.k}">${i + 1}. ${t.n.split("（")[0].split("・")[0]}</button>`).join("")}</div>
+    ${sec}
+    <p class="cmp-note">資料：價格取自台灣網通；規格、亮度、調光、更新年限取自手機王各機型介紹，未寫明者再依品牌公開政策（TechRadar 2026/06、BGR 2026）補上；充電時間與續航等級為依規格推估的約略值。</p>`);
+  if (focus) setTimeout(() => { const el = document.getElementById("gd-" + focus); if (el) { const sh = $("#sheet"); sh.scrollTop += el.getBoundingClientRect().top - sh.getBoundingClientRect().top - 64; } }, 30);
+}
+
+/* ---------- 篩選與排序 ---------- */
+function weights() {
+  const pn = PERSONAS.find(p => p.k === st.persona);
+  const w = {};
+  const add = (o, f) => { for (const k in o) w[k] = (w[k] || 0) + o[k] * f; };
+  if (pn && st.feats.length) { add(pn.w, .5); st.feats.forEach(k => w[k] = (w[k] || 0) + .5 / st.feats.length); }
+  else if (pn) add(pn.w, 1);
+  else if (st.feats.length) st.feats.forEach(k => w[k] = 1 / st.feats.length);
+  else add({ perf: .3, cam: .25, bat: .25, value: .2 }, 1);
+  return w;
+}
+function budget() {
+  let lo = null, hi = null;
+  if (st.min !== "" || st.max !== "") { lo = st.min === "" ? null : +st.min; hi = st.max === "" ? null : +st.max; }
+  else if (st.b >= 0) { lo = BUDGETS[st.b][1]; hi = BUDGETS[st.b][2]; }
+  return [lo, hi];
+}
+function compute() {
+  const w = weights();
+  const [lo, hi] = budget();
+  const hi2 = hi != null && st.stretch ? Math.round(hi * 1.1) : hi;
+  const pn = PERSONAS.find(p => p.k === st.persona);
+  const q = norm(st.q.trim());
+  let res = [];
+  for (const p of DATA) {
+    if (q && !norm(p.name + p.brand + (p.sub || "")).includes(q)) continue;
+    if (lo != null && p.price < lo) continue;
+    if (hi2 != null && p.price > hi2) continue;
+    if (pn && pn.only && !pn.only(p)) continue;
+    if (st.needs.some(k => !NEEDF[k](p))) continue;
+    if (st.brands.length && !st.brands.includes(p.brand)) continue;
+    if (st.form === "bar" && p.fold) continue;
+    if (st.form === "foldable" && !p.fold) continue;
+    if (!tierPass(p)) continue;
+    let sc = 0, tw = 0;
+    for (const k in w) { sc += w[k] * p.s[k]; tw += w[k]; }
+    res.push({ p, score: Math.round(sc / tw), over: hi != null && p.price > hi });
+  }
+  const S = {
+    score: (a, b) => (a.over - b.over) || b.score - a.score || a.p.price - b.p.price,
+    pa: (a, b) => a.p.price - b.p.price, pd: (a, b) => b.p.price - a.p.price,
+    new: (a, b) => b.p.date.localeCompare(a.p.date) || b.score - a.score
+  };
+  res.sort(S[st.sort] || S.score);
+  return { res, w };
+}
+
+/* ---------- 推薦理由 ---------- */
+function camText(p) {
+  const a = [];
+  a.push(p.c1 >= 20000 ? "2 億畫素主鏡頭" : p.c1 >= 10000 ? "1 億畫素主鏡頭" : p.c1 ? `${p.c1} 萬畫素主鏡頭` : "相機");
+  if (p.ois) a.push("光學防手震");
+  if ((p.c3 || 0) >= 1000 || (p.c4 || 0) >= 1000) a.push("多鏡頭含長焦");
+  const m = (p.sell || "").match(/蔡司|哈蘇|徠卡/);
+  if (m) a.push(m[0] + "影像");
+  return a.join("・");
+}
+function perfLabel(v) { return v >= 90 ? "旗艦級" : v >= 75 ? "高效能" : v >= 55 ? "中階順暢" : v >= 35 ? "日常夠用" : "入門"; }
+const REASON = {
+  perf: p => `<b>效能</b> ${esc(p.cpu)}（${perfLabel(p.perf)}）`,
+  cam: p => `<b>拍照</b> ${camText(p)}`,
+  bat: p => p.batEst ? `<b>續航</b> 原廠未公布容量，同系列續航${p.s.bat >= 50 ? "表現好" : "一般"}（估）` : `<b>續航</b> ${p.bat.toLocaleString()} mAh ${p.bat >= 7000 ? "超大電量" : p.bat >= 6000 ? "大電量" : "電池"}`,
+  chg: p => `<b>快充</b> ${p.chg ? p.chg + "W，" + chgUse(p, true) : "有線快充"}${p.wl ? "＋無線充電" : ""}`,
+  light: p => `<b>輕巧</b> ${p.wt} g${p.th ? "・厚 " + p.th + " mm" : ""}`,
+  big: p => `<b>螢幕</b> ${p.fold ? "摺疊展開 " : ""}${p.scr} 吋${p.scr >= 6.8 ? "大螢幕" : ""}`,
+  water: p => `<b>防水</b> ${esc((p.ip || "").replace(/\//g, "／"))} 防塵防水`,
+  disp: p => `<b>螢幕</b> ${p.hz}Hz ${esc(p.mat || "")}${p.nit ? "・" + p.nit.toLocaleString() + " nits" : ""}`,
+  sec: p => `<b>資安</b> 強度 ${p.secS} 分（${[p.hw[0] === 3 ? p.hw[1].split(" ")[0] : "", secYears(p) ? (p.brand === "Apple" ? "長期更新" : secYears(p) + " 年更新") : "", p.uf[0] >= 2 ? (p.uf[0] === 3 ? "自動修補" : "每月修補") : "", p.ul[0] === 3 ? p.ul[1].replace("螢幕", "") : ""].filter(Boolean).join("・") || "基本防護"}）`,
+  value: p => `<b>划算</b> 同價位規格突出${p.msrp > p.price ? `（原價 ${money(p.msrp)}）` : ""}`
+};
+function reasons(p, w) {
+  const keys = Object.keys(p.s).filter(k => REASON[k] && !(k === "light" && !p.wt) && !(k === "water" && !p.ip) && !(k === "disp" && !p.hz) && !(k === "cam" && p.missing) && !(k === "sec" && p.secS < 45 && !w.sec));
+  const rank = keys.map(k => ({ k, v: (w[k] || 0) * p.s[k] + (w[k] ? 0 : p.s[k] * .02) })).filter(x => p.s[x.k] >= 45 || w[x.k]);
+  rank.sort((a, b) => b.v - a.v);
+  return rank.slice(0, 3).map(x => REASON[x.k](p));
+}
+function specChips(p) {
+  const a = [];
+  if (p.scr) a.push(p.scr + " 吋");
+  if (p.bat) a.push(p.bat + " mAh");
+  if (p.chg) a.push(p.chg + "W");
+  if (p.wt) a.push(p.wt + " g");
+  if (p.ip) a.push(p.ip.split("/").pop());
+  if (p.esim) a.push("eSIM");
+  if (p.sd) a.push("記憶卡");
+  if (p.wl) a.push("無線充");
+  return a.map(x => `<span>${esc(x)}</span>`).join("");
+}
+
+/* ---------- 畫面 ---------- */
+let last = { res: [], w: {} };
+function renderList() {
+  last = compute();
+  const { res, w } = last;
+  $("#cnt").textContent = res.length;
+  if (!res.length) {
+    $("#list").innerHTML = `<div class="empty">沒有符合的機型<br><small>試著放寬預算、少選幾個必備條件，或勾「多看超出 10%」</small></div>`;
+    $("#moreBtn").classList.add("hidden"); return;
+  }
+  $("#list").innerHTML = res.slice(0, shown).map((r, i) => {
+    const p = r.p;
+    const sub = [p.brand === "小米" && p.sub ? "Redmi" : (BRAND_CN[p.brand] || p.brand), p.date + " 上市", p.g];
+    const tags = (p.hot ? `<span class="tagx">網通主打</span>` : "") + (p.fold ? `<span class="tagx b">摺疊</span>` : "") + (p.missing ? `<span class="tagx g">規格待補</span>` : "");
+    return `<article class="card${r.over ? " over" : ""}">
+      <div class="c-top"><div class="rank">${i + 1}</div>
+        <div class="c-main"><div class="c-name">${esc(p.name)}</div><div class="c-sub">${sub.map(esc).join("・")} ${tags}</div></div>
+        <div class="c-price num"><b>${money(p.price)}</b>${p.msrp > p.price ? `<s>${money(p.msrp)}</s>` : ""}${r.over ? `<span class="over-t">超出預算</span>` : ""}</div>
+      </div>
+      ${`<div class="match">符合度<i><em style="width:${r.score}%"></em></i><span class="num">${r.score}</span></div>`}
+      <ul class="reasons">${reasons(p, w).map(t => `<li>${t}</li>`).join("")}</ul>
+      <div class="specs">${specChips(p)}</div>
+      <div class="c-act">
+        <button type="button" data-cmp="${p.id}" aria-pressed="${st.cmp.includes(p.id)}">${st.cmp.includes(p.id) ? "✓ 已加入比較" : "＋ 比較"}</button>
+        <button type="button" data-sim="${p.id}">類似機</button>
+        <button type="button" data-det="${p.id}">詳細規格</button>
+      </div>
+    </article>`;
+  }).join("");
+  $("#moreBtn").classList.toggle("hidden", res.length <= shown);
+  $("#moreBtn").textContent = `顯示更多（還有 ${res.length - shown} 支）`;
+}
+function renderCbar() {
+  const n = st.cmp.length;
+  $("#cbar").classList.toggle("hidden", !n);
+  $("#cmpGo").textContent = n < 2 ? `比較（已選 ${n}，再選 ${2 - n} 支）` : `比較 ${n} 支`;
+  $("#cmpGo").disabled = n < 2;
+}
+function refresh(keepShown) { if (!keepShown) shown = 20; save(); renderControls(); renderList(); renderCbar(); }
+
+function toast(t) {
+  const d = document.createElement("div"); d.className = "toast"; d.textContent = t; document.body.appendChild(d);
+  setTimeout(() => d.remove(), 1800);
+}
+const byId = id => DATA.find(p => p.id === id);
+let sheetHist = [];
+function openSheet(html) { $("#sheet").innerHTML = html; $("#sheetBg").classList.remove("hidden"); $("#sheet").scrollTop = 0; }
+function closeSheet() { $("#sheetBg").classList.add("hidden"); sheetHist = []; }
+function show(entry, push = true) {
+  if (!push) sheetHist = [];
+  sheetHist.push(entry);
+  const [type, a, b] = entry;
+  if (type === "det") detail(a); else if (type === "sim") similar(a, b); else if (type === "cmp") compare(); else if (type === "guide") guide(a);
+}
+function back() { sheetHist.pop(); const e = sheetHist.pop(); if (e) show(e); else closeSheet(); }
+function head(title) {
+  return `<div class="sheet-h"><div class="hl">${sheetHist.length > 1 ? `<button type="button" class="back" data-back>‹ 返回</button>` : ""}<h3>${title}</h3></div><button type="button" data-close aria-label="關閉">×</button></div>`;
+}
+
+function camLine(p) {
+  const c = [p.c1, p.c2, p.c3, p.c4].filter(Boolean).map(v => v >= 10000 ? (v / 10000) + " 億" : v + " 萬");
+  return c.length ? c.join("＋") : "—";
+}
+function detail(id) {
+  const p = byId(id);
+  const v = (x, u = "") => x || x === 0 ? esc(x) + u : "—";
+  const rows = [
+    ["處理器", `${esc(p.cpu)}（${perfLabel(p.perf)}）`], ["RAM", v(p.ram, " GB")],
+    ["螢幕", `${v(p.scr, " 吋")} ${esc(p.mat || "")}`], ["更新率／亮度", `${v(p.hz, "Hz")}・${v(p.nit, " nits")}`],
+    ["後鏡頭", camLine(p) + (p.ois ? "（OIS）" : "")], ["前鏡頭", p.fc ? p.fc + " 萬" : "—"],
+    ["電池", p.bat ? p.bat + " mAh" : "原廠未公布"], ["快充", (p.chg ? p.chg + "W" : "—") + (p.wl ? "＋無線充電" : "")],
+    ["重量／厚度", `${v(p.wt, " g")}・${v(p.th, " mm")}`], ["防水", v(p.ip)],
+    ["SIM", p.esim ? "支援 eSIM" : "實體 SIM"], ["記憶卡", p.sd ? "可擴充" : "不支援"],
+    ["指紋", p.fp ? esc(p.fp) : (p.brand === "Apple" ? "Face ID" : "—")], ["系統", p.os ? esc(p.os.replace(/^A/, "Android ").replace(/^i/, "iOS ")) : "—"],
+    ["網路", p.g], ["上市", esc(p.date)], ["手機王標語", esc(p.sell || "—")]
+  ];
+  const sb = FEATS.map(([k, n]) => `<div class="sb">${n} ${p.s[k]}<i><em style="width:${p.s[k]}%"></em></i></div>`).join("");
+  openSheet(`${head(esc(p.name))}
+    <table class="caps"><thead><tr><th>容量</th><th>網通售價</th><th>原價</th></tr></thead><tbody>
+    ${p.caps.map(c => `<tr><td>${esc(c.cap || "單一版本")}</td><td class="p num">${money(c.p)}</td><td class="num">${c.m > c.p ? `<s>${money(c.m)}</s>` : money(c.m)}</td></tr>`).join("")}
+    </tbody></table>
+    <div class="scorebars">${sb}</div>
+    <div class="sub-h">11 項規格解讀</div>
+    <div class="tiers">${tierRows(p)}</div>
+    <details class="full"><summary>完整規格表</summary>
+    <dl class="dl">${rows.map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join("")}</dl></details>
+    ${p.batEst ? `<p class="cmp-note">※ Apple 未公布電池容量，續航分數為同系列估計。</p>` : ""}
+    ${p.missing ? `<p class="cmp-note">※ 手機王尚未提供完整規格，相機等分數暫以中間值計算。</p>` : ""}
+    <div class="links"><a class="pri" href="https://ty3c.com/?p=${p.id}" target="_blank" rel="noopener">台灣網通商品頁</a><a href="https://www.sogi.com.tw/products/${esc(p.sogi)}" target="_blank" rel="noopener">手機王規格</a></div>
+    <div class="links"><button type="button" class="more-btn" data-cmp="${p.id}" style="margin:0">${st.cmp.includes(p.id) ? "✓ 已加入比較" : "＋ 加入比較"}</button><button type="button" class="more-btn" data-sim="${p.id}" style="margin:0">找類似機型</button></div>`);
+}
+
+/* ---------- 類似機型 ---------- */
+const SIMK = [["perf", 1.5], ["cam", 1.3], ["bat", 1], ["big", 1], ["chg", .6], ["light", .7], ["water", .5], ["disp", .7]];
+const SIMW = SIMK.reduce((x, y) => x + y[1], 0);
+function specDist(a, b) { let s = 0; for (const [k, w] of SIMK) { const d = a.s[k] - b.s[k]; s += w * d * d; } return Math.sqrt(s / SIMW); }
+const DEFW = { perf: .3, cam: .25, bat: .25, value: .2 };
+function overall(p) { let s = 0; for (const k in DEFW) s += DEFW[k] * p.s[k]; return Math.round(s); }
+function simSpec(p) {
+  return DATA.filter(q => q !== p && q.fold === p.fold).map(q => ({ q, d: specDist(p, q) }))
+    .sort((a, b) => a.d - b.d).slice(0, 6);
+}
+function priceWin(p) { return [Math.round(Math.min(p.price * .85, p.price - 1500)), Math.round(Math.max(p.price * 1.15, p.price + 1500))]; }
+function simPrice(p) {
+  const [lo, hi] = priceWin(p);
+  let c = DATA.filter(q => q !== p && q.price >= lo && q.price <= hi);
+  if (c.length < 3) c = DATA.filter(q => q !== p).sort((a, b) => Math.abs(a.price - p.price) - Math.abs(b.price - p.price)).slice(0, 6);
+  return c.map(q => ({ q, o: overall(q) })).sort((a, b) => b.o - a.o).slice(0, 8);
+}
+function diffChips(p, q) {
+  const ks = FEATS.map(f => f[0]).filter(k => k !== "value");
+  const d = ks.map(k => ({ k, v: q.s[k] - p.s[k] }));
+  const up = d.filter(x => x.v >= 10).sort((a, b) => b.v - a.v).slice(0, 3);
+  const dn = d.filter(x => x.v <= -10).sort((a, b) => a.v - b.v).slice(0, 2);
+  const a = up.map(x => `<span class="up">${FNAME[x.k]} ▲${x.v}</span>`).concat(dn.map(x => `<span class="dn">${FNAME[x.k]} ▼${-x.v}</span>`));
+  return a.length ? a.join("") : `<span class="sm">各項規格接近</span>`;
+}
+function priceDiff(p, q) {
+  const d = q.price - p.price;
+  if (Math.abs(d) < 300) return `<span class="pd eq">差不多價</span>`;
+  return d < 0 ? `<span class="pd lo">便宜 ${money(-d)}</span>` : `<span class="pd hi">貴 ${money(d)}</span>`;
+}
+function similar(id, tab = "spec") {
+  const p = byId(id);
+  const list = tab === "spec" ? simSpec(p) : simPrice(p);
+  const [lo, hi] = priceWin(p);
+  const note = tab === "spec"
+    ? `依效能、拍照、續航、螢幕大小、快充、重量、防水、螢幕品質找最接近的機型${p.fold ? "（只比摺疊機）" : "（只比直立機）"}；▲▼ 是和 ${esc(p.name)} 相比的分數差。`
+    : `價格在 ${money(lo)}～${money(hi)} 之間（約 ±15%），依綜合分數排序；▲▼ 是和 ${esc(p.name)} 相比的分數差。`;
+  const items = list.map(x => {
+    const q = x.q;
+    const tagx = tab === "spec" ? `相似度 ${Math.max(0, Math.round(100 - x.d))}%` : `綜合 ${x.o} 分`;
+    return `<div class="sim">
+      <div class="sim-h"><div><b>${esc(q.name)}</b><small>${esc(q.date)} 上市・${tagx}</small></div>
+        <div class="sim-p num"><b>${money(q.price)}</b>${priceDiff(p, q)}</div></div>
+      <div class="dchips">${diffChips(p, q)}</div>
+      <div class="sim-a"><button type="button" class="pri" data-pair="${p.id},${q.id}">和這台比較</button><button type="button" data-det2="${q.id}">詳細規格</button></div>
+    </div>`;
+  }).join("");
+  openSheet(`${head("類似機型")}
+    <div class="base"><div><small style="color:var(--muted)">以這台為基準</small><br><b>${esc(p.name)}</b></div><span class="pr num">${money(p.price)}</span></div>
+    <div class="simtabs"><button type="button" data-simtab="spec" data-id="${p.id}" aria-pressed="${tab === "spec"}">規格相近</button><button type="button" data-simtab="price" data-id="${p.id}" aria-pressed="${tab === "price"}">價格相近</button></div>
+    <p class="simnote">${note}</p>${items || `<div class="empty">找不到類似機型</div>`}`);
+}
+function compare() {
+  const ps = st.cmp.map(byId).filter(Boolean);
+  const R = [
+    ["g", "價格與上市"],
+    ["售價", p => p.price, "min", p => money(p.price)],
+    ["上市", p => p.date, null, p => esc(p.date)],
+    ["g", "效能與螢幕"],
+    ["處理器", p => p.perf, "max", p => `${esc(p.cpu)}<br><small>${perfLabel(p.perf)}</small>`],
+    ["RAM", p => p.ram, "max", p => p.ram ? p.ram + " GB" : "—"],
+    ["螢幕", p => p.scr, "max", p => `${p.scr} 吋${p.fold ? "<br><small>摺疊展開</small>" : ""}`],
+    ["面板", p => p.s.disp, "max", p => `${esc(p.mat || "—")}<br><small>${p.hz || "—"}Hz${p.nit ? "・" + p.nit + " nits" : ""}</small>`],
+    ["g", "相機"],
+    ["後鏡頭", p => p.s.cam, "max", p => camLine(p) + (p.ois ? "<br><small>OIS 防手震</small>" : "")],
+    ["前鏡頭", p => p.fc, "max", p => p.fc ? p.fc + " 萬" : "—"],
+    ["g", "電池與機身"],
+    ["電池", p => p.bat, "max", p => p.bat ? p.bat + " mAh" : "未公布"],
+    ["快充", p => (p.chg || 0) + (p.wl ? .5 : 0), "max", p => (p.chg ? p.chg + "W" : "—") + (p.wl ? "<br><small>＋無線充</small>" : "")],
+    ["重量", p => p.wt, "min", p => p.wt ? p.wt + " g" : "—"],
+    ["厚度", p => p.th, "min", p => p.th ? p.th + " mm" : "—"],
+    ["防水", p => p.s.water, "max", p => esc((p.ip || "—").replace(/\//g, " "))],
+    ["g", "其他"],
+    ["eSIM", p => p.esim, "max", p => p.esim ? "✓" : "—"],
+    ["記憶卡", p => p.sd, "max", p => p.sd ? "✓" : "—"],
+    ["指紋", null, null, p => esc(p.fp || (p.brand === "Apple" ? "Face ID" : "—"))],
+    ["g", "資安強度五項"],
+    ["資安強度", p => p.secS, "max", p => `<b>${p.secS} 分</b>`],
+    ...SECSUB.map(u => [u.n, p => u.lv(p) ?? 1, "max", p => `${subBadge(u, p)}<br><small>${esc(u.val(p))}</small>`]),
+    ["g", "11 項分級（越右邊等級越高）"],
+    ...TIERS.map(t => [t.n.split("（")[0], t.mode === "eq" ? null : p => p.lv[t.k], t.mode === "eq" ? null : "max", p => `${badge(t, p)}<br><small>${esc(t.val(p))}${t.k === "chg" && p.chg ? "<br>" + chgUse(p, true) : ""}</small>`])
+  ];
+  const body = R.map(r => {
+    if (r[0] === "g") return `<tr class="grp"><td colspan="${ps.length + 1}">${r[1]}</td></tr>`;
+    const [lab, val, dir, fmt] = r;
+    let best = null;
+    if (dir && val) {
+      const vs = ps.map(val).filter(x => x != null && x !== "" && !Number.isNaN(x));
+      if (vs.length >= 2) {
+        const b = dir === "max" ? Math.max(...vs) : Math.min(...vs);
+        if (ps.filter(p => val(p) === b).length < ps.length) best = b;
+      }
+    }
+    return `<tr><th class="rl">${lab}</th>${ps.map(p => `<td class="${best != null && val(p) === best ? "best" : ""}">${fmt(p)}</td>`).join("")}</tr>`;
+  }).join("");
+  openSheet(`${head("機型比較")}
+    <div class="cmp-wrap"><table class="cmp"><thead><tr><th class="rl"></th>${ps.map(p => `<th>${esc(p.name)}</th>`).join("")}</tr></thead><tbody>${body}</tbody></table></div>
+    <p class="cmp-note">綠底＝這一列最好（價格、重量、厚度越低越好）。價格為台灣網通最低容量售價。</p>`);
+}
+
+/* ---------- 事件 ---------- */
+document.addEventListener("click", e => {
+  const t = e.target.closest("button,[data-close]");
+  if (e.target.id === "sheetBg") return closeSheet();
+  if (!t) return;
+  const d = t.dataset;
+  if ("close" in d) return closeSheet();
+  if ("back" in d) return back();
+  if (d.guide) { const inSheet = !$("#sheetBg").classList.contains("hidden"); return show(["guide", d.guide], inSheet); }
+  if (d.goto) { const el = document.getElementById("gd-" + d.goto); if (el) { const sh = $("#sheet"); sh.scrollTop += el.getBoundingClientRect().top - sh.getBoundingClientRect().top - 64; } return; }
+  if (d.tk) {
+    const t = TK[d.tk], l = +d.tl;
+    if (t.mode === "eq") { const a = st.tier[d.tk] || []; st.tier[d.tk] = a.includes(l) ? a.filter(x => x !== l) : [...a, l]; }
+    else st.tier[d.tk] = st.tier[d.tk] === l ? null : l;
+    return refresh();
+  }
+  if (d.sim) { const inSheet = !$("#sheetBg").classList.contains("hidden"); return show(["sim", +d.sim, "spec"], inSheet); }
+  if (d.simtab) { sheetHist.pop(); return show(["sim", +d.id, d.simtab]); }
+  if (d.det2) return show(["det", +d.det2]);
+  if (d.pair) { st.cmp = d.pair.split(",").map(Number); save(); renderList(); renderCbar(); return show(["cmp"]); }
+  if (d.b != null) { const i = +d.b; st.b = st.b === i ? -1 : i; st.min = ""; st.max = ""; return refresh(); }
+  if (d.p) { st.persona = st.persona === d.p ? "" : d.p; return refresh(); }
+  if (d.f) { st.feats = st.feats.includes(d.f) ? st.feats.filter(x => x !== d.f) : [...st.feats, d.f]; return refresh(); }
+  if (d.n) { st.needs = st.needs.includes(d.n) ? st.needs.filter(x => x !== d.n) : [...st.needs, d.n]; return refresh(); }
+  if (d.br) { st.brands = st.brands.includes(d.br) ? st.brands.filter(x => x !== d.br) : [...st.brands, d.br]; return refresh(); }
+  if (d.fm) { st.form = st.form === d.fm ? "" : d.fm; return refresh(); }
+  if (d.cmp) {
+    const id = +d.cmp;
+    if (st.cmp.includes(id)) st.cmp = st.cmp.filter(x => x !== id);
+    else if (st.cmp.length >= 3) { toast("最多比較 3 支，先取消一支"); return; }
+    else st.cmp = [...st.cmp, id];
+    save(); renderList(); renderCbar();
+    if (!$("#sheetBg").classList.contains("hidden") && t.classList.contains("more-btn")) { sheetHist.pop(); show(["det", id]); }
+    return;
+  }
+  if (d.det) return show(["det", +d.det], false);
+});
+$("#moreBtn").addEventListener("click", () => { shown += 20; renderList(); });
+$("#cmpGo").addEventListener("click", () => show(["cmp"], false));
+$("#cmpClear").addEventListener("click", () => { st.cmp = []; save(); renderList(); renderCbar(); });
+$("#resetBtn").addEventListener("click", () => { st = def(); refresh(); window.scrollTo({ top: 0, behavior: "smooth" }); });
+$("#sortSel").addEventListener("change", e => { st.sort = e.target.value; refresh(); });
+let qt;
+$("#q").addEventListener("input", e => { clearTimeout(qt); qt = setTimeout(() => { st.q = e.target.value; shown = 20; save(); $("#qClr").classList.toggle("hidden", !st.q); renderList(); }, 120); });
+$("#qClr").addEventListener("click", () => { st.q = ""; refresh(); $("#q").focus(); });
+const onRange = () => { st.min = $("#pMin").value; st.max = $("#pMax").value; if (st.min !== "" || st.max !== "") st.b = -1; shown = 20; save(); renderControls(); renderList(); };
+$("#pMin").addEventListener("change", onRange); $("#pMax").addEventListener("change", onRange);
+$("#stretch").addEventListener("change", e => { st.stretch = e.target.checked; refresh(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeSheet(); });
+
+$("#dataNote").textContent = `${DATA.length} 支在售手機・價格 ${META.priceDate}`;
+$("#foot").innerHTML = `資料來源：價格取自台灣網通價格總覽（${esc(META.priceDate)}，最低容量售價，實際以門市為準）；規格取自手機王 SOGI。符合度是依規格算出的參考分數，不代表實際體驗。`;
+st.cmp = st.cmp.filter(id => byId(id));
+refresh();
+</script>
+</body>
+</html>
